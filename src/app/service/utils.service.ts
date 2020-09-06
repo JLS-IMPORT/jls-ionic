@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor(public http: HttpClient, public storage: NativeStorage) { }
+  constructor(public http: HttpClient, public storage: Storage) { }
 
   async getKey(key: string): Promise<string> {
-    return await this.storage.getItem(key);
+    return await this.storage.get(key).catch(()=>{return});
   }
 
   async checkIsLogined(): Promise<boolean> {

@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar mode="ios">
     <ion-title text-center>{{'home.Title' | translate}}</ion-title>
-    <ion-buttons start>
-      <ion-button ion-ion-button icon-only small (click)="translation()">
-        <ion-icon name="md-globe"></ion-icon>
+    <ion-buttons  slot="start">
+      <ion-button  icon-only small (click)="translation()">
+        <ion-icon name="globe-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons end>
-      <ion-button ion-ion-button icon-only small (click)="search()">
+    <ion-buttons slot="end" >
+      <ion-button icon-only small (click)="search()">
         <ion-icon name="search" class="searchButtonColor"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -16,61 +16,61 @@
 </ion-header>
 
 <ion-content text-center no-bounce>
-  <!-- <ion-slides class="slidePagers" pager>
+  <ion-slides class="slidePagers" pager>
     <ion-slide class="slidePhoto" *ngFor="let item of sldes" >
       <img  [src]="host+item.PhotoPath" />
     </ion-slide>
-  </ion-slides> -->
+  </ion-slides>
   
   <div class="buttonZone">
     <ion-row class="buttonRow" text-center>
       <ion-col col-3>
-        <ion-button  class="bestSaleColor myButton" icon-only (click)="displayBestSalesProductPage()">
-          <ion-icon name='thumbs-up'></ion-icon>
+        <ion-button  class="bestSaleColor myButton"  icon-only (click)="displayBestSalesProductPage()">
+          <ion-icon name='thumbs-up' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.BestSellers' | translate}}</p>
       </ion-col>
       <ion-col col-3>
-        <ion-button ion-ion-button  class="promotionColor myButton" icon-only (click)="displayByLowerSales()">
-          <ion-icon name='star'></ion-icon>
+        <ion-button   class="promotionColor myButton" icon-only (click)="displayByLowerSales()">
+          <ion-icon name='star' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.Promotion' | translate}}</p>
       </ion-col>
       <ion-col col-3>
-        <ion-button ion-ion-button class="nouveauteColor myButton" icon-only (click)="displaynewProductPage()">
-          <ion-icon name='flag'></ion-icon>
+        <ion-button  class="nouveauteColor myButton" icon-only (click)="displaynewProductPage()">
+          <ion-icon name='flag' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.New' | translate}}</p>
       </ion-col>
       <ion-col col-3>
-        <ion-button ion-ion-button class="categoryColor myButton" icon-only (click) = "displayCategoryListPage()" >
-          <ion-icon name='pricetag'></ion-icon>
+        <ion-button  class="categoryColor myButton" icon-only (click) = "displayCategoryListPage()" >
+          <ion-icon name='pricetag' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.Category' | translate}}</p>
       </ion-col>
     </ion-row>
     <ion-row class="buttonRow" text-center>
       <ion-col col-3>
-        <ion-button ion-ion-button class="myListColor myButton" icon-only (click)="myList()">
-          <ion-icon name='list'></ion-icon>
+        <ion-button  class="myListColor myButton" icon-only (click)="myList()">
+          <ion-icon name='list' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.MyList' | translate}}</p>
       </ion-col>
       <ion-col col-3>
-        <ion-button ion-ion-button class="xxxColor  myButton" icon-only (click)="advancedSearch()">
-          <ion-icon name='search'></ion-icon>
+        <ion-button  class="xxxColor  myButton" icon-only (click)="advancedSearch()">
+          <ion-icon name='search' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.AdvancedSearch' | translate}}</p>
       </ion-col>
       <ion-col col-3>
-        <ion-button ion-ion-button class="linkColor  myButton" icon-only (click)="contactUs()">
-          <ion-icon name='link'></ion-icon>
+        <ion-button  class="linkColor  myButton" icon-only (click)="contactUs()">
+          <ion-icon name='link' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.ContactUs' | translate}}</p>
       </ion-col>
       <ion-col col-3>
-        <ion-button ion-ion-button (click)="displayAvis()" class="avisColor  myButton" icon-only>
-          <ion-icon name='paper'></ion-icon>
+        <ion-button  (click)="displayAvis()" class="avisColor  myButton" icon-only>
+          <ion-icon name='newspaper' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.Advice' | translate}}</p>
       </ion-col>

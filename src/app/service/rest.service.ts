@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { UtilsService } from './utils.service';
 import { Observable } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
 import { ToastController, NavController } from '@ionic/angular';
 import { environment } from '../../environments/environment';
+import { Storage } from '@ionic/storage';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ import { environment } from '../../environments/environment';
 export class RestService {
   token: string;
   constructor(public http1: HttpClient,
-    public storage: NativeStorage,
+    public storage: Storage,
     public utils: UtilsService,
     public translate: TranslateService,
     public toastCtrl: ToastController,

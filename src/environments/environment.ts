@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SERVER_API_URL: '',
+  SERVER_API_URL: 'https://localhost:44304/',
   HTTP_WAITING_TIME: 30
 };
 
