@@ -1,0 +1,63 @@
+
+    .scroll-content {
+        overflow-y: auto !important;
+    }
+    
+    .slidePhoto{
+        height: 75%;
+    }
+    .slidePagers{
+        height: 48%;
+    }
+    .content{
+        background: #ffffff!important;
+        height: 100%;
+    }
+    .buttonRow{
+        margin: 10px 15px;
+    }
+    .buttonZone{
+        position: fixed; 
+        bottom: env(safe-area-inset-bottom); 
+        margin: auto;
+        left: 0;
+        right: 0;
+        margin-bottom: 15%;
+    }
+    .searchButtonColor{
+        color:  #000;
+    }
+    .avisColor{
+        color: #fff;
+        background-color: rgb(198, 130, 238);
+    }
+    .promotionColor{
+        color: #fff;
+        background-color: cadetblue;
+    }
+    .bestSaleColor{
+        color: #fff;
+        background-color: indianred;
+    }
+    .categoryColor{
+        color: #fff;
+    background-color: burlywood;
+    }
+    .myListColor{
+        color: #fff;
+        background-color: coral;
+    }
+    .nouveauteColor{
+        color: #fff;
+        background-color: cornflowerblue;
+    }
+    .linkColor{
+        color: #fff;
+    background-color: darksalmon;
+    }
+    .xxxColor{
+        color: #fff;
+    background-color: mediumpurple;
+    }
+
+
