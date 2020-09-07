@@ -33,7 +33,11 @@ const routes: Routes = [
   {
     path: 'advanced-search',
     loadChildren: () => import('./advanced-search/advanced-search.module').then( m => m.AdvancedSearchPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
+
 
 
 ];

@@ -14,7 +14,7 @@
   </div>
   <ion-list>
 
-    <ion-item ion-item *ngFor="let item of categoryList" (click) = "productMenu(item.ReferenceId,item.Reference.Label)">
+    <ion-item button *ngFor="let item of categoryList" (click) = "productMenu(item.ReferenceId,item.Reference.Label)">
       {{item.Reference.Label}}({{item.TotalCount}})
    </ion-item>   
 

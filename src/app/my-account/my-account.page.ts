@@ -6,6 +6,7 @@ import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationPage } from '../translation/translation.page';
+import { LoginPage } from '../login/login.page';
 
 @Component({
   selector: 'app-my-account',
@@ -42,13 +43,20 @@ export class MyAccountPage extends BaseUI {
   }
 
 
-  showModal() {
+  async showModal() {
 
     // todo migration to lazy loading modal 
-    // let modal = this.modalCtrl.create({} 'LoginPage');
-    // modal.onDidDismiss(() => {
-    //   this.loadUserPage();
-    // });
+    let modal = await this.modalCtrl.create({
+      component: LoginPage
+    });
+
+    modal.present();
+
+    modal.onWillDismiss().then(() => {
+      this.loadUserPage();
+    });
+
+
     // modal.present();
   }
 
@@ -69,8 +77,8 @@ export class MyAccountPage extends BaseUI {
     var token = localStorage.getItem('jwt');
     var userId = localStorage.getItem('userId');
     if (userId == null || token == null) {
-      this.notLogin = false; // todo don't commit
-      this.logined = true;
+      this.notLogin = true;
+      this.logined = false;
     }
     else {
       this.notLogin = false;

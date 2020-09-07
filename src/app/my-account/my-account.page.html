@@ -33,33 +33,33 @@
         <span> {{'myAccount.MyOrder' | translate}} </span>
         <a class="viewAll" (click)="readCommandList('All')">{{'myAccount.ViewAll' | translate}} </a>
       </ion-list-header>
-      <ion-item detail="true" ion-item (click)="readCommandList('OrderStatus_Progressing')">{{'myAccount.PrepareOrder' | translate}}</ion-item>
-      <ion-item detail="true" ion-item (click)="readCommandList('OrderStatus_Valid')">{{'myAccount.OrderArrived' | translate}}</ion-item>
-      <ion-item detail="true" ion-item (click)="readCommandList('OrderStatus_Refus')">{{'myAccount.CanceledOrder' | translate}}</ion-item>
+      <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Progressing')">{{'myAccount.PrepareOrder' | translate}}</ion-item>
+      <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Valid')">{{'myAccount.OrderArrived' | translate}}</ion-item>
+      <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Refus')">{{'myAccount.CanceledOrder' | translate}}</ion-item>
     </ion-list>
 
     <ion-list>
 
-      <ion-item detail="true" (click)="translation()">
+      <ion-item button detail="true" (click)="translation()">
         <ion-icon class="iconStyle" name="globe" item-start></ion-icon>
         {{'translation.Title' | translate}}
       </ion-item>
 
-      <ion-item detail="true" ion-item (click)="myAvis()">
+      <ion-item button detail="true" ion-item (click)="myAvis()">
         <ion-icon class="iconStyle" name="at" item-start ></ion-icon>
         {{'myAccount.Feedbacks' | translate}}
       </ion-item>
-      <ion-item detail="true" ion-item (click)="contactUs()">
+      <ion-item button detail="true" ion-item (click)="contactUs()">
         <ion-icon class="iconStyle" name="mail" item-start></ion-icon>
        {{'myAccount.ContactUs' | translate}}
       </ion-item>
-      <ion-item detail="true" ion-item (click)="aboutUs()">
+      <ion-item button detail="true" ion-item (click)="aboutUs()">
         <ion-icon class="iconStyle" name="information-circle" item-start></ion-icon>
         {{'myAccount.AboutUs' | translate}}
       </ion-item>
     </ion-list>
     <ion-list>
-        <ion-button ion-ion-button Expand="full" full color="danger" text-center (click)="logout()">
+        <ion-button  Expand="full" full color="danger" text-center (click)="logout()">
         {{'myAccount.SignOut' | translate}}
         </ion-button>
     </ion-list>

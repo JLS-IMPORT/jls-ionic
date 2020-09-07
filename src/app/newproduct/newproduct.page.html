@@ -21,7 +21,7 @@
   <p *ngIf="!loading && (productList==null || productList.length<=0) " class="ion-text-center">
     {{'NoDataToDisplay' | translate}}</p>
   <ion-list>
-    <ion-item ion-item detail="false" (click)="productDetail(item)" *ngFor="let item of productList">
+    <ion-item button detail="false" (click)="productDetail(item)" *ngFor="let item of productList">
 
       <ion-avatar slot="start" style="width: 60px;height:60px">
         <img *ngIf="item.DefaultPhotoPath==null" class="productImg" src="assets/imgs/not-found.png">
