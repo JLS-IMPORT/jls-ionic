@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Network } from '@ionic-native/network/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { AdvancedSearchPage } from '../advanced-search/advanced-search.page';
 
 
 @Component({
@@ -57,7 +58,7 @@ export class NewproductPage extends BaseUI {
     this.checkLogined();
 
     this.PageType = this.router.snapshot.queryParams["PageType"];
-    this.SecondReferenceId = parseInt (this.router.snapshot.queryParams["ReferenceId"]);
+    this.SecondReferenceId = parseInt(this.router.snapshot.queryParams["ReferenceId"]);
     this.Title = this.router.snapshot.queryParams["Title"];
     this.loadProductList();
   }
@@ -81,7 +82,7 @@ export class NewproductPage extends BaseUI {
   }
 
   loadProductList() {
-    if ( this.PageType != null) {
+    if (this.PageType != null) {
       switch (this.PageType) {
         case 'BySecondCategory':
           this.rest.GetProductListBySecondCategory(this.SecondReferenceId, this.counter, this.step) // 填写url的参数
@@ -352,7 +353,7 @@ export class NewproductPage extends BaseUI {
 
         case 'SimpleProductSearch':
           this.rest.SimpleProductSearch({
-            SearchText:this.router.snapshot.queryParams["SearchText"],
+            SearchText: this.router.snapshot.queryParams["SearchText"],
             Lang: this.translate.defaultLang,
             Begin: this.counter,
             Step: this.step
@@ -413,16 +414,23 @@ export class NewproductPage extends BaseUI {
     }
   }
 
-  advancedSearchPage() {
+  async advancedSearchPage() {
     // TODO: migration to lazy load modal
-    // let searchCriteriaModal = this.modalCtrl.create('AdvancedSearchPage',{criteria: this.advancedSearchCriteria});
-    // searchCriteriaModal.present();
-    // searchCriteriaModal.onDidDismiss(result=>{
-    //   if(result!=null){
-    //     this.advancedSearchCriteria = result;
-    //     this.loadProductList();
-    //   }
-    // });
+    let searchCriteriaModal = await this.modalCtrl.create({
+      component: AdvancedSearchPage,
+      componentProps: {
+        criteriaPassed: this.advancedSearchCriteria
+      }
+    });
+    await searchCriteriaModal.present();
+
+    const { data } = await searchCriteriaModal.onWillDismiss();
+
+    if (data != null) {
+      this.advancedSearchCriteria = data;
+      this.loadProductList();
+    }
+
   }
 
   async addInCart(event: Event, item: any) {

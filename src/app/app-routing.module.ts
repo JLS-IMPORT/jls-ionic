@@ -21,9 +21,19 @@ const routes: Routes = [
   {
     path: 'ProductDetailPage',
     loadChildren: () => import('./product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
+  },
+  {
+    path: 'translation',
+    loadChildren: () => import('./translation/translation.module').then( m => m.TranslationPageModule)
+  },
+  {
+    path: 'SearchPage',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'advanced-search',
+    loadChildren: () => import('./advanced-search/advanced-search.module').then( m => m.AdvancedSearchPageModule)
   }
-
-
 
 
 ];

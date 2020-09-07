@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'tabMyAccount',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('../my-account/my-account.module').then(m => m.MyAccountPageModule)
       },
       {
         path: '',

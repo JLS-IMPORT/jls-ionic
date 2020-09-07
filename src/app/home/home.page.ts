@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
 import { environment } from 'src/environments/environment';
+import { TranslationPage } from '../translation/translation.page';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +31,8 @@ export class HomePage extends BaseUI {
 
   ngOnInit() {
     // todo: place into right angular life cycle function
-    this.rest.GetWbesiteslides(null).subscribe(result=>{
-      if(result!=null && result.length>0){
+    this.rest.GetWbesiteslides(null).subscribe(result => {
+      if (result != null && result.length > 0) {
         this.sldes = result;
       }
     });
@@ -113,7 +114,7 @@ export class HomePage extends BaseUI {
 
     this.navCtrl.navigateForward('/NewproductPage',
       {
-        queryParams:{
+        queryParams: {
           Title: this.translate.instant("home.AdvancedSearch"),
           PageType: 'AdvancedProductSearch'
         }
@@ -139,16 +140,10 @@ export class HomePage extends BaseUI {
 
   async translation() {
     // TODO: migration to lazy load modal 
-    // let modal = this.modalCtrl.create('TranslationPage');
-    // modal.onDidDismiss(() => {
+    const modalTranslation = await this.modalCtrl.create({
+      component: TranslationPage,
+    });
+    modalTranslation.present();
 
-    // });
-    // modal.present();
-
-    // const modal = await this.modalCtrl.create({
-    //   component: ModalPage,
-    //   cssClass: 'my-custom-class'
-    // });
-    
   }
 }
