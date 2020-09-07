@@ -23,23 +23,21 @@ const routes: Routes = [
     loadChildren: () => import('./product-detail/product-detail.module').then( m => m.ProductDetailPageModule)
   },
   {
-    path: 'translation',
-    loadChildren: () => import('./translation/translation.module').then( m => m.TranslationPageModule)
-  },
-  {
     path: 'SearchPage',
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
   },
   {
-    path: 'advanced-search',
-    loadChildren: () => import('./advanced-search/advanced-search.module').then( m => m.AdvancedSearchPageModule)
-  },  {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    path: 'RegistrePage',
+    loadChildren: () => import('./registre/registre.module').then( m => m.RegistrePageModule)
+  },
+  {
+    path: 'RegistreSuccedPage',
+    loadChildren: () => import('./registre-succed/registre-succed.module').then( m => m.RegistreSuccedPageModule)
+  },
+  {
+    path: 'ForgetPasswordPage',
+    loadChildren: () => import('./forget-password/forget-password.module').then( m => m.ForgetPasswordPageModule)
   }
-
-
-
 ];
 @NgModule({
   imports: [

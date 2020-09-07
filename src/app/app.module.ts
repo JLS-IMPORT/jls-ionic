@@ -17,6 +17,14 @@ import { RestService } from './service/rest.service';
 import { Network } from '@ionic-native/network/ngx';
 import { StarRatingModule } from 'ionic5-star-rating';
 import { IonicStorageModule } from '@ionic/storage';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -28,6 +36,12 @@ export function LanguageLoader(http: HttpClient) {
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     HttpClientModule,
     StarRatingModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatStepperModule,
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -35,7 +49,8 @@ export function LanguageLoader(http: HttpClient) {
         useFactory: (LanguageLoader),
         deps: [HttpClient]
       }
-    })],
+    }),
+    NoopAnimationsModule],
   providers: [
     StatusBar,
     SplashScreen,
