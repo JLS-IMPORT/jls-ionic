@@ -8,6 +8,7 @@ import { MyAccountPageRoutingModule } from './my-account-routing.module';
 
 import { MyAccountPage } from './my-account.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoginPageModule } from '../login/login.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     MyAccountPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    LoginPageModule
   ],
   declarations: [MyAccountPage]
 })
