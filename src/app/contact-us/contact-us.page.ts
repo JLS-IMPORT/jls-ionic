@@ -1,0 +1,109 @@
+import { Component, OnInit } from '@angular/core';
+import { BaseUI } from '../common/baseui';
+import { NavController, ToastController, LoadingController, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { RestService } from '../service/rest.service';
+import { Network } from '@ionic-native/network/ngx';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-contact-us',
+  templateUrl: './contact-us.page.html',
+  styleUrls: ['./contact-us.page.scss'],
+})
+export class ContactUsPage extends BaseUI {
+
+
+  public isSystemMessage: boolean = false;
+  public criteria: any = {
+    Title: null,
+    Body: null,
+    OrderId: null
+  }
+
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public translateService: TranslateService,
+    public rest: RestService,
+    public network: Network,
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController,
+    public router: ActivatedRoute) {
+    super();
+
+  }
+
+  ngOnInit() {
+
+    if (this.router.queryParams['OrderId'] != null) {
+      //
+      this.criteria.OrderId = this.router.queryParams['OrderId'];
+    }
+    if (this.router.queryParams['SystemMessage'] != null) {
+      var SystemMessage = JSON.parse(this.router.queryParams['SystemMessage']);
+      this.criteria.Title = SystemMessage.Title;
+      this.criteria.Body = SystemMessage.Body;
+      this.isSystemMessage = true;
+      if (this.network.type != 'none') {
+
+        this.rest.UpdateMessageStatus({
+          MessageId: SystemMessage.Id,
+          Status: true,
+          UserId: localStorage.getItem('userId')
+        }) // 填写url的参数
+          .subscribe(
+            f => { },
+            error => {
+              super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
+            });
+      }
+      else {
+        super.showToast(this.toastCtrl, this.translateService.instant("Msg_Offline"));
+      }
+    }
+  }
+
+
+
+  dismiss() {
+    this.modalCtrl.dismiss();
+  }
+
+  async save() {
+    console.log(this.criteria);
+
+
+    if (this.network.type != 'none') {
+      var loading = await this.showLoading(this.loadingCtrl, this.translateService.instant('Loading'));
+
+      var MessageInfo: any = {};
+
+      MessageInfo.Message = this.criteria;
+      MessageInfo.FromUserId = localStorage.getItem('userId');
+
+      // this.navCtrl.parent.select(0); // 跳转tabs
+      this.rest.SaveMessage(MessageInfo) // 填写url的参数
+        .subscribe(
+          f => {
+            if (f > 0) {
+              super.showToast(this.toastCtrl, this.translateService.instant("Msg_SaveSuccess"));
+
+              this.navCtrl.pop();
+            }
+            else {
+              super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
+            }
+            loading.dismiss();
+          },
+          error => {
+            super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
+            loading.dismiss();
+          });
+    }
+    else {
+      super.showToast(this.toastCtrl, this.translateService.instant("Msg_Offline"));
+    }
+  }
+
+}

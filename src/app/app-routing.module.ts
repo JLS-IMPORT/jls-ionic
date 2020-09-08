@@ -37,7 +37,16 @@ const routes: Routes = [
   {
     path: 'ForgetPasswordPage',
     loadChildren: () => import('./forget-password/forget-password.module').then( m => m.ForgetPasswordPageModule)
+  },
+  {
+    path: 'AboutUsPage',
+    loadChildren: () => import('./about-us/about-us.module').then( m => m.AboutUsPageModule)
+  },
+  {
+    path: 'ContactUsPage',
+    loadChildren: () => import('./contact-us/contact-us.module').then( m => m.ContactUsPageModule)
   }
+
 ];
 @NgModule({
   imports: [
