@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content text-center no-bounce>
+<ion-content class="ion-text-center" no-bounce>
   <ion-slides class="slidePagers" pager>
     <ion-slide class="slidePhoto" *ngFor="let item of sldes" >
       <img  [src]="host+item.PhotoPath" />
@@ -23,7 +23,7 @@
   </ion-slides>
   
   <div class="buttonZone">
-    <ion-row class="buttonRow" text-center>
+    <ion-row class="buttonRow" class="ion-text-center">
       <ion-col col-3>
         <ion-button  class="bestSaleColor myButton"  icon-only (click)="displayBestSalesProductPage()">
           <ion-icon name='thumbs-up' slot="icon-only"></ion-icon>
@@ -49,7 +49,7 @@
         <p>{{'home.Category' | translate}}</p>
       </ion-col>
     </ion-row>
-    <ion-row class="buttonRow" text-center>
+    <ion-row class="buttonRow" class="ion-text-center">
       <ion-col col-3>
         <ion-button  class="myListColor myButton" icon-only (click)="myList()">
           <ion-icon name='list' slot="icon-only"></ion-icon>

@@ -8,6 +8,8 @@ import { NewproductPageRoutingModule } from './newproduct-routing.module';
 
 import { NewproductPage } from './newproduct.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { AdvancedSearchPage } from '../advanced-search/advanced-search.page';
+import { AdvancedSearchPageModule } from '../advanced-search/advanced-search.module';
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     NewproductPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    AdvancedSearchPageModule
   ],
   declarations: [NewproductPage]
 })

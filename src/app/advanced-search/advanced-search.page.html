@@ -26,16 +26,15 @@
     <ion-item>
       <ion-label>{{'advanced-search.Categories' | translate}}</ion-label>
       <ion-select [(ngModel)]="criteria.MainCategory">
-        <ion-option [value]="item.Id" *ngFor="let item of MainCategoryList">{{item.Label}}</ion-option>
+        <ion-select-option [value]="item.Id" *ngFor="let item of MainCategoryList">{{item.Label}}</ion-select-option>
 
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>{{'advanced-search.SousCategories' | translate}}</ion-label>
-      <ion-select [(ngModel)]="criteria.SecondCategory">
-        <ion-option [value]="item.Id" *ngFor="let item of getSecondCategoryList()">{{item.Label}} </ion-option>
-
+      <ion-select [(ngModel)]="criteria.SecondCategory" multiple="true">
+        <ion-select-option [value]="item.Id" *ngFor="let item of getSecondCategoryList()">{{item.Label}} </ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -64,7 +63,7 @@
     <ion-item>
       <ion-label>{{'advanced-search.Trierpar' | translate}}  </ion-label>
       <ion-select [(ngModel)]="criteria.OrderBy">
-        <ion-option [value]="item" *ngFor="let item of OrderByList">{{ translateOrderByItem(item)}} </ion-option>
+        <ion-select-option [value]="item" *ngFor="let item of OrderByList">{{ translateOrderByItem(item)}} </ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>

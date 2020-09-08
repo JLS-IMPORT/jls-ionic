@@ -29,9 +29,7 @@ export class SearchPage implements OnInit {
     ];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPage');
-
+  ionViewWillEnter() {
     this.loadSearchTextList();
   }
 

@@ -38,6 +38,8 @@ export class HomePage extends BaseUI {
     });
   }
 
+  ngdi
+
 
   async checkLogined() {
 
@@ -48,7 +50,7 @@ export class HomePage extends BaseUI {
     }
   }
 
-  async ionViewDidEnter() {
+  async ionViewWillEnter() {
 
     await this.checkLogined();
   }
@@ -57,7 +59,7 @@ export class HomePage extends BaseUI {
     this.navCtrl.navigateForward('NewproductPage',
       {
         queryParams: {
-          Title: this.translate.instant("/NewProduit"),
+          Title: this.translate.instant("NewProduit"),
           PageType: 'NewProduct'
         }
 
@@ -68,7 +70,7 @@ export class HomePage extends BaseUI {
     this.navCtrl.navigateForward('NewproductPage',
       {
         queryParams: {
-          Title: this.translate.instant("/Promotionproduit"),
+          Title: this.translate.instant("Promotionproduit"),
           PageType: 'LowerPriceProduct'
         }
       });

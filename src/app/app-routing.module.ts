@@ -45,7 +45,12 @@ const routes: Routes = [
   {
     path: 'ContactUsPage',
     loadChildren: () => import('./contact-us/contact-us.module').then( m => m.ContactUsPageModule)
+  },
+  {
+    path: 'ProductEvaluationListPage',
+    loadChildren: () => import('./product-evaluation-list/product-evaluation-list.module').then( m => m.ProductEvaluationListPageModule)
   }
+
 
 ];
 @NgModule({

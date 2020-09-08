@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { TranslationPageModule } from './translation/translation.module';
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -50,7 +51,9 @@ export function LanguageLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NoopAnimationsModule],
+    NoopAnimationsModule,
+    TranslationPageModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,

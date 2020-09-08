@@ -19,10 +19,6 @@ export class TranslationPage implements OnInit {
     public modalCtrl: ModalController) { }
 
   ngOnInit() {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TranslationPage');
     this.selectedLang = this.translate.defaultLang ;
   }
 

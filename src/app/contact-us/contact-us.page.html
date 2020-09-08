@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>{{'contact-us.Title' | translate}}</ion-title>
     <ion-buttons slot='end' *ngIf="isSystemMessage==false">
       <ion-button (click)='save()'>{{'contact-us.Submit' | translate}}</ion-button>
@@ -31,12 +34,12 @@
     </ion-item>
 
     <ion-item style="margin-bottom:25px;">
-      <ion-label style="margin-bottom: 10px;font-size: 18px;" stacked>{{'contact-us.Subject' | translate}}:</ion-label>
+      <ion-label style="margin-bottom: 10px;font-size: 18px;" position="stacked">{{'contact-us.Subject' | translate}}:</ion-label>
       <ion-input [(ngModel)]="criteria.Title" class="inputZoom" [readonly]="isSystemMessage == true"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label style="margin-bottom: 10px;font-size: 18px;" stacked>{{'contact-us.Message' | translate}}</ion-label>
+      <ion-label style="margin-bottom: 10px;font-size: 18px;" position="stacked">{{'contact-us.Message' | translate}}</ion-label>
       <ion-textarea rows="8" class="inputZoom"  [(ngModel)]="criteria.Body" [readonly]="isSystemMessage == true"></ion-textarea>
     </ion-item>
 

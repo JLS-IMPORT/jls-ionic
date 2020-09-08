@@ -30,8 +30,11 @@
 
     <ion-list>
       <ion-list-header>
-        <span> {{'myAccount.MyOrder' | translate}} </span>
-        <a class="viewAll" (click)="readCommandList('All')">{{'myAccount.ViewAll' | translate}} </a>
+        <ion-label>
+          <span> {{'myAccount.MyOrder' | translate}} </span>
+          <a class="viewAll" (click)="readCommandList('All')">{{'myAccount.ViewAll' | translate}} </a>
+        </ion-label>
+        
       </ion-list-header>
       <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Progressing')">{{'myAccount.PrepareOrder' | translate}}</ion-item>
       <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Valid')">{{'myAccount.OrderArrived' | translate}}</ion-item>
