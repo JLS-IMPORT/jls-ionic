@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   SERVER_API_URL: 'http://localhost/JLSMobileApplication/',
-  HTTP_WAITING_TIME: 30
+  HTTP_WAITING_TIME: 30000 // ms
 };
 
 /*

@@ -77,8 +77,8 @@ export class MyAccountPage extends BaseUI {
     var token = localStorage.getItem('jwt');
     var userId = localStorage.getItem('userId');
     if (userId == null || token == null) {
-      this.notLogin = false; // don't commit
-      this.logined = true;
+      this.notLogin = true; // don't commit
+      this.logined = false;
     }
     else {
       this.notLogin = false;

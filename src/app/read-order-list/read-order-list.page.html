@@ -1,15 +1,18 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>{{'readorderlist.Commande' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-text-center" *ngIf="loading" class="spinner">
-    <ion-spinner class="ion-text-center"></ion-spinner>
-    <p class="ion-text-center" font-size-small>Loading...</p>
+  <div *ngIf="loading" class="ion-text-center spinner">
+    <ion-spinner></ion-spinner>
+    <p class="ion-text-center"  font-size-small>{{'Loading' | translate}}...</p>
   </div>
-  <p *ngIf="!loading && (orderList==null || orderList.length<=0) " text-center>{{'NoDataToDisplay' | translate}}</p>
+  <p *ngIf="!loading && (orderList==null || orderList.length<=0) " class="ion-text-center">{{'NoDataToDisplay' | translate}}</p>
   <ion-list>
     <ion-card *ngFor="let item of orderList"> 
       <ion-card-header class="cardHeader">

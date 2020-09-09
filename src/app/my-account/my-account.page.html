@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title text-center>{{'myAccount.Title' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -19,16 +22,16 @@
   </div>
 
   <div *ngIf="logined">
-    <ion-list>
-      <ion-item ion-item class="AccountDetail" (click)="UserInfoPage()">
-        <ion-avatar item-start>
+    <ion-list class="ion-margin-top">
+      <ion-item ion-item (click)="UserInfoPage()">
+        <ion-avatar slot="start" item-start>
           <img src="assets/imgs/logo-512.png">
         </ion-avatar>
         <h1> {{username}} </h1>
       </ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list class="ion-margin-top">
       <ion-list-header>
         <ion-label>
           <span> {{'myAccount.MyOrder' | translate}} </span>
@@ -41,28 +44,28 @@
       <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Refus')">{{'myAccount.CanceledOrder' | translate}}</ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list class="ion-margin-top">
 
       <ion-item button detail="true" (click)="translation()">
-        <ion-icon class="iconStyle" name="globe" item-start></ion-icon>
+        <ion-icon class="iconStyle" name="globe" item-start slot="start"></ion-icon>
         {{'translation.Title' | translate}}
       </ion-item>
 
       <ion-item button detail="true" ion-item (click)="myAvis()">
-        <ion-icon class="iconStyle" name="at" item-start ></ion-icon>
+        <ion-icon class="iconStyle" name="at" slot="start" item-start ></ion-icon>
         {{'myAccount.Feedbacks' | translate}}
       </ion-item>
       <ion-item button detail="true" ion-item (click)="contactUs()">
-        <ion-icon class="iconStyle" name="mail" item-start></ion-icon>
+        <ion-icon class="iconStyle" name="mail" item-start slot="start"></ion-icon>
        {{'myAccount.ContactUs' | translate}}
       </ion-item>
       <ion-item button detail="true" ion-item (click)="aboutUs()">
-        <ion-icon class="iconStyle" name="information-circle" item-start></ion-icon>
+        <ion-icon class="iconStyle" name="information-circle" item-start slot="start"></ion-icon>
         {{'myAccount.AboutUs' | translate}}
       </ion-item>
     </ion-list>
-    <ion-list>
-        <ion-button  Expand="full" full color="danger" text-center (click)="logout()">
+    <ion-list class="ion-margin-top">
+        <ion-button  Expand="full" full color="danger" class="ion-text-center ion-no-margin" (click)="logout()">
         {{'myAccount.SignOut' | translate}}
         </ion-button>
     </ion-list>
