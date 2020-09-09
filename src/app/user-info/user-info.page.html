@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'user-info.UserInfo' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modifyPersonInfo()" [disabled]="UserInfo=={}">
+        <ion-icon name="md-create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="background-color: white!important;">
+  <div class="content-header">
+    <ion-list>
+      <ion-item style="border: 0px;">
+        <ion-thumbnail item-left>
+          <img src="assets/imgs/logo-512.png">
+        </ion-thumbnail>
+        <h2>{{UserInfo.Email}}</h2>
+        <p>{{UserInfo.EntrepriseName}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="content-middle">
+    <ion-row class="buttonRow row" text-center>
+      <ion-col col-4 class="col">
+        <div style="font-size: 1.5em;">
+          {{UserInfo.OrderCount}}
+        </div>
+        <p>{{'user-info.Commandes' | translate}}</p>
+      </ion-col>
+
+      <ion-col col-4 class="col">
+        <div style="font-size: 1.5em;">
+          {{UserInfo.CommentCount}}
+        </div>
+        <p>{{'user-info.Avis' | translate}}</p>
+      </ion-col>
+
+      <ion-col col-4 class="col">
+        <div style="font-size: 1.5em;">
+          {{UserInfo.FavoriteCount}}
+        </div>
+        <p>{{'user-info.Favoris' | translate}}</p>
+      </ion-col>
+
+    </ion-row>
+  </div>
+  <div class="content-footer">
+    <ion-list>
+      <button ion-item (click)="myAvis()">
+        <ion-icon name="star" style="margin-right: 5px;" item-start class="iconStyle"></ion-icon>
+        {{'user-info.Aivssoumis' | translate}}
+      </button>
+      <button ion-item (click)="myFavorite()">
+        <ion-icon name="bookmark" style="margin-right: 5px;" item-start class="iconStyle"></ion-icon>
+        {{'user-info.ProduitsFavoris' | translate}}
+      </button>
+    </ion-list>
+  </div>
+
+</ion-content>

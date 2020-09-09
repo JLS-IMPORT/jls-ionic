@@ -49,7 +49,26 @@ const routes: Routes = [
   {
     path: 'ProductEvaluationListPage',
     loadChildren: () => import('./product-evaluation-list/product-evaluation-list.module').then( m => m.ProductEvaluationListPageModule)
+  },
+  {
+    path: 'UserInfoPage',
+    loadChildren: () => import('./user-info/user-info.module').then( m => m.UserInfoPageModule)
+  },
+  {
+    path: 'ModifyUserInfoPage',
+    loadChildren: () => import('./modify-user-info/modify-user-info.module').then( m => m.ModifyUserInfoPageModule)
+  },
+  {
+    path: 'ReadOrderListPage',
+    loadChildren: () => import('./read-order-list/read-order-list.module').then( m => m.ReadOrderListPageModule)
+  },  {
+    path: 'read-order-details',
+    loadChildren: () => import('./read-order-details/read-order-details.module').then( m => m.ReadOrderDetailsPageModule)
   }
+
+
+
+
 
 
 ];
