@@ -25,6 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 import { TranslationPageModule } from './translation/translation.module';
 import { JwtInterceptor } from './service/JwtInterceptor';
 
@@ -44,6 +45,7 @@ export function LanguageLoader(http: HttpClient) {
     MatIconModule,
     MatInputModule,
     MatStepperModule,
+    MatRadioModule,
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

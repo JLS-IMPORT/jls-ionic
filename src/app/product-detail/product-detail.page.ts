@@ -46,10 +46,7 @@ export class ProductDetailPage extends BaseUI {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductDetailPage');
-    this.productId = this.router.snapshot.queryParams["productId"];
-    this.checkLogined();
-    this.initLoadData();
+
   }
 
   addProductIntoFavoriteList() {
