@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'tabCart',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        loadChildren: () => import('../cart/cart.module').then(m => m.CartPageModule)
       },
       {
         path: 'tabNotification',

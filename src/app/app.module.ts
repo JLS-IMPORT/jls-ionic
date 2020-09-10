@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { TranslationPageModule } from './translation/translation.module';
 import { JwtInterceptor } from './service/JwtInterceptor';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -46,6 +47,8 @@ export function LanguageLoader(http: HttpClient) {
     MatInputModule,
     MatStepperModule,
     MatRadioModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

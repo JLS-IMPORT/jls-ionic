@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="loading" class="spinner">
-    <ion-spinner center></ion-spinner>
-    <p text-center font-size-small>{{'Loading' | translate}}...</p>
+  <div *ngIf="loading" class="spinner ion-text-center">
+    <ion-spinner class="ion-text-center" ></ion-spinner>
+    <p class="ion-text-center" font-size-small>{{'Loading' | translate}}...</p>
   </div>
   <p *ngIf="!loading && (messageList==null || messageList.length<=0) " text-center>{{'NoDataToDisplay' | translate}}</p>
   <ion-list>

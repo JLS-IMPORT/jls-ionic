@@ -77,10 +77,20 @@ const routes: Routes = [
   {
     path: 'WriteProductEvaluationPage',
     loadChildren: () => import('./write-product-evaluation/write-product-evaluation.module').then(m => m.WriteProductEvaluationPageModule)
-  },  {
+  },
+  {
     path: 'select-shipping-adress',
     loadChildren: () => import('./select-shipping-adress/select-shipping-adress.module').then( m => m.SelectShippingAdressPageModule)
+  },
+  {
+    path: 'OrderConfirmationPage',
+    loadChildren: () => import('./order-confirmation/order-confirmation.module').then( m => m.OrderConfirmationPageModule)
+  },
+  {
+    path: 'order-confirmation-succeess',
+    loadChildren: () => import('./order-confirmation-succeess/order-confirmation-succeess.module').then( m => m.OrderConfirmationSucceessPageModule)
   }
+
 
 
 
