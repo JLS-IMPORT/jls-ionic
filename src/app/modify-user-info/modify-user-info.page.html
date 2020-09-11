@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>{{'modify-user-info.modifyUserInfo' | translate}}</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -49,19 +53,19 @@
           <p class="descriptionFont" text-center>{{'NoDataToDisplay' | translate}}</p>
         </ion-card-content>
       </ion-card>
-      <div text-center>
-        <button ion-button small color="primary" outline (click)="selectShippingAdress()"
-          *ngIf="defaultShippingAdress!=null">{{'order-confirmation.ChooseAnotherAddress' | translate}}</button>
-        <button ion-button small color="primary" outline (click)="selectShippingAdress()"
-          *ngIf="defaultShippingAdress==null">{{'Add' | translate}}</button>
+      <div class="ion-text-center" text-center>
+        <ion-button  size="small" color="primary" fill="outline" (click)="selectShippingAdress()"
+          *ngIf="defaultShippingAdress!=null">{{'order-confirmation.ChooseAnotherAddress' | translate}}</ion-button>
+        <ion-button ion-button size="small" color="primary" fill="outline" (click)="selectShippingAdress()"
+          *ngIf="defaultShippingAdress==null">{{'Add' | translate}}</ion-button>
       </div>
     </ion-list>
   </div>
 
   <div style="background-color: white; padding: 8px; margin-top: 30px; margin-bottom: 20px;">
-    <h6> <a float-right class="articleNumber"
-        (click)="modifyFacturationAdress(facturationAdress)">{{'order-confirmation.Edit' | translate}}</a></h6>
-    <ion-list style="margin-bottom: 10px;">
+    <span> <a float-right class="articleNumber ion-float-right"
+        (click)="modifyFacturationAdress(facturationAdress)">{{'order-confirmation.Edit' | translate}}</a></span>
+    <ion-list style="margin-bottom: 10px;clear: both;">
       <ion-card class="productCard" style="width: 100%; border-bottom: 0px;">
         <ion-card-header style="padding: 8px 4px 0px;">
           <h3 class="productTitle">{{'order-confirmation.BillingAddress' | translate}}</h3>
@@ -78,6 +82,6 @@
     </ion-list>
   </div>
   <div class="ion-text-center" >
-    <ion-button color="primary"  style="width: 100%; height: 35px;" (click)="saveUserInfo()">{{'add-adress.Enregistrer' | translate}}</ion-button>
+    <ion-button class="ion-no-margin" Expand="full" color="primary"  style="width: 100%; height: 35px;" (click)="saveUserInfo()">{{'add-adress.Enregistrer' | translate}}</ion-button>
   </div>
 </ion-content>

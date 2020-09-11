@@ -8,6 +8,7 @@ import { OrderConfirmationPageRoutingModule } from './order-confirmation-routing
 
 import { OrderConfirmationPage } from './order-confirmation.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { OrderConfirmationSucceessPageModule } from '../order-confirmation-succeess/order-confirmation-succeess.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     OrderConfirmationPageRoutingModule,
     TranslateModule,
-    OrderConfirmationPageModule
+    OrderConfirmationSucceessPageModule
   ],
   declarations: [OrderConfirmationPage]
 })

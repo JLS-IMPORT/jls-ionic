@@ -1,23 +1,26 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>{{'select-shipping-adress.Livraison' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <p *ngIf="!loading && (adressList==null || adressList.length<=0) " text-center>{{'NoDataToDisplay' | translate}}</p>
-  <a (click)="addNewAddress()" float-right style="margin:10px 10px">{{'select-shipping-adress.Ajouter' | translate}}</a>
-  <ion-list style="margin-top: 30px;">
+  <a (click)="addNewAddress()" class="ion-float-right" float-right style="margin:10px 10px">{{'select-shipping-adress.Ajouter' | translate}}</a>
+  <ion-list style="margin-top: 30px; clear: both;">
     <mat-radio-group class="example-radio-group" [(ngModel)]="selectedAdressId">
       <div class="productCard" *ngFor="let item of adressList">
         <ion-grid class="gridStyle" style="background-color: white;">
           <ion-row class="colStyle">
-            <ion-col col-2 class="align-text-middle colStyle">
+            <ion-col size="2" col-2 class="align-text-middle colStyle">
               <mat-radio-button class="example-radio-button" [checked]="item.IsDefaultAdress"
                 style="color:#534d7a; margin-top: 30px;" color="primary" [value]="item.Id">
               </mat-radio-button>
             </ion-col>
-            <ion-col col-10 class="colStyle">
+            <ion-col size="10" col-10 class="colStyle">
               <a float-right (click)="modifyAdress(item)">{{'select-shipping-adress.Modifier' | translate}}</a>
               <p class="addressDetail">{{item.ContactFirstName}} </p>
               <p class="addressDetail">{{item.ContactLastName}}</p>
@@ -39,8 +42,8 @@
       <p class="addressDetail">{{getSelectedAdress().FirstLineAddress}}</p>
       <p class="addressDetail">{{getSelectedAdress().ZipCode}} {{getSelectedAdress().City}}</p>
       <div text-center>
-        <button ion-button small color="primary" style="width: 100%;"
-          (click)="saveShippingAdress()">{{'select-shipping-adress.Confirmer' | translate}}</button>
+        <ion-button size="small" color="primary" style="width: 100%;"
+          (click)="saveShippingAdress()">{{'select-shipping-adress.Confirmer' | translate}}</ion-button>
       </div>
     </div>
   </ion-toolbar>

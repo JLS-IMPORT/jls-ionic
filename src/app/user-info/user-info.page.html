@@ -3,12 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{'user-info.UserInfo' | translate}}</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" end>
       <ion-button (click)="modifyPersonInfo()" [disabled]="UserInfo=={}">
-        <ion-icon name="md-create"></ion-icon>
+        <ion-icon name="create-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title>{{'user-info.UserInfo' | translate}}</ion-title>
+
   </ion-toolbar>
 </ion-header>
 

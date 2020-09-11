@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar>
+
+    <ion-title>{{'readorderlist.Commande' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{'readorderlist.Commande' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +18,7 @@
     <ion-card *ngFor="let item of orderList"> 
       <ion-card-header class="cardHeader">
        {{'readorderlist.CommandeNmber' | translate}}: N° {{item.Id}}
-        <ion-badge float-right [color]="getStatusClass(item.StatusCode)" style="color: white;"> {{item.StatusLabel}}</ion-badge>
+        <ion-badge class="ion-float-right" float-right [color]="getStatusClass(item.StatusCode)" style="color: white;"> {{item.StatusLabel}}</ion-badge>
       </ion-card-header>
       <ion-card-content>
         <h6 class="descriptionFont">

@@ -63,7 +63,7 @@ export class NotificationPage extends BaseUI {
               var count = this.messageList.filter(p => p.IsReaded == false).length;
               // todo migrate to rxjs subscriber 
               // this.event.publish('message:new', count);
-              this.utils.newMessageNumberSubject.next(count)
+              // this.utils.newMessageNumberSubject.next(count)
             }
 
             this.loading = false;
@@ -85,7 +85,7 @@ export class NotificationPage extends BaseUI {
         SystemMessage: message
       }
     })
-
+    
     modal.present();
     modal.onDidDismiss().then(() => {
       this.loadMesage();
@@ -110,7 +110,7 @@ export class NotificationPage extends BaseUI {
               }
               else {
                 this.messageList = this.messageList.concat(result.List != null ? result.List : []);
-                infiniteScroll.complete();
+                infiniteScroll.target.complete();
               }
             } else {
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));

@@ -89,7 +89,7 @@ export class ContactUsPage extends BaseUI {
             if (f > 0) {
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_SaveSuccess"));
 
-              this.navCtrl.pop();
+              this.navCtrl.back();
             }
             else {
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));

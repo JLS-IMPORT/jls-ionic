@@ -8,7 +8,8 @@ import { RestService } from '../service/rest.service';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseUI } from '../common/baseui';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
+import { OrderConfirmationSucceessPage } from '../order-confirmation-succeess/order-confirmation-succeess.page';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -46,6 +47,7 @@ export class OrderConfirmationPage extends BaseUI {
 
   }
 
+
   async ionViewDidEnter() {
 
     this.defaultShippingAdress = this.router.snapshot.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
@@ -64,12 +66,14 @@ export class OrderConfirmationPage extends BaseUI {
 
 
   /* Leave current page: confimation */
-  async ionViewCanLeave() {
+  async dismiss() {
     var shouldLeave;
     if (!this.SavedOrder && !this.ChangeAddress) {
       shouldLeave = await this.confirmLeave();
     }
-    return shouldLeave || this.SavedOrder || this.ChangeAddress;
+    if (shouldLeave || this.SavedOrder || this.ChangeAddress) {
+      this.navCtrl.back();
+    }
   }
 
   async confirmLeave(): Promise<Boolean> {
@@ -88,7 +92,7 @@ export class OrderConfirmationPage extends BaseUI {
           text: this.translateService.instant('Yes'),
           handler: () => resolveLeaving(true)
         }
-      ]
+      ],
     });
     alert.present();
     return canLeave
@@ -104,7 +108,7 @@ export class OrderConfirmationPage extends BaseUI {
       var selectedReferenceIds = [];
       // todo migrate to new navigation system
       var selectedReferencesStringfy = this.router.snapshot.queryParams['References']
-      var selectedReferences = selectedReferencesStringfy!=null? JSON.parse(selectedReferencesStringfy): [];
+      var selectedReferences = selectedReferencesStringfy != null ? JSON.parse(selectedReferencesStringfy) : [];
 
       selectedReferences.map(p => selectedReferenceIds.push(p.ReferenceId));
 
@@ -233,13 +237,13 @@ export class OrderConfirmationPage extends BaseUI {
                 //this.navCtrl.setRoot('OrderConfirmationSucceessPage',{OrderId: f.Data});
                 this.navCtrl.pop();
                 let modal = await this.modalCtrl.create({
-                  component: OrderConfirmationPage, 
-                  componentProps:{
+                  component: OrderConfirmationSucceessPage,
+                  componentProps: {
                     Email: f.DataExt != null ? f.DataExt : '',
                     OrderId: f.Data
                   }
                 });
-           
+
                 modal.present();
 
                 // add message number 
