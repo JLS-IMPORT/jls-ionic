@@ -415,7 +415,6 @@ export class NewproductPage extends BaseUI {
   }
 
   async advancedSearchPage() {
-    // TODO: migration to lazy load modal
     let searchCriteriaModal = await this.modalCtrl.create({
       component: AdvancedSearchPage,
       componentProps: {

@@ -156,7 +156,7 @@ export class RestService {
     // todo add object
     return this.postUrlReturn(this.apiUrlRefreshToken, LoginInfo);
   }
-  logout() {
+  async logout() {
     //todo
     localStorage.clear();
 
@@ -166,13 +166,12 @@ export class RestService {
     console.log("log out");
 
 
-    let toast = this.toastCtrl.create({
+    let toast = await this.toastCtrl.create({
       message: this.translate.instant('Msg_ReLogin'),
       duration: 3000,
       position: 'bottom'
-    }).then((toast) => {
-      toast.present();
     });
+    await toast.present();
 
     this.navCtrl.navigateRoot('');
   }

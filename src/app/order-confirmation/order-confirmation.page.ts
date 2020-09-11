@@ -233,7 +233,6 @@ export class OrderConfirmationPage extends BaseUI {
                 //this.navCtrl.setRoot('OrderConfirmationSucceessPage',{OrderId: f.Data});
                 this.navCtrl.pop();
                 let modal = await this.modalCtrl.create({
-
                   component: OrderConfirmationPage, 
                   componentProps:{
                     Email: f.DataExt != null ? f.DataExt : '',
@@ -242,6 +241,10 @@ export class OrderConfirmationPage extends BaseUI {
                 });
            
                 modal.present();
+
+                // add message number 
+                var NewMessageNumber = this.utils.newMessageNumberSubject.value + 1; // When order place successfully, a new message should be sent
+                this.utils.newMessageNumberSubject.next(NewMessageNumber);
               } else {
                 super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
               }
