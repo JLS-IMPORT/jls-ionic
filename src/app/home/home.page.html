@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-text-center" no-bounce>
+<ion-content class="ion-text-center" no-bounce scrollY="false">
   <ion-slides class="slidePagers" pager>
     <ion-slide class="slidePhoto" *ngFor="let item of sldes" >
       <img  [src]="host+item.PhotoPath" />
