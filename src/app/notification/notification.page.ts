@@ -34,8 +34,15 @@ export class NotificationPage extends BaseUI {
   }
 
   ngOnInit() {
-    this.loadMesage();
+    // this.loadMesage();
   }
+
+
+  ionViewWillEnter(){
+    // execute every time
+      this.loadMesage();
+  }
+
 
   loadMesage() {
     if (this.network.type != 'none') {

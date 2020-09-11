@@ -132,10 +132,10 @@ export class AddAdressPage extends BaseUI {
                 this.storage.set('tempFacturationAdress', 'true');
 
                 // todo migrate to new navigation system
-                // this.navCtrl.getPrevious().data.type = this.type;
+                 // this.navCtrl.getPrevious().data.type = this.type;
                 // this.navCtrl.getPrevious().data.facturationAdress = this.adreeForm.value;
               }
-              loading.dismiss()
+              loading.dismiss();
               this.navCtrl.pop();
             } else {
               loading.dismiss()
