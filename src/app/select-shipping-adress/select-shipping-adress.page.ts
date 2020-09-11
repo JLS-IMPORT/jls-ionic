@@ -43,8 +43,8 @@ export class SelectShippingAdressPage extends BaseUI {
           f => {
             if (f.Success && f.Data != null) {
               this.adressList = f.Data;
-              if (this.router.queryParams['CurrentAddressId'] != null && this.router.queryParams['CurrentAddressId'] > 0) {
-                this.selectedAdressId = this.router.queryParams['CurrentAddressId'];
+              if (this.router.snapshot.queryParams['CurrentAddressId'] != null && this.router.snapshot.queryParams['CurrentAddressId'] > 0) {
+                this.selectedAdressId = this.router.snapshot.queryParams['CurrentAddressId'];
               }
               console.log(f.Data); // todo remove
             } else {
@@ -64,7 +64,7 @@ export class SelectShippingAdressPage extends BaseUI {
   }
 
   ionViewDidEnter() {
-    if (this.router.queryParams['type'] != null) {
+    if (this.router.snapshot.queryParams['type'] != null) {
       var userId = localStorage.getItem('userId');
 
       this.rest.GetUserShippingAdress(userId) // 填写url的参数
@@ -72,8 +72,8 @@ export class SelectShippingAdressPage extends BaseUI {
           f => {
             if (f.Success && f.Data != null) {
               this.adressList = f.Data;
-              if (this.router.queryParams['CurrentAddressId'] != null && this.router.queryParams['CurrentAddressId'] > 0) {
-                this.selectedAdressId = this.router.queryParams['CurrentAddressId'];
+              if (this.router.snapshot.queryParams['CurrentAddressId'] != null && this.router.snapshot.queryParams['CurrentAddressId'] > 0) {
+                this.selectedAdressId = this.router.snapshot.queryParams['CurrentAddressId'];
               }
               console.log(f.Data); // todo remove
             } else {

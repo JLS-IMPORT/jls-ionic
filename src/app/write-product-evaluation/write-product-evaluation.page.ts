@@ -42,7 +42,7 @@ export class WriteProductEvaluationPage extends BaseUI {
         Body: this.body,
         Level: this.level,
         UserId: await this.utils.getKey('userId'),
-        ProductId: this.router.queryParams['productId']
+        ProductId: this.router.snapshot.queryParams['productId']
       }
       if (this.network.type != 'none') {
         var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant('Loading'));

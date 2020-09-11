@@ -36,12 +36,12 @@ export class ContactUsPage extends BaseUI {
 
   ngOnInit() {
 
-    if (this.router.queryParams['OrderId'] != null) {
+    if (this.router.snapshot.queryParams['OrderId'] != null) {
       //
-      this.criteria.OrderId = this.router.queryParams['OrderId'];
+      this.criteria.OrderId = this.router.snapshot.queryParams['OrderId'];
     }
-    if (this.router.queryParams['SystemMessage'] != null) {
-      var SystemMessage = JSON.parse(this.router.queryParams['SystemMessage']);
+    if (this.router.snapshot.queryParams['SystemMessage'] != null) {
+      var SystemMessage = JSON.parse(this.router.snapshot.queryParams['SystemMessage']);
       this.criteria.Title = SystemMessage.Title;
       this.criteria.Body = SystemMessage.Body;
       this.isSystemMessage = true;

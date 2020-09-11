@@ -20,11 +20,11 @@ export class RegistreSuccedPage implements OnInit {
     public router : ActivatedRoute) { }
 
   ngOnInit() {
-    this.email = this.router.queryParams['email']; //await this.utils.getKey('email');
-    if(this.router.queryParams['page']!=null && this.router.queryParams['page'] == 'RegistrePage'){
+    this.email = this.router.snapshot.queryParams['email']; //await this.utils.getKey('email');
+    if(this.router.snapshot.queryParams['page']!=null && this.router.snapshot.queryParams['page'] == 'RegistrePage'){
       this.message = this.translateService.instant('registre-succed.Confirm')!=null ? this.translateService.instant('registre-succed.Confirm').replace('{email}', this.email): '';
     }
-    else if(this.router.queryParams['page']!=null && this.router.queryParams['page'] == 'ForgetPasswordPage'){
+    else if(this.router.snapshot.queryParams['page']!=null && this.router.snapshot.queryParams['page'] == 'ForgetPasswordPage'){
       this.message = this.translateService.instant('registre-succed.ForgetPasswordSendEmail')!=null ? this.translateService.instant('registre-succed.ForgetPasswordSendEmail').replace('{email}', this.email): '';
     }
   }

@@ -48,7 +48,7 @@ export class OrderConfirmationPage extends BaseUI {
 
   async ionViewDidEnter() {
 
-    this.defaultShippingAdress = this.router.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
+    this.defaultShippingAdress = this.router.snapshot.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
 
     var facturationAdressChanged = await this.utils.getKey('tempFacturationAdress');
     if (facturationAdressChanged != null && facturationAdressChanged == 'true') {
@@ -232,17 +232,16 @@ export class OrderConfirmationPage extends BaseUI {
                 this.storage.set('cartProductList', JSON.stringify(newCartProductList));
                 //this.navCtrl.setRoot('OrderConfirmationSucceessPage',{OrderId: f.Data});
                 this.navCtrl.pop();
-                // todo migrate to new nav system
-                // let modal = this.modalCtrl.create({
+                let modal = await this.modalCtrl.create({
 
-                //   component: 'OrderConfirmationSucceessPage', 
-                //   Email: f.DataExt != null ? f.DataExt : '',
-                //   OrderId: f.Data
-                // });
-                // modal.onDidDismiss(() => {
-
-                // });
-                // modal.present();
+                  component: OrderConfirmationPage, 
+                  componentProps:{
+                    Email: f.DataExt != null ? f.DataExt : '',
+                    OrderId: f.Data
+                  }
+                });
+           
+                modal.present();
               } else {
                 super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
               }

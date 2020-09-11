@@ -32,7 +32,7 @@ export class ProductEvaluationListPage extends BaseUI {
   }
 
   ngOnInit() {
-    this.type = this.router.queryParams['type'];
+    this.type = this.router.snapshot.queryParams['type'];
     this.loadProductComment();
   }
 
@@ -40,7 +40,7 @@ export class ProductEvaluationListPage extends BaseUI {
     var criteria = null;
     switch (this.type) {
       case 'GetCommentByProductId':
-        var productId = this.router.queryParams['productId'];
+        var productId = this.router.snapshot.queryParams['productId'];
         criteria = {
           ProductId: productId,
           Begin: this.counter,
@@ -87,7 +87,7 @@ export class ProductEvaluationListPage extends BaseUI {
       this.counter = this.counter + 1;
       switch (this.type) {
         case 'ProductEvaluationListPage':
-          var productId = this.router.queryParams['productId'];
+          var productId = this.router.snapshot.queryParams['productId'];
           criteria = {
             ProductId: productId,
             Begin: this.counter,

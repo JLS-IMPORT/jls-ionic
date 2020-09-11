@@ -45,7 +45,7 @@ export class ReadOrderListPage extends BaseUI {
   async loadOrderList() {
     if (this.network.type != 'none') {
       var UserId = parseInt(await this.utils.getKey('userId'));
-      var orderType = this.router.queryParams['orderType'];
+      var orderType = this.router.snapshot.queryParams['orderType'];
       this.rest.GetOrdersListByUserId(UserId, orderType) // 填写url的参数
         .subscribe(
           f => {

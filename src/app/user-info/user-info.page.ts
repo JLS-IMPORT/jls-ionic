@@ -31,7 +31,7 @@ export class UserInfoPage extends BaseUI {
   }
 
   ionViewDidEnter() {
-    this.UserInfo = this.router.queryParams['UserInfo'] || this.UserInfo;
+    this.UserInfo = this.router.snapshot.queryParams['UserInfo'] || this.UserInfo;
     this.UserInfo.Email = localStorage.getItem('username');
   }
 

@@ -51,8 +51,8 @@ export class AddAdressPage extends BaseUI {
 
   ngOnInit() {
 
-    this.type = this.router.queryParams['type'];
-    var adress = this.router.queryParams['adress'];
+    this.type = this.router.snapshot.queryParams['type'];
+    var adress = this.router.snapshot.queryParams['adress'];
 
     if (adress != null) {
       console.log(adress);

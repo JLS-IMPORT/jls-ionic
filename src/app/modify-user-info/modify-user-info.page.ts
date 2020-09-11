@@ -40,12 +40,12 @@ export class ModifyUserInfoPage extends BaseUI {
 
 
   ionViewDidEnter() {
-    this.defaultShippingAdress = this.router.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
-    this.facturationAdress = this.router.queryParams['facturationAdress'] || this.facturationAdress;
+    this.defaultShippingAdress = this.router.snapshot.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
+    this.facturationAdress = this.router.snapshot.queryParams['facturationAdress'] || this.facturationAdress;
   }
 
   ngOnInit() {
-    var userInfoStringfy = this.router.queryParams['UserInfo'];
+    var userInfoStringfy = this.router.snapshot.queryParams['UserInfo'];
     this.UserInfo = userInfoStringfy != null ? JSON.parse(userInfoStringfy) : {};
 
     this.userForm.patchValue({

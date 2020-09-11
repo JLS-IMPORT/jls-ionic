@@ -15,7 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     OrderConfirmationPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    OrderConfirmationPageModule
   ],
   declarations: [OrderConfirmationPage]
 })

@@ -44,7 +44,7 @@ export class ReadOrderDetailsPage extends BaseUI {
   }
 
   ngOnInit() {
-    this.OrderId = this.router.queryParams['OrderId'];
+    this.OrderId = this.router.snapshot.queryParams['OrderId'];
     this.loadOrderDetail();
   }
 
