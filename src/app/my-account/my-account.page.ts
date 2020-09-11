@@ -107,6 +107,7 @@ export class MyAccountPage extends BaseUI {
       if (result != null) {
         // TODO migrate to rxjs subscriber
         // this.event.publish('message:new', result);
+        this.utils.newMessageNumberSubject.next(result);
       }
     })
   }

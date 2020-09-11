@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UtilsService } from '../service/utils.service';
 
 @Component({
   selector: 'app-tabs',
@@ -6,7 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  public MessageCount: number|null = null;
+  constructor(public utils: UtilsService) {
 
-  constructor() {}
+
+  }
+  ngOnInit() {
+    this.utils.newMessageNumberSubject.subscribe(numberOfNewMessage => {
+
+      this.MessageCount = numberOfNewMessage > 0 ? numberOfNewMessage : null;
+    });
+  }
 
 }

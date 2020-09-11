@@ -82,6 +82,7 @@ export class HomePage extends BaseUI {
       if (result != null) {
         // TODO: Migration to rxjs subscriber 
         // this.event.publish('message:new', result);
+        this.utils.newMessageNumberSubject.next(result);
       }
     })
   }

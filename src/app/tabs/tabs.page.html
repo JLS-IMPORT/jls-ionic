@@ -19,6 +19,7 @@
     <ion-tab-button tab="tabNotification">
       <ion-icon name="notifications"></ion-icon>
       <ion-label>{{'tabs.Notice' | translate}}</ion-label>
+      <ion-badge *ngIf="MessageCount!=null" >{{MessageCount}}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="tabMyAccount">

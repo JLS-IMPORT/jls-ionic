@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RestService } from '../service/rest.service';
 import { Network } from '@ionic-native/network/ngx';
 import { ContactUsPage } from '../contact-us/contact-us.page';
+import { UtilsService } from '../service/utils.service';
 
 @Component({
   selector: 'app-notification',
@@ -27,7 +28,8 @@ export class NotificationPage extends BaseUI {
     public toastCtrl: ToastController,
     public rest: RestService,
     public network: Network,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public utils : UtilsService
 
   ) {
     super();
@@ -58,9 +60,10 @@ export class NotificationPage extends BaseUI {
             if (result.List != null && result.List.length > 0) {
               this.messageList = result.List;
 
-              var count = this.messageList.filter(p => p.IsReaded == false);
+              var count = this.messageList.filter(p => p.IsReaded == false).length;
               // todo migrate to rxjs subscriber 
               // this.event.publish('message:new', count);
+              this.utils.newMessageNumberSubject.next(count)
             }
 
             this.loading = false;
