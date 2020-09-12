@@ -8,6 +8,7 @@ import { UtilsService } from '../service/utils.service';
 })
 export class TabsPage {
   public MessageCount: number|null = null;
+  public IsLogined : boolean = false;
   constructor(public utils: UtilsService) {
 
 
@@ -17,6 +18,8 @@ export class TabsPage {
 
       this.MessageCount = numberOfNewMessage > 0 ? numberOfNewMessage : null;
     });
+    this.utils.isLoginedSubject.subscribe(result=>this.IsLogined = result);
+    
   }
 
 }

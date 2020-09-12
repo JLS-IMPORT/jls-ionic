@@ -173,6 +173,7 @@ export class RestService {
     });
     await toast.present();
 
+    this.utils.isLoginedSubject.next(false);
     this.navCtrl.navigateRoot('');
   }
 

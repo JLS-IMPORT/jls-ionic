@@ -9,6 +9,7 @@ import { UtilsService } from './service/utils.service';
 import { interval, timer } from 'rxjs';
 import { startWith, takeWhile } from 'rxjs/operators';
 import { start } from 'repl';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -53,6 +54,15 @@ export class AppComponent {
         }
       });
 
+      // check if is logined 
+      var token = localStorage.getItem('jwt');
+      var userId = localStorage.getItem('userId');
+      if(token!= null && userId!= null ){
+        this.utils.isLoginedSubject.next(true);
+      }
+      else{
+        this.utils.isLoginedSubject.next(false);
+      }
     });
   }
 }

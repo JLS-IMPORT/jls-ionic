@@ -5,6 +5,7 @@ import { RestService } from '../service/rest.service';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { Network } from '@ionic-native/network/ngx';
+import { UtilsService } from '../service/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginPage extends BaseUI {
     public storage: Storage,
     public modalCtrl: ModalController,
     public network: Network,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    public utils: UtilsService
   ) {
     super();
   }
@@ -63,6 +65,8 @@ export class LoginPage extends BaseUI {
               this.storage.set('userId', f.authToken.userId);
               this.storage.set('jwt', f.authToken.token);
               this.storage.set('refreshToken', f.authToken.refresh_token);
+
+              this.utils.isLoginedSubject.next(true);
 
               this.modalCtrl.dismiss();
             }

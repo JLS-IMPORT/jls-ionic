@@ -11,6 +11,7 @@ export class UtilsService {
   constructor(public http: HttpClient, public storage: Storage) { }
 
   public newMessageNumberSubject: BehaviorSubject<number> = new BehaviorSubject(0);
+  public isLoginedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   async getKey(key: string): Promise<string> {
     return await this.storage.get(key).catch(()=>{return});

@@ -16,7 +16,7 @@
       <ion-label>{{'tabs.Cart' | translate}}</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tabNotification">
+    <ion-tab-button tab="tabNotification" [disabled]="!IsLogined">
       <ion-icon name="notifications"></ion-icon>
       <ion-label>{{'tabs.Notice' | translate}}</ion-label>
       <ion-badge *ngIf="MessageCount!=null" >{{MessageCount}}</ion-badge>
