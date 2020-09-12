@@ -18,7 +18,7 @@ export class MyAccountPage extends BaseUI {
 
   public notLogin: boolean = true;
   public logined: boolean = false;
-  private username: string = "";
+  public username: string = "";
 
 
   constructor(

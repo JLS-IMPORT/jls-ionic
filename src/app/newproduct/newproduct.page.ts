@@ -34,8 +34,8 @@ export class NewproductPage extends BaseUI {
     MinQuantity: 200,
     OrderBy: null
   };
-  private host = environment.SERVER_API_URL;
-  private logined: boolean = false; // todo: set to false, true only for dev 
+  public host = environment.SERVER_API_URL;
+  public logined: boolean = false; // todo: set to false, true only for dev 
 
   constructor(
     public router: ActivatedRoute,

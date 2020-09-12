@@ -8,6 +8,7 @@ import { ProductEvaluationListPageRoutingModule } from './product-evaluation-lis
 
 import { ProductEvaluationListPage } from './product-evaluation-list.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { StarRatingModule } from 'ionic5-star-rating';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     ProductEvaluationListPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    StarRatingModule
   ],
   declarations: [ProductEvaluationListPage]
 })

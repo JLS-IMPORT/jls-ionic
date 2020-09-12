@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ReadOrderDetailsPage extends BaseUI {
 
-  private host = environment.SERVER_API_URL;
+  public host = environment.SERVER_API_URL;
 
   OrderId: number;
   OrderInfo: any = {};
@@ -23,13 +23,13 @@ export class ReadOrderDetailsPage extends BaseUI {
   Status: any = {};
   ProductList: any = [];
 
-  private ClientRemark: any = null;
-  private AdminRemark: any = null;
-  private ShippingMessage: string = "France de port 1500€HT, 2000€HT pour le sud de la France et 2500€HT pour les étangers.";
+  public ClientRemark: any = null;
+  public AdminRemark: any = null;
+  public ShippingMessage: string = "France de port 1500€HT, 2000€HT pour le sud de la France et 2500€HT pour les étangers.";
 
   loading: boolean;
 
-  private TaxRate: number = 0;
+  public TaxRate: number = 0;
 
   constructor(
     public navCtrl: NavController,

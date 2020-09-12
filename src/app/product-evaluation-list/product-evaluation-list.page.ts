@@ -18,7 +18,7 @@ export class ProductEvaluationListPage extends BaseUI {
   counter: number = 0;
   productCommentList: any[] = [];
   loading: boolean = true;
-  private host = environment.SERVER_API_URL;
+  public host = environment.SERVER_API_URL;
 
   constructor(
     public navCtrl: NavController,
