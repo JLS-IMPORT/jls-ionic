@@ -109,7 +109,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar style="padding-bottom: 0px;">
     <div style="padding: 5px;">
       <p class="expenseFont">{{'order-confirmation.Amount' | translate}}:<span class="ion-float-right" float-right style="font-weight: bold;">{{(1+TaxRate*0.01) *calculTotalPrice() | number : '1.2-2'}}€</span></p>
       <p class="expenseFont">{{'order-confirmation.ShippingCost' | translate}}:<span class="ion-float-right">{{'order-confirmation.AEstimer' | translate}}</span></p>

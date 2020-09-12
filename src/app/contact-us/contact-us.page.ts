@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseUI } from '../common/baseui';
 import { NavController, ToastController, LoadingController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ContactUsPage extends BaseUI {
 
+
+  @Input() SystemMessage: any;
 
   public isSystemMessage: boolean = false;
   public criteria: any = {
@@ -40,8 +42,8 @@ export class ContactUsPage extends BaseUI {
       //
       this.criteria.OrderId = this.router.snapshot.queryParams['OrderId'];
     }
-    if (this.router.snapshot.queryParams['SystemMessage'] != null) {
-      var SystemMessage = JSON.parse(this.router.snapshot.queryParams['SystemMessage']);
+    if (this.SystemMessage != null) {
+      var SystemMessage = this.SystemMessage;
       this.criteria.Title = SystemMessage.Title;
       this.criteria.Body = SystemMessage.Body;
       this.isSystemMessage = true;

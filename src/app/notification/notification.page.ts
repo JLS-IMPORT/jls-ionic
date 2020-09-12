@@ -29,7 +29,7 @@ export class NotificationPage extends BaseUI {
     public rest: RestService,
     public network: Network,
     public modalCtrl: ModalController,
-    public utils : UtilsService
+    public utils: UtilsService
 
   ) {
     super();
@@ -40,9 +40,9 @@ export class NotificationPage extends BaseUI {
   }
 
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     // execute every time
-      this.loadMesage();
+    this.loadMesage();
   }
 
 
@@ -61,7 +61,7 @@ export class NotificationPage extends BaseUI {
               this.messageList = result.List;
 
               var count = this.messageList.filter(p => p.IsReaded == false).length;
-              // todo migrate to rxjs subscriber 
+        
               // this.event.publish('message:new', count);
               // this.utils.newMessageNumberSubject.next(count)
             }
@@ -79,14 +79,20 @@ export class NotificationPage extends BaseUI {
   }
 
   async readDetailInfo(message) {
+
+    if (message.IsReaded == null || message.IsReaded == false) {
+      var newMessageCount = this.utils.newMessageNumberSubject.value;
+      this.utils.newMessageNumberSubject.next(newMessageCount - 1);
+    }
+
     var modal = await this.modalCtrl.create({
       component: ContactUsPage,
       componentProps: {
         SystemMessage: message
       }
-    })
-    
-    modal.present();
+    });
+
+    await modal.present();
     modal.onDidDismiss().then(() => {
       this.loadMesage();
     })

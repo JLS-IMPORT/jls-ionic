@@ -40,8 +40,18 @@ export class ModifyUserInfoPage extends BaseUI {
 
 
   ionViewDidEnter() {
-    this.defaultShippingAdress = this.router.snapshot.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
-    this.facturationAdress = this.router.snapshot.queryParams['facturationAdress'] || this.facturationAdress;
+    if(this.router.snapshot.queryParams['tempSelectedAdress']!=null ){
+      this.defaultShippingAdress = JSON.parse (this.router.snapshot.queryParams['tempSelectedAdress']);
+    }
+    else{
+      this.defaultShippingAdress = this.defaultShippingAdress
+    }
+    if(this.router.snapshot.queryParams['facturationAdress']!=null){
+      this.facturationAdress = JSON.parse(this.router.snapshot.queryParams['facturationAdress']);
+    }
+    else{
+      this.facturationAdress = this.facturationAdress;
+    }
   }
 
   ngOnInit() {
@@ -81,7 +91,8 @@ export class ModifyUserInfoPage extends BaseUI {
     //this.ChangeAddress = true;
     this.navCtrl.navigateForward('SelectShippingAdressPage', {
       queryParams: {
-        CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null
+        CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null,
+        CurrentPage: 'ModifyUserInfoPage'
       }
     });
   }

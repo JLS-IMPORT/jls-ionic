@@ -10,7 +10,7 @@
         height: 48%;
     }
     .content{
-        --background: #ffffff!important;
+       // --background: #ffffff!important;
         height: 100%;
     }
     .buttonRow{
@@ -24,9 +24,7 @@
         right: 0;
         margin-bottom: 15%;
     }
-    .searchButtonColor{
-        color:  #000;
-    }
+  
     .avisColor{
         color: #fff;
         --background: rgb(198, 130, 238);

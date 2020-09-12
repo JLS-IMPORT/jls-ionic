@@ -18,7 +18,7 @@ export class SelectShippingAdressPage extends BaseUI {
 
   selectedAdressId: number;
   adressList: any[] = [];
-
+  previousPage : string;
 
   constructor(
     public navCtrl: NavController,
@@ -64,6 +64,8 @@ export class SelectShippingAdressPage extends BaseUI {
   }
 
   ionViewDidEnter() {
+    this.previousPage = this.router.snapshot.queryParams['CurrentPage'];
+
     if (this.router.snapshot.queryParams['type'] != null) {
       var userId = localStorage.getItem('userId');
 
@@ -105,9 +107,12 @@ export class SelectShippingAdressPage extends BaseUI {
 
   saveShippingAdress() {
     var selectedShippingAdress = this.getSelectedAdress();
-    // todo migrate to new navigation system
     // this.navCtrl.getPrevious().data.tempSelectedAdress = selectedShippingAdress;// Important! :  pass data to previous page
-    this.navCtrl.pop();
+    this.navCtrl.navigateBack(this.previousPage,{
+      queryParams:{
+        tempSelectedAdress : JSON.stringify(selectedShippingAdress)
+      }
+    })
   }
   getSelectedAdress() {
     return this.adressList.find(p => p.Id == this.selectedAdressId);

@@ -78,13 +78,13 @@ export class HomePage extends BaseUI {
 
   loadNotReadMessage() {
 
-    this.rest.GetNoReadMessageCount({ UserId: localStorage.getItem('userId') }).subscribe(result => {
-      if (result != null) {
-        // TODO: Migration to rxjs subscriber 
-        // this.event.publish('message:new', result);
-        this.utils.newMessageNumberSubject.next(result);
-      }
-    })
+    // this.rest.GetNoReadMessageCount({ UserId: localStorage.getItem('userId') }).subscribe(result => {
+    //   if (result != null) {
+    //     // TODO: Migration to rxjs subscriber 
+    //     // this.event.publish('message:new', result);
+    //     this.utils.newMessageNumberSubject.next(result);
+    //   }
+    // })
   }
 
   displayBestSalesProductPage() {

@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <p *ngIf="!loading && (adressList==null || adressList.length<=0) " text-center>{{'NoDataToDisplay' | translate}}</p>
+  <p *ngIf="!loading && (adressList==null || adressList.length<=0) " class="ion-text-center" text-center>{{'NoDataToDisplay' | translate}}</p>
   <a (click)="addNewAddress()" class="ion-float-right" float-right style="margin:10px 10px">{{'select-shipping-adress.Ajouter' | translate}}</a>
   <ion-list style="margin-top: 30px; clear: both;">
     <mat-radio-group class="example-radio-group" [(ngModel)]="selectedAdressId">
@@ -21,7 +21,7 @@
               </mat-radio-button>
             </ion-col>
             <ion-col size="10" col-10 class="colStyle">
-              <a float-right (click)="modifyAdress(item)">{{'select-shipping-adress.Modifier' | translate}}</a>
+              <a float-right class="ion-float-right" (click)="modifyAdress(item)">{{'select-shipping-adress.Modifier' | translate}}</a>
               <p class="addressDetail">{{item.ContactFirstName}} </p>
               <p class="addressDetail">{{item.ContactLastName}}</p>
               <p class="addressDetail">{{item.FirstLineAddress}}</p>
@@ -36,12 +36,12 @@
   </ion-list>
 </ion-content>
 <ion-footer *ngIf="getSelectedAdress()!=null">
-  <ion-toolbar>
+  <ion-toolbar style="padding-bottom: 0px;">
     <div style="padding: 5px;">
       <p class="addressDetail">{{getSelectedAdress().ContactFirstName}} </p>
       <p class="addressDetail">{{getSelectedAdress().FirstLineAddress}}</p>
       <p class="addressDetail">{{getSelectedAdress().ZipCode}} {{getSelectedAdress().City}}</p>
-      <div text-center>
+      <div  class="ion-text-center">
         <ion-button size="small" color="primary" style="width: 100%;"
           (click)="saveShippingAdress()">{{'select-shipping-adress.Confirmer' | translate}}</ion-button>
       </div>

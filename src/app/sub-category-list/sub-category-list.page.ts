@@ -30,7 +30,6 @@ export class SubCategoryListPage extends BaseUI {
   }
 
   ngOnInit() {
-    // todo migrate to right life-cycle function
     this.MainReferenceId = this.router.snapshot.queryParams["ReferenceId"];
     this.MainReferenceLabel = this.router.snapshot.queryParams["RefereceLabel"];
     this.loadSecondProductCategory();

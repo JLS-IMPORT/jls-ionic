@@ -52,7 +52,11 @@ export class AddAdressPage extends BaseUI {
   ngOnInit() {
 
     this.type = this.router.snapshot.queryParams['type'];
-    var adress = this.router.snapshot.queryParams['adress'];
+    var adress;
+    if (this.router.snapshot.queryParams['adress'] != null) {
+      var adress = JSON.parse(this.router.snapshot.queryParams['adress']);
+    }
+
 
     if (adress != null) {
       console.log(adress);
@@ -132,7 +136,7 @@ export class AddAdressPage extends BaseUI {
                 this.storage.set('tempFacturationAdress', 'true');
 
                 // todo migrate to new navigation system
-                 // this.navCtrl.getPrevious().data.type = this.type;
+                // this.navCtrl.getPrevious().data.type = this.type;
                 // this.navCtrl.getPrevious().data.facturationAdress = this.adreeForm.value;
               }
               loading.dismiss();

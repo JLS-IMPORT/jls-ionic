@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilsService } from '../service/utils.service';
 
@@ -10,32 +10,26 @@ import { UtilsService } from '../service/utils.service';
   styleUrls: ['./order-confirmation-succeess.page.scss'],
 })
 export class OrderConfirmationSucceessPage implements OnInit {
-  public email:string;
-  public message : string ;
+  public message: string = "";
 
-  constructor(public navCtrl: NavController, 
-    public utils :UtilsService,
+  @Input() OrderId;
+  @Input() Email;
+
+  constructor(public navCtrl: NavController,
+    public utils: UtilsService,
     public translateService: TranslateService,
-    public router: ActivatedRoute
-    ) {
+    public router: ActivatedRoute,
+    public modalCtrl: ModalController
+  ) {
 
-     }
+  }
 
   ngOnInit() {
-
-    this.email = this.router.snapshot.queryParams['email']; //await this.utils.getKey('email');
-    if(this.router.snapshot.queryParams['page']!=null && this.router.snapshot.queryParams['page'] == 'RegistrePage'){
-      this.message = this.translateService.instant('registre-succed.Confirm')!=null ? this.translateService.instant('registre-succed.Confirm').replace('{email}', this.email): '';
-    }
-    else if(this.router.snapshot.queryParams['page']!=null && this.router.snapshot.queryParams['page'] == 'ForgetPasswordPage'){
-      this.message = this.translateService.instant('registre-succed.ForgetPasswordSendEmail')!=null ? this.translateService.instant('registre-succed.ForgetPasswordSendEmail').replace('{email}', this.email): '';
-    }
+    this.message = this.translateService.instant('page-order-confirmation-succeess.Message').replace('{Email}', this.Email);
   }
 
-  returnToAccueil(){
-    // Set the tab to the first choice 
-    //this.navCtrl.parent.select(0);
-    this.navCtrl.navigateRoot('TabsPage');
+  async returnToAccueil() {
+    await this.modalCtrl.dismiss();
+    this.navCtrl.navigateRoot('');
   }
-
 }

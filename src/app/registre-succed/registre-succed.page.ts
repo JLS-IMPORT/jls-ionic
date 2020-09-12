@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { UtilsService } from '../service/utils.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -33,6 +33,7 @@ export class RegistreSuccedPage implements OnInit {
   returnToAccueil(){
     // Set the tab to the first choice 
     //this.navCtrl.parent.select(0);
+
     this.navCtrl.navigateRoot('');
   }
 

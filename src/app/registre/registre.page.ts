@@ -110,7 +110,6 @@ export class RegistrePage extends BaseUI {
           .subscribe(
             async f => {
               if (f.Success) {
-                // todo migration navcontroller
                 this.navCtrl.navigateRoot('RegistreSuccedPage', {
                   queryParams: {
                     email: f.DataExt,

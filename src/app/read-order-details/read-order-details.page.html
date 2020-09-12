@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" style="--background:'#ffffff!important'">
+<ion-content class="ion-padding" >
   <h6>{{'read-order-details.OrderNumber' | translate}} n°{{OrderInfo.Id}} </h6>
   <p><b>{{'read-order-details.DateOfPurchase' | translate}}: </b>{{OrderInfo.CreatedOn}}</p>
   <p><b>{{'read-order-details.Status' | translate}}: </b><ion-badge  [color]="getStatusClass(Status.Code)" style="color: white;"> {{Status.Label}}</ion-badge></p>

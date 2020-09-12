@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background:'fff'!important">
+<ion-content >
   <ion-searchbar (search)="search()" [(ngModel)]="SearchText"></ion-searchbar>
   <ion-list>
     <ion-item button *ngFor="let item of items" (click)="startSearch(item)">

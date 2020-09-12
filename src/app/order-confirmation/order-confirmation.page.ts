@@ -50,7 +50,12 @@ export class OrderConfirmationPage extends BaseUI {
 
   async ionViewDidEnter() {
 
-    this.defaultShippingAdress = this.router.snapshot.queryParams['tempSelectedAdress'] || this.defaultShippingAdress;
+    if (this.router.snapshot.queryParams['tempSelectedAdress'] != null) {
+      this.defaultShippingAdress = JSON.parse(this.router.snapshot.queryParams['tempSelectedAdress']);
+    }
+    else {
+      this.defaultShippingAdress = this.defaultShippingAdress;
+    }
 
     var facturationAdressChanged = await this.utils.getKey('tempFacturationAdress');
     if (facturationAdressChanged != null && facturationAdressChanged == 'true') {
@@ -106,7 +111,6 @@ export class OrderConfirmationPage extends BaseUI {
 
       // Get selected product in cart 
       var selectedReferenceIds = [];
-      // todo migrate to new navigation system
       var selectedReferencesStringfy = this.router.snapshot.queryParams['References']
       var selectedReferences = selectedReferencesStringfy != null ? JSON.parse(selectedReferencesStringfy) : [];
 
@@ -160,7 +164,7 @@ export class OrderConfirmationPage extends BaseUI {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'facturationAdress',
-        adress: facturationAdress
+        adress: JSON.stringify(facturationAdress)
       }
     });
   }
@@ -191,7 +195,8 @@ export class OrderConfirmationPage extends BaseUI {
     this.navCtrl.navigateForward('SelectShippingAdressPage',
       {
         queryParams: {
-          CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null
+          CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null,
+          CurrentPage: 'OrderConfirmationPage'
         }
       });
   }
@@ -235,7 +240,7 @@ export class OrderConfirmationPage extends BaseUI {
                 this.SavedOrder = true;
                 this.storage.set('cartProductList', JSON.stringify(newCartProductList));
                 //this.navCtrl.setRoot('OrderConfirmationSucceessPage',{OrderId: f.Data});
-                this.navCtrl.pop();
+               // this.navCtrl.pop();
                 let modal = await this.modalCtrl.create({
                   component: OrderConfirmationSucceessPage,
                   componentProps: {

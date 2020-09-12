@@ -44,8 +44,6 @@ export class MyAccountPage extends BaseUI {
 
 
   async showModal() {
-
-    // todo migration to lazy loading modal 
     let modal = await this.modalCtrl.create({
       component: LoginPage
     });
@@ -103,13 +101,13 @@ export class MyAccountPage extends BaseUI {
   }
 
   loadNotReadMessage() {
-    this.rest.GetNoReadMessageCount({ UserId: localStorage.getItem('userId') }).subscribe(result => {
-      if (result != null) {
-        // TODO migrate to rxjs subscriber
-        // this.event.publish('message:new', result);
-        this.utils.newMessageNumberSubject.next(result);
-      }
-    })
+    // this.rest.GetNoReadMessageCount({ UserId: localStorage.getItem('userId') }).subscribe(result => {
+    //   if (result != null) {
+    //     
+    //     // this.event.publish('message:new', result);
+    //     this.utils.newMessageNumberSubject.next(result);
+    //   }
+    // })
   }
 
   readCommandList(orderType) {

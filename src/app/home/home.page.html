@@ -2,20 +2,20 @@
   <ion-toolbar mode="ios">
     <ion-title text-center>{{'home.Title' | translate}}</ion-title>
     <ion-buttons  slot="start">
-      <ion-button  icon-only small (click)="translation()">
+      <ion-button  icon-only small size="small" (click)="translation()">
         <ion-icon name="globe-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end" >
-      <ion-button icon-only small (click)="search()">
+      <ion-button icon-only size="small" (click)="search()" color="primary">
         <ion-icon name="search" class="searchButtonColor"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background:'#ffffff!important'" class="ion-text-center" no-bounce scrollY="false">
+<ion-content  class="ion-text-center" no-bounce scrollY="false">
   <ion-slides class="slidePagers" pager>
     <ion-slide class="slidePhoto" *ngFor="let item of sldes" >
       <img  [src]="host+item.PhotoPath" />
