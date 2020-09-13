@@ -35,6 +35,9 @@ export class SelectShippingAdressPage extends BaseUI {
   }
 
   async ngOnInit() {
+    
+    this.previousPage = this.router.snapshot.queryParams['CurrentPage'];
+    
     if (this.network.type != 'none') {
       var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant("Loading"));
       var userId = await this.utils.getKey('userId');
@@ -64,7 +67,6 @@ export class SelectShippingAdressPage extends BaseUI {
   }
 
   ionViewDidEnter() {
-    this.previousPage = this.router.snapshot.queryParams['CurrentPage'];
 
     if (this.router.snapshot.queryParams['type'] != null) {
       var userId = localStorage.getItem('userId');
@@ -92,7 +94,8 @@ export class SelectShippingAdressPage extends BaseUI {
   addNewAddress() {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
-        type: 'shippingAdress'
+        type: 'shippingAdress',
+        currentPage:'SelectShippingAdressPage'
       }
     });
   }
@@ -100,7 +103,8 @@ export class SelectShippingAdressPage extends BaseUI {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'shippingAdress',
-        adress: JSON.stringify(adress)
+        adress: JSON.stringify(adress),
+        currentPage:'SelectShippingAdressPage'
       }
     });
   }
