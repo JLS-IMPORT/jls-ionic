@@ -1,7 +1,6 @@
 .articleNumber{
     font-size: 1.4rem;
     font-weight: 500;
-    margin: 4px;
 }
 
 .productCard{
@@ -10,6 +9,7 @@
     margin-right: 0px;
     box-shadow: none !important;
     border-bottom: 0.5px solid #dedede;
+    margin-top: 0px;
 }
 
 .productTitle{
@@ -20,9 +20,8 @@
 }
 
 .descriptionFont{
-    font-size: 10px;
     margin: 2px 0px;
-    color: black;
+    color: var(--ion-color-warning-contrast);
 }
 
 .mat-form-field{

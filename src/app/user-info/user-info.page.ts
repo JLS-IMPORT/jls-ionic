@@ -27,9 +27,13 @@ export class UserInfoPage extends BaseUI {
   }
 
   ngOnInit() {
-    this.loadUserinfo();
+  
   }
 
+  ionViewWillEnter(){
+    this.loadUserinfo();
+  }
+  
   ionViewDidEnter() {
     this.UserInfo = this.router.snapshot.queryParams['UserInfo'] || this.UserInfo;
     this.UserInfo.Email = localStorage.getItem('username');

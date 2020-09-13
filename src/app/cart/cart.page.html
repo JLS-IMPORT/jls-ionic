@@ -51,7 +51,7 @@
       <ion-label style="margin-left: 3px;">{{'cart.All' | translate}}</ion-label>
     </div>
     <div  class="footerComponent ion-float-right">
-      <ion-label *ngIf="logined">{{'cart.Somme' | translate}}:{{CalculAccount()}}€</ion-label>
+      <ion-label *ngIf="logined">{{'cart.Somme' | translate}}:{{CalculAccount()  | number:'1.2-2'}}€</ion-label>
       <ion-button shape="round" size="small" round small [disabled]="!checkProductListIsAvailable() || !checkSelectedProductListIsEmpty()" (click)="valideCart()">{{'cart.Confirm' | translate}}</ion-button>
     </div>
   </ion-toolbar>

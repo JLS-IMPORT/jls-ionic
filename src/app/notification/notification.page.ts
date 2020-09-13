@@ -112,7 +112,9 @@ export class NotificationPage extends BaseUI {
           (result: any) => {
             if (result != null && result.List != null) {
               if (result.TotalCount <= this.step * this.counter) {
-                infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                infiniteScroll.target.complete();
+                // Disable the infinite scroll
+                infiniteScroll.target.disabled = true;
               }
               else {
                 this.messageList = this.messageList.concat(result.List != null ? result.List : []);

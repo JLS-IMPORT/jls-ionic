@@ -19,6 +19,7 @@ export class AddAdressPage extends BaseUI {
   submitted: boolean = false;
   adreeForm: FormGroup;
   type: string;
+  previousPage:string;
 
   constructor(
     public navCtrl: NavController,
@@ -50,7 +51,7 @@ export class AddAdressPage extends BaseUI {
   }
 
   ngOnInit() {
-
+    this.previousPage = this.router.snapshot.queryParams['currentPage'];
     this.type = this.router.snapshot.queryParams['type'];
     var adress;
     if (this.router.snapshot.queryParams['adress'] != null) {
@@ -135,12 +136,20 @@ export class AddAdressPage extends BaseUI {
               if (this.type) {
                 this.storage.set('tempFacturationAdress', 'true');
 
+                this.navCtrl.navigateBack(this.previousPage, {
+                  queryParams:{
+                    type: this.type,
+                    facturationAdress: JSON.stringify(this.adreeForm.value)
+                  }
+                })
                 // todo migrate to new navigation system
                 // this.navCtrl.getPrevious().data.type = this.type;
                 // this.navCtrl.getPrevious().data.facturationAdress = this.adreeForm.value;
               }
+              else{
+                this.navCtrl.pop();
+              }
               loading.dismiss();
-              this.navCtrl.pop();
             } else {
               loading.dismiss()
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));

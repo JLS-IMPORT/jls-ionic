@@ -253,7 +253,9 @@ export class NewproductPage extends BaseUI {
               (f: any) => {
                 if (f.Success) {
                   if (f["Data"].TotalCount <= this.step * this.counter) {
-                    infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
                   }
                   else {
                     this.productList = this.productList.concat(f["Data"].ProductListData != null ? f["Data"].ProductListData : []);
@@ -274,7 +276,9 @@ export class NewproductPage extends BaseUI {
               (f: any) => {
                 if (f.Success) {
                   if (f["Data"].TotalCount <= this.step * this.counter) {
-                    infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
                   }
                   else {
                     this.productList = this.productList.concat(f["Data"].ProductListData != null ? f["Data"].ProductListData : []);
@@ -295,7 +299,9 @@ export class NewproductPage extends BaseUI {
               (f: any) => {
                 if (f.Success) {
                   if (f["Data"].TotalCount <= this.step * this.counter) {
-                    infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
                   }
                   else {
                     this.productList = this.productList.concat(f["Data"].ProductListData != null ? f["Data"].ProductListData : []);
@@ -321,7 +327,9 @@ export class NewproductPage extends BaseUI {
               (result: any) => {
                 if (result != null && result.TotalCount != null && result.List != null) {
                   if (result.TotalCount <= this.step * this.counter) {
-                    infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
                   }
                   else {
                     this.productList = this.productList.concat(result.List != null ? result.List : []);
@@ -347,7 +355,9 @@ export class NewproductPage extends BaseUI {
               (result: any) => {
                 if (result != null && result.TotalCount != null && result.List != null) {
                   if (result.TotalCount <= this.step * this.counter) {
-                    infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
                   }
                   else {
                     this.productList = this.productList.concat(result.List != null ? result.List : []);
@@ -374,7 +384,9 @@ export class NewproductPage extends BaseUI {
               (result: any) => {
                 if (result != null && result.TotalCount != null && result.List != null) {
                   if (result.TotalCount <= this.step * this.counter) {
-                    infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
                   }
                   else {
                     this.productList = this.productList.concat(result.List != null ? result.List : []);
@@ -402,7 +414,9 @@ export class NewproductPage extends BaseUI {
                 (result: any) => {
                   if (result != null && result.TotalCount != null && result.List != null) {
                     if (result.TotalCount <= this.step * this.counter) {
-                      infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                      infiniteScroll.target.complete();
+                      // Disable the infinite scroll
+                      infiniteScroll.target.disabled = true;
                     }
                     else {
                       this.productList = this.productList.concat(result.List != null ? result.List : []);

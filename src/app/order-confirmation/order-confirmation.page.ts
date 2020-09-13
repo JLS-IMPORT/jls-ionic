@@ -164,7 +164,8 @@ export class OrderConfirmationPage extends BaseUI {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'facturationAdress',
-        adress: JSON.stringify(facturationAdress)
+        adress: JSON.stringify(facturationAdress),
+        currentPage:'OrderConfirmationPage'
       }
     });
   }

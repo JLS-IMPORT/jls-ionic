@@ -39,7 +39,7 @@ export class ModifyUserInfoPage extends BaseUI {
   }
 
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     if(this.router.snapshot.queryParams['tempSelectedAdress']!=null ){
       this.defaultShippingAdress = JSON.parse (this.router.snapshot.queryParams['tempSelectedAdress']);
     }
@@ -81,7 +81,8 @@ export class ModifyUserInfoPage extends BaseUI {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'facturationAdress',
-        adress: JSON.stringify(facturationAdress)
+        adress: JSON.stringify(facturationAdress),
+        currentPage : 'ModifyUserInfoPage'
       }
     });
   }

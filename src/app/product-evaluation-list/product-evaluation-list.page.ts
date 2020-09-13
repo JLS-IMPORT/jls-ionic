@@ -115,7 +115,9 @@ export class ProductEvaluationListPage extends BaseUI {
           (f: any) => {
             if (f.Success) {
               if (f["Data"].TotalCount <= this.step * this.counter) {
-                infiniteScroll.enable(false);   //没有数据的时候隐藏 ion-infinate-scroll
+                infiniteScroll.target.complete();
+                // Disable the infinite scroll
+                infiniteScroll.target.disabled = true;
               }
               else {
                 this.productCommentList = this.productCommentList.concat(f["Data"].ProductCommentListData != null ? f["Data"].ProductCommentListData : []);

@@ -12,6 +12,7 @@ input{
     cursor: pointer;
     border-width: 0;
     outline:none;
+    background: var(--ion-card-background);
 }
 .button {
     height: inherit; 
