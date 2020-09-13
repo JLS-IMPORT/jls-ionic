@@ -26,7 +26,7 @@
                 <img *ngIf="item.DefaultPhotoPath!=null" class="productImg"  [src]="host+item.DefaultPhotoPath">
               </ion-col>
               <ion-col size="8" col-8>
-                <div class="ion-float-right"  style="margin-top: 5px;"> <span style="font-size: 20px;color: #534d7a; ">{{item.Price*item.Quantity}} €</span>
+                <div class="ion-float-right"  style="margin-top: 5px;"> <span style="font-size: 20px;color: #534d7a; ">{{item.Price*item.Quantity  | number : '1.2-2'}} €</span>
                 </div>
                 <p class="descriptionFont">{{'order-confirmation.Reference' | translate}}: {{item.Code}} </p>
                 <p class="descriptionFont">{{'order-confirmation.UnitPrice' | translate}} : {{item.Price}} €</p>
