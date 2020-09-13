@@ -31,8 +31,10 @@
     "@ionic/storage": "^2.3.1",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "cordova": "^10.0.0",
     "cordova-android": "9.0.0",
     "cordova-browser": "6.0.0",
+    "cordova-ios": "5.1.1",
     "ionic5-star-rating": "https://github.com/JeongJun-Lee/ionic5-star-rating/tarball/master",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
@@ -78,11 +80,14 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
       "browser",
+      "ios",
       "android"
     ]
   }
