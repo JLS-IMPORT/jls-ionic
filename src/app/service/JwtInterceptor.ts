@@ -8,7 +8,7 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import { Observable, BehaviorSubject, pipe } from 'rxjs';
+import { Observable, BehaviorSubject, pipe, throwError } from 'rxjs';
 import { tap, catchError, switchMap, filter, take, finalize } from 'rxjs/operators';
 import { RestService } from '../service/rest.service';
 
@@ -43,9 +43,11 @@ export class JwtInterceptor implements HttpInterceptor {
                             return this.handleHttpResponseError(request, next);
                         case 400:
                             return <any>this.rest.logout();
+                        default :
+                            return throwError(err);
                     }
                 } else {
-                    return Observable.throw(this.handleError);
+                    return throwError(this.handleError);
                 }
             })
 

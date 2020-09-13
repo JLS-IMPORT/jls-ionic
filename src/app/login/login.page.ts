@@ -49,8 +49,6 @@ export class LoginPage extends BaseUI {
       this.rest.getNewRefreshToken(LoginInfo) // 填写url的参数
         .subscribe(
           f => {
-
-
             if (f != null && f.authToken != null) {
               localStorage.setItem('login  Status', '1');
               localStorage.setItem('jwt', f.authToken.token);
@@ -70,13 +68,17 @@ export class LoginPage extends BaseUI {
 
               this.modalCtrl.dismiss();
             }
+            else{
+              super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
+            }
 
             loading.dismiss();
           },
           error => {
-            var message = JSON.parse(error);
-            if (message.LoginError != null) {
-              super.showToast(this.toastCtrl, this.translateService.instant(message.LoginError));
+            if (error!= null) {
+              if (error.LoginError != null) {
+                super.showToast(this.toastCtrl, this.translateService.instant(error.LoginError));
+              }
             }
             else {
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));

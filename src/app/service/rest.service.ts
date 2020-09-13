@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilsService } from './utils.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { timeout, catchError } from 'rxjs/operators';
 import { ToastController, NavController } from '@ionic/angular';
 import { environment } from '../../environments/environment';
@@ -154,6 +154,7 @@ export class RestService {
     LoginInfo.UserName = LoginInfo.Email;
 
     // todo add object
+    
     return this.postUrlReturn(this.apiUrlRefreshToken, LoginInfo);
   }
   async logout() {
@@ -191,7 +192,8 @@ export class RestService {
     return this.postUrlReturn(this.apiUrlRegistre, RegistrerInfo);
   }
   Login(LoginInfo: object): Observable<any> {
-    return this.postUrlReturn(this.apiUrlLogin, LoginInfo);
+
+    return this.http1.post(this.apiUrlLogin, LoginInfo, );
   }
 
   SendPasswordResetLink(Email: string): Observable<any> {
@@ -416,7 +418,7 @@ export class RestService {
       // Font-end error
       if (error.name != null && error.name == "TimeoutError") {
         //超时信息
-        return Observable.throw({ Msg: "Network timeout, please check your network connection", Success: false });
+        return throwError({ Msg: "Network timeout, please check your network connection", Success: false });
       }
       console.error('Error: ', error.error.message);
     } else {
@@ -428,7 +430,7 @@ export class RestService {
       //   return Observable.throw(error.error);
       // }
 
-      return Observable.throw(error._body);
+      return throwError(error.error);
     }
   }
 }
