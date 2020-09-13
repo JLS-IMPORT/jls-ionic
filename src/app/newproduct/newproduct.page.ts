@@ -25,6 +25,7 @@ export class NewproductPage extends BaseUI {
   counter: number = 0;
   PageType: string;
 
+  layoutColumn: boolean = false;
 
   public advancedSearchCriteria: any = {
     SearchText: null,
@@ -53,8 +54,6 @@ export class NewproductPage extends BaseUI {
 
 
   ngOnInit() {
-    console.log('ionViewDidLoad NewproductPage');
-
     this.checkLogined();
 
     this.PageType = this.router.snapshot.queryParams["PageType"];
@@ -63,8 +62,21 @@ export class NewproductPage extends BaseUI {
     this.loadProductList();
   }
 
-  ionViewDidEnter() {
+  toggleLayout(){
+    this.layoutColumn = !this.layoutColumn;
+    localStorage.setItem('productListLayoutColumn', this.layoutColumn.toString())
+  }
 
+  ionViewWillEnter() {
+    // only for develop, don't commit for production app
+    var layoutColumn = localStorage.getItem('productListLayoutColumn');
+    if(layoutColumn!=null){
+      this.layoutColumn = JSON.parse(layoutColumn);;
+    }
+    else{
+      this.layoutColumn = true;
+    }
+  
   }
 
 

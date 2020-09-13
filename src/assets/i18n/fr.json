@@ -128,7 +128,7 @@
     "cart":{
         "Title":"Panier",
         "Reference":"Référence",
-        "EachBox":"Pièces/Colis",
+        "EachBox":"Colissage",
         "MinimumPurchase":"Minimum d'achat",
         "Quantity":"Quantité",
         "All":"Tous",
@@ -138,7 +138,7 @@
 
     },
     "newproduct":{
-        "QuantityEachBox":"Quantité/Colis",
+        "QuantityEachBox":"Colissage",
         "QuantityMinimum":"Quantité minimale d'achat",
         "Reference":"Référence"
     },

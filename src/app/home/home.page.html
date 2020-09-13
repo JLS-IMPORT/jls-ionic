@@ -28,6 +28,14 @@
   </ion-slides>
   <div class="buttonZone">
     <ion-row class="buttonRow" class="ion-text-center">
+
+      <ion-col size="3" col-3>
+        <ion-button class="nouveauteColor myButton" icon-only (click)="displaynewProductPage()">
+          <ion-icon name='flag' slot="icon-only"></ion-icon>
+        </ion-button>
+        <p>{{'home.New' | translate}}</p>
+      </ion-col>
+
       <ion-col size="3" col-3>
         <ion-button class="bestSaleColor myButton" icon-only (click)="displayBestSalesProductPage()">
           <ion-icon name='thumbs-up' slot="icon-only"></ion-icon>
@@ -40,12 +48,7 @@
         </ion-button>
         <p>{{'home.Promotion' | translate}}</p>
       </ion-col>
-      <ion-col size="3" col-3>
-        <ion-button class="nouveauteColor myButton" icon-only (click)="displaynewProductPage()">
-          <ion-icon name='flag' slot="icon-only"></ion-icon>
-        </ion-button>
-        <p>{{'home.New' | translate}}</p>
-      </ion-col>
+
       <ion-col size="3" col-3>
         <ion-button class="categoryColor myButton" icon-only (click)="displayCategoryListPage()">
           <ion-icon name='pricetag' slot="icon-only"></ion-icon>

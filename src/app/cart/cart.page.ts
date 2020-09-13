@@ -55,6 +55,14 @@ export class CartPage extends BaseUI {
     }
   }
 
+  viewProductDetail(productId){
+    this.navCtrl.navigateForward('ProductDetailPage',{
+      queryParams:{
+        productId: productId
+      }
+    })
+  }
+
   itemCheckBoxChange(item: any) {
     if (item.Selected == false) {
       this.checkAllProduct = false;

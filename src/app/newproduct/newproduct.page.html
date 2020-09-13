@@ -9,6 +9,12 @@
         <ion-icon name="search" class="searchButtonColor"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button icon-only small (click)="toggleLayout()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +26,7 @@
 
   <p *ngIf="!loading && (productList==null || productList.length<=0) " class="ion-text-center">
     {{'NoDataToDisplay' | translate}}</p>
-  <ion-list>
+  <ion-list *ngIf="!layoutColumn">
     <ion-item button detail="false" (click)="productDetail(item)" *ngFor="let item of productList">
 
       <ion-avatar slot="start" style="width: 60px;height:60px">
@@ -32,7 +38,6 @@
         <p style="float: right; margin-top: 25px;" *ngIf="logined">{{item.Price}} <span
           [hidden]="item.Price==null">€</span></p>
         <h2 class="productLabelClass" [id]="item.ReferenceId">{{item.Label}}</h2>
-
         <p>{{'newproduct.QuantityEachBox' | translate}} : {{item.QuantityPerBox}}</p>
         <p>{{'newproduct.QuantityMinimum' | translate}} : {{item.MinQuantity}}</p>
         <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1em; padding: 1px 0px;"
@@ -40,10 +45,35 @@
           <ion-icon name="cart" slot="icon-only"></ion-icon>
         </span>
         <p>{{'newproduct.Reference' | translate}} : {{item.Code}}</p>
+
+        
       </ion-label>
 
     </ion-item>
   </ion-list>
+  
+
+  <ion-row *ngIf="layoutColumn">
+    <ion-col size="6" (click)="productDetail(item)" *ngFor="let item of productList">
+      <ion-card button="true" class="ion-no-margin">
+        <img *ngIf="item.DefaultPhotoPath==null"  src="assets/imgs/not-found.png">
+        <img *ngIf="item.DefaultPhotoPath!=null"  [src]="host+item.DefaultPhotoPath">
+        <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
+          <ion-card-title style="font-size:16px;">{{item.Label}}</ion-card-title>
+          <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
+       
+        </ion-card-header>
+        <ion-card-content style="padding-bottom: 5px;">
+          <ion-label *ngIf="logined">{{item.Price}} <span
+            [hidden]="item.Price==null">€</span></ion-label>
+          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1em; padding: 1px 0px;"
+            (click)="addInCart($event,item)">
+            <ion-icon name="cart" slot="icon-only"></ion-icon>
+          </span>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading">
     </ion-infinite-scroll-content>

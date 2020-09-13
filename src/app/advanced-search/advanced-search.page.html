@@ -40,7 +40,7 @@
 
 
     <ion-item>
-      <ion-label start>{{'advanced-search.Minquantitedachat' | translate}}: {{criteria.MinQuantity}}</ion-label>
+      <ion-label start slot="start">{{'advanced-search.Minquantitedachat' | translate}}: {{criteria.MinQuantity}}</ion-label>
       <ion-range [(ngModel)]="criteria.MinQuantity" min="0" max="200" step="10">
         <ion-icon range-left small name="cube"></ion-icon>
         <ion-icon range-right name="cube"></ion-icon>
@@ -48,7 +48,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label start>{{'advanced-search.Prix' | translate}}: {{criteria.PriceInterval.lower}} -
+      <ion-label start position="stacked" slot="start">{{'advanced-search.Prix' | translate}}: {{criteria.PriceInterval.lower}} -
         {{criteria.PriceInterval.upper}} €</ion-label>
       <ion-range [(ngModel)]="criteria.PriceInterval" min="0" max="200" step="10" dualKnobs="true" pin="true">
         <ion-icon range-left name="remove"></ion-icon>
