@@ -16,6 +16,11 @@
     .buttonRow{
         margin: 10px 15px;
     }
+
+    .myButton{
+        --border-radius: 0px;
+    }
+
     .buttonZone{
         position: fixed; 
         bottom: env(safe-area-inset-bottom); 
