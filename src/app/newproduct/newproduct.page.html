@@ -61,7 +61,7 @@
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
           <ion-card-title style="font-size:16px;">{{item.Label}}</ion-card-title>
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
-       
+          <ion-card-subtitle>{{'newproduct.QuantityEachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;">
           <ion-label *ngIf="logined">{{item.Price}} <span
