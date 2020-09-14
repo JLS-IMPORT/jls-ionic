@@ -208,7 +208,7 @@ export class RestService {
 
   /* Product zoom start */
   GetProductMainCategory(): Observable<any> {
-    var lang = this.translate.defaultLang;
+    var lang = this.translate.defaultLang || 'fr';
     let params = new HttpParams({
       fromObject: {
         Lang: lang
@@ -217,7 +217,7 @@ export class RestService {
     return this.http1.get(this.apiUrlGetProductMainCategory, { params });
   }
   GetProductSecondCategory(MainCategoryReferenceId: number): Observable<any> {
-    var lang = this.translate.defaultLang;
+    var lang = this.translate.getDefaultLang();
     let params = new HttpParams({
       fromObject: {
         MainCategoryReferenceId: MainCategoryReferenceId.toString(),
@@ -228,12 +228,12 @@ export class RestService {
   }
 
   GetProductListByPublishDate(Begin: number, Step: number): Observable<any> {
-    var lang = this.translate.defaultLang;
+    var lang = this.translate.getDefaultLang() || 'fr';
     return this.getUrlReturn1(this.apiUrlGetProductListByPublishDate, { Lang: lang, Begin: Begin, Step: Step });// todo change
   }
 
   GetProductListBySalesPerformance(Begin: number, Step: number): Observable<any> {
-    var lang = this.translate.defaultLang;
+    var lang = this.translate.getDefaultLang() || 'fr'; 
     let params = new HttpParams({
       fromObject: {
         Lang: lang,
@@ -246,7 +246,7 @@ export class RestService {
 
 
   GetProductListBySecondCategory(SecondCategoryReferenceId: number, Begin: number, Step: number): Observable<any> {
-    var lang = this.translate.defaultLang;
+    var lang = this.translate.getDefaultLang();
     let params = new HttpParams({
       fromObject: {
         SecondCategoryReferenceId: SecondCategoryReferenceId.toString(),

@@ -27,11 +27,11 @@
     </ion-slide>
   </ion-slides>
 
-  <div class="ion-margin-top">
+  <div class="ion-margin-top" *ngIf="newProductList.length>0" >
     <h3 style="text-align: left; margin-left: 5px;">{{'home.New' | translate}}  <a style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
     <div style="overflow-x: auto;">
       <ion-card [ngStyle]="{'min-width.px': screenWidth}" button="true" 
-        *ngFor="let item of newProductList">
+        *ngFor="let item of newProductList" (click)="productDetail(item)">
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
         <ion-img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath"></ion-img>
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div class="ion-margin-top">
+  <div class="ion-margin-top" *ngIf="hotProductList.length>0" >
     <h3 class="productScrollTitle">{{'home.BestSellers' | translate}}  <a class="productScrollMore" (click)="displayBestSalesProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
     <div style="overflow-x: auto;">
       <ion-card [ngStyle]="{'min-width.px': screenWidth}" button="true" 
@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <ion-list>
+  <ion-list class="ion-margin-top">
     <ion-item button *ngFor="let item of categoryList" (click) = "secondMenu(item.ReferenceId,item.Reference.Label)">
         {{item.Reference.Label}}({{item.TotalCount}})
     </ion-item>   
