@@ -6,6 +6,7 @@ import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
 import { environment } from 'src/environments/environment';
 import { TranslationPage } from '../translation/translation.page';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +18,21 @@ export class HomePage extends BaseUI {
 
   public host = environment.SERVER_API_URL;
 
+  public screenWidth: number;
   public sldes: any[] = [];
   public logined: boolean = false;
+
+  newProductList: any[] = [];
+  hotProductList: any[] = [];
+  categoryList: any[];
+  loadNumberOfProduct: number = 20;
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public translate: TranslateService,
     public utils: UtilsService,
     public toastCtrl: ToastController,
+    public platform: Platform,
     public rest: RestService) {
     super();
   }
@@ -36,9 +44,11 @@ export class HomePage extends BaseUI {
         this.sldes = result;
       }
     });
+
+    this.screenWidth = this.platform.width() * 0.4; // show 3 products 
+    this.loadProductAnCategoryData();
   }
 
-  ngdi
 
 
   async checkLogined() {
@@ -74,6 +84,60 @@ export class HomePage extends BaseUI {
           PageType: 'LowerPriceProduct'
         }
       });
+  }
+
+  secondMenu(ReferenceId: number, RefereceLabel: string) {
+    this.navCtrl.navigateForward('SubCategoryListPage', {
+      queryParams: {
+        ReferenceId: ReferenceId,
+        RefereceLabel: RefereceLabel
+      }
+    });
+  }
+
+  loadProductAnCategoryData() {
+    // Load new product 
+    this.rest.GetProductListByPublishDate(0, this.loadNumberOfProduct) //TODO: change
+      .subscribe(
+        (f: any) => {
+          if (f.Success) {
+
+            this.newProductList = f["Data"].ProductListData;
+
+          } else {
+            super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+          }
+        },
+        error => {
+          super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+        }
+      );
+    
+    // Load product by sales perfomance
+    this.rest.GetProductListBySalesPerformance(0, this.loadNumberOfProduct) //TODO: change
+      .subscribe(
+        (f: any) => {
+          if (f.Success) {
+
+            this.hotProductList = f["Data"].ProductListData;
+
+          } else {
+            super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+          }
+        },
+        error => {
+          super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+        }
+      );
+
+    // Load category 
+    this.rest.GetProductMainCategory() // 填写url的参数
+      .subscribe(
+        f => {
+          if (f.Success && f.Data != null) {
+            this.categoryList = f.Data;
+          }
+        });
   }
 
   loadNotReadMessage() {
