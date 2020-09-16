@@ -27,9 +27,9 @@
     </ion-slide>
   </ion-slides>
 
-  <div class="ion-margin-top" *ngIf="newProductList.length>0" >
+  <div class="ion-margin-top"  >
     <h3 style="text-align: left; margin-left: 5px;">{{'home.New' | translate}}  <a style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
-    <div style="overflow-x: auto;">
+    <div style="overflow-x: auto;" *ngIf="newProductList.length>0">
       <ion-card [ngStyle]="{'min-width.px': screenWidth}" button="true" 
         *ngFor="let item of newProductList" (click)="productDetail(item)">
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
@@ -48,12 +48,29 @@
         </ion-card-content>
       </ion-card>
     </div>
+    <div *ngIf="newProductList==null || newProductList.length==0" class="ion-margin-left" style="overflow-x: auto;">
+    
+      <ion-card [ngStyle]="{'min-width.px': screenWidth}" button="true" *ngFor="let item of [0,1,2,3,4]" >
+        <ion-img src="assets/imgs/not-found.png"></ion-img>
+      <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
+        <ion-card-title style="font-size:16px;"><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></ion-card-title>
+        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
+        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content style="padding-bottom: 5px;">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+
+    </div>
   </div>
 
-  <div class="ion-margin-top" *ngIf="hotProductList.length>0" >
+  <div class="ion-margin-top" >
     <h3 class="productScrollTitle">{{'home.BestSellers' | translate}}  <a class="productScrollMore" (click)="displayBestSalesProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
-    <div style="overflow-x: auto;">
+    <div style="overflow-x: auto;" *ngIf="hotProductList.length>0" >
       <ion-card [ngStyle]="{'min-width.px': screenWidth}" button="true" 
+        (click)="productDetail(item)"
         *ngFor="let item of hotProductList">
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
         <ion-img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath"></ion-img>
@@ -70,6 +87,23 @@
           </span>
         </ion-card-content>
       </ion-card>
+    </div>
+    
+    <div *ngIf="hotProductList==null || hotProductList.length==0" class="ion-margin-left" style="overflow-x: auto;">
+    
+      <ion-card [ngStyle]="{'min-width.px': screenWidth}" button="true" *ngFor="let item of [0,1,2,3,4]" >
+        <ion-img src="assets/imgs/not-found.png"></ion-img>
+      <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
+        <ion-card-title style="font-size:16px;"><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></ion-card-title>
+        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
+        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content style="padding-bottom: 5px;">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+
     </div>
   </div>
 

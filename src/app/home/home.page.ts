@@ -49,7 +49,7 @@ export class HomePage extends BaseUI {
     });
 
     this.screenWidth = this.platform.width() * 0.4; // show 3 products 
-    
+    this.loadProductAnCategoryData();
   }
 
 
@@ -64,7 +64,6 @@ export class HomePage extends BaseUI {
   }
 
   async ionViewWillEnter() {
-    this.loadProductAnCategoryData();
     await this.checkLogined();
   }
 
