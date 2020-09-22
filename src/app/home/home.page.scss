@@ -64,3 +64,21 @@
     }
 
 
+ion-card{
+    margin: 0px;
+    max-width: 100px;
+    min-width: 100px;
+    display: table-cell;
+    padding-bottom: 0px ;
+}
+
+.productScrollTitle{
+    text-align: left; 
+    margin-left: 5px;
+}
+.productScrollMore{
+    float: right; 
+    margin-right: 5px;
+    font-size: medium;
+}
+

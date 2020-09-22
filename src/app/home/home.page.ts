@@ -6,6 +6,8 @@ import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
 import { environment } from 'src/environments/environment';
 import { TranslationPage } from '../translation/translation.page';
+import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -17,15 +19,24 @@ export class HomePage extends BaseUI {
 
   public host = environment.SERVER_API_URL;
 
+  public screenWidth: number;
   public sldes: any[] = [];
   public logined: boolean = false;
+
+  newProductList: any[] = [];
+  hotProductList: any[] = [];
+  categoryList: any[];
+  loadNumberOfProduct: number = 20;
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
     public translate: TranslateService,
     public utils: UtilsService,
     public toastCtrl: ToastController,
-    public rest: RestService) {
+    public platform: Platform,
+    public rest: RestService,
+    public storage: Storage,
+    public utilis:UtilsService) {
     super();
   }
 
@@ -36,9 +47,11 @@ export class HomePage extends BaseUI {
         this.sldes = result;
       }
     });
+
+    this.screenWidth = this.platform.width() * 0.4; // show 3 products 
+    this.loadProductAnCategoryData();
   }
 
-  ngdi
 
 
   async checkLogined() {
@@ -51,7 +64,6 @@ export class HomePage extends BaseUI {
   }
 
   async ionViewWillEnter() {
-
     await this.checkLogined();
   }
 
@@ -76,6 +88,60 @@ export class HomePage extends BaseUI {
       });
   }
 
+  secondMenu(ReferenceId: number, RefereceLabel: string) {
+    this.navCtrl.navigateForward('SubCategoryListPage', {
+      queryParams: {
+        ReferenceId: ReferenceId,
+        RefereceLabel: RefereceLabel
+      }
+    });
+  }
+
+  loadProductAnCategoryData() {
+    // Load new product 
+    this.rest.GetProductListByPublishDate(0, this.loadNumberOfProduct) //TODO: change
+      .subscribe(
+        (f: any) => {
+          if (f.Success) {
+
+            this.newProductList = f["Data"].ProductListData;
+
+          } else {
+            super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+          }
+        },
+        error => {
+          super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+        }
+      );
+    
+    // Load product by sales perfomance
+    this.rest.GetProductListBySalesPerformance(0, this.loadNumberOfProduct) //TODO: change
+      .subscribe(
+        (f: any) => {
+          if (f.Success) {
+
+            this.hotProductList = f["Data"].ProductListData;
+
+          } else {
+            super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+          }
+        },
+        error => {
+          super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+        }
+      );
+
+    // Load category 
+    this.rest.GetProductMainCategory() // 填写url的参数
+      .subscribe(
+        f => {
+          if (f.Success && f.Data != null) {
+            this.categoryList = f.Data;
+          }
+        });
+  }
+
   loadNotReadMessage() {
 
     // this.rest.GetNoReadMessageCount({ UserId: localStorage.getItem('userId') }).subscribe(result => {
@@ -87,6 +153,33 @@ export class HomePage extends BaseUI {
     // })
   }
 
+  async addInCart(event: Event, item: any) {
+    event.stopPropagation();
+    var cartProductList = JSON.parse(await this.utilis.getKey('cartProductList'));
+    if (cartProductList == null) {
+      cartProductList = [];
+    }
+    var temp = cartProductList.find(p => p.ReferenceId == item.ReferenceId);
+    if (temp == null) {
+      if (item.Quantity == null) {
+        item.Quantity = 0;
+      }
+      cartProductList.push(item);
+    }
+    cartProductList.forEach(p => {
+      if (p.ReferenceId == item.ReferenceId) {
+        p.Quantity = p.Quantity + 1;
+      }
+      if (p.Selected == null) {
+        p.Selected = false;
+      }
+    });
+
+
+    this.storage.set('cartProductList', JSON.stringify(cartProductList));
+
+    super.showToast(this.toastCtrl, this.translate.instant("Msg_AddInCart"));
+  }
   displayBestSalesProductPage() {
     this.navCtrl.navigateForward('/NewproductPage',
       {
@@ -148,5 +241,13 @@ export class HomePage extends BaseUI {
     });
     modalTranslation.present();
 
+  }
+
+  productDetail(product) {
+    this.navCtrl.navigateForward('ProductDetailPage', {
+      queryParams: {
+        productId: product.ProductId
+      }
+    });
   }
 }
