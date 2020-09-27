@@ -29,6 +29,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { TranslationPageModule } from './translation/translation.module';
 import { JwtInterceptor } from './service/JwtInterceptor';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -58,7 +60,8 @@ export function LanguageLoader(http: HttpClient) {
       }
     }),
     NoopAnimationsModule,
-    TranslationPageModule
+    TranslationPageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,
