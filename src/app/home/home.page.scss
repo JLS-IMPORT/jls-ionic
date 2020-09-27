@@ -70,6 +70,15 @@ ion-card{
     min-width: 100px;
     display: table-cell;
     padding-bottom: 0px ;
+    border: 1px solid #b0b0b069;
+    border-radius: 10px;
+    min-width: 35vw;
+}
+ion-card-content{
+    padding-left: 2px;
+}
+ion-card-header{
+    padding:3px;
 }
 
 .productScrollTitle{
@@ -82,3 +91,10 @@ ion-card{
     font-size: medium;
 }
 
+
+.productDisplay{
+    overflow-x: auto; 
+    border-spacing: 5px;
+    background-color: #fafafa33;
+    border: 1px solid rgba(255,255,255,.1);
+}

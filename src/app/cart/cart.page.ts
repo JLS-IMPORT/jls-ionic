@@ -149,7 +149,7 @@ export class CartPage extends BaseUI {
     var totalAccount = 0;
     var selectedProduct = this.GetSelectedProduct();
     selectedProduct.forEach(p => {
-      totalAccount = totalAccount + (p.Quantity * p.Price);
+      totalAccount = totalAccount + (p.Quantity * p.Price * p.QuantityPerBox);
     });
     return totalAccount;
   }

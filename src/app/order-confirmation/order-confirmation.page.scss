@@ -12,20 +12,24 @@
     box-shadow: none !important;
     border-bottom: 0.5px solid #dedede;
     margin-top: 0px;
+    margin-bottom: 0px;
 }
 .productTitle{
     font-weight: 500;
     background-color: #f4f4f4;
     padding: 3px;
     color: black;
+    margin-top: 0;
 }
 .descriptionFont{
-    font-size: 10px;
     margin: 2px 0px;
     color: black;
 }
+
+ion-card-content p{
+    font-size: 1rem;;
+}
 .expenseFont{
-    font-size: 10px;
 }
 .ios ion-tab ion-footer .toolbar:last-child {
    // padding-bottom: $toolbar-ios-padding!important;

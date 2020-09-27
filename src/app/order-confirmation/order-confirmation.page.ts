@@ -187,7 +187,7 @@ export class OrderConfirmationPage extends BaseUI {
 
   calculTotalPrice() {
     var total = 0;
-    this.orderProductList.map(p => total = total + p.Price * p.Quantity);
+    this.orderProductList.map(p => total = total + p.Price * p.Quantity * p.QuantityPerBox);
     return total;
   }
 

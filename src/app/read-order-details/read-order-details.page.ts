@@ -106,10 +106,10 @@ export class ReadOrderDetailsPage extends BaseUI {
 
   calculBasicTotalPrice() {
     var TotalPrice = 0;
-    if (this.ProductList != null && this.OrderInfo.TotalPrice != null) {
+    if (this.ProductList != null && this.OrderInfo.TotalPrice == null) {
       this.ProductList.forEach(p => {
         if (p.Quantity != null && p.Price != null) {
-          TotalPrice = TotalPrice + p.Quantity * p.Price;
+          TotalPrice = TotalPrice + p.Quantity * p.Price * p.QuantityPerBox;
         }
       });
     }

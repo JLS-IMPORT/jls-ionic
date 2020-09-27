@@ -12,7 +12,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./contact-us.page.scss'],
 })
 export class ContactUsPage extends BaseUI {
-
+  address: string;
+  phone: string;
+  fax: string;
+  email: string;
 
   @Input() SystemMessage: any;
 
@@ -38,10 +41,25 @@ export class ContactUsPage extends BaseUI {
 
   ngOnInit() {
 
+    this.rest.GetReferenceItemsByCategoryLabels({
+      shortLabels: ['StoreInfomation']
+    }) // 填写url的参数
+      .subscribe(
+        result => {
+          this.address = result.find(p => p.Code == "StoreInfo_Address").Label;
+          this.phone = result.find(p => p.Code == "StoreInfo_Telephone").Label;
+          this.fax = result.find(p => p.Code == "StoreInfo_Fax").Label;
+          this.email = result.find(p => p.Code == "StoreInfo_Email").Label;
+        },
+        error => {
+          super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
+        });
+
     if (this.router.snapshot.queryParams['OrderId'] != null) {
       //
       this.criteria.OrderId = this.router.snapshot.queryParams['OrderId'];
     }
+
     if (this.SystemMessage != null) {
       var SystemMessage = this.SystemMessage;
       this.criteria.Title = SystemMessage.Title;

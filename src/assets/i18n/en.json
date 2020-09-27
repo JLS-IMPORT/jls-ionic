@@ -69,6 +69,7 @@
         "Detail": "Detail"
     },
     "registre": {
+        "CanBeSame":"Can be same as the company",
         "Registre": "Registre",
         "Title": "Registre",
         "Email": "E-mail",

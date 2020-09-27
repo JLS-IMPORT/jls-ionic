@@ -18,6 +18,10 @@ export class RegistrePage extends BaseUI {
   entrepriseForm: any;
   addressForm: any;
 
+  entreprisePhoneCode: string = "33";
+  addressPhoneCode: string = "33";
+  addressFaxCode: string = "33";
+
   constructor(
     public navCtrl: NavController,
     public translateService: TranslateService,
@@ -94,13 +98,14 @@ export class RegistrePage extends BaseUI {
 
   async registre() {
     if (this.basicInfoForm.valid && this.entrepriseForm.valid && this.addressForm.valid && !this.confirmPassword()) {
-
+      this.addressForm.value['ContactTelephone'] = this.addressPhoneCode + ' ' + this.addressForm.value['ContactTelephone'];
+      this.addressForm.value['ContactFax'] = this.addressFaxCode + ' ' + this.addressForm.value['ContactFax'];
       var registreInfo = {
         Email: this.basicInfoForm.value['email'],
         Password: this.basicInfoForm.value['password'],
         Siret: this.entrepriseForm.value['siret'],
         EntrepriseName: this.entrepriseForm.value['entrepriseName'],
-        PhoneNumber: this.entrepriseForm.value['phoneNumber'],
+        PhoneNumber:  this.entreprisePhoneCode + ' ' + this.entrepriseForm.value['phoneNumber'],
         FacturationAdress: this.addressForm.value,
         ShipmentAdress: this.addressForm.value
       }

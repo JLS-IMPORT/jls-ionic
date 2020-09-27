@@ -71,6 +71,7 @@
         "Detail":"观看订单详情"
     },
     "registre":{
+        "CanBeSame":"可与之前相同",
         "Registre":"注册",
         "Title":"注册",
         "Email":"邮箱",

@@ -22,14 +22,14 @@
           </ion-col>
           <ion-col size="8" col-8 class="colStyle">
             <div>
-              <p style="float: right; margin-right: 4px; margin-bottom: 0px;" *ngIf="logined">{{item.Price}}<span *ngIf="item.Price!=null">€</span></p>
+              <p style="float: right; margin-right: 4px; margin-bottom: 0px;" *ngIf="logined">{{item.Price}}<span *ngIf="item.Price!=null">€</span>(HT)</p>
               <h6 (click)="viewProductDetail(item.ProductId)" class="productTitleFont"> {{item.Label}} </h6>
               <p class="descriptionFont">{{'cart.Reference' | translate}}: {{item.Code}} </p>
               <ion-button  class="ion-float-right" icon-only float-right  style="font-size:0.6em; clear: both; height: 3em;" (click)="removeItem(item)">
                 <ion-icon name="close" slot="icon-only"></ion-icon>
               </ion-button>
               <p class="descriptionFont">{{'cart.EachBox' | translate}}: {{item.QuantityPerBox}} </p>
-              <p class="descriptionFont">{{'cart.MinimumPurchase' | translate}}:{{item.MinQuantity}}</p>
+              <!-- <p class="descriptionFont">{{'cart.MinimumPurchase' | translate}}:{{item.MinQuantity}}</p> -->
             </div>
             <app-ion-meter class="ion-float-right" float-right [buyNumber]="checkQuantityWithMinQuantity(item.MinQuantity,item.Quantity)" maxQty='10000' [minQty]='item.MinQuantity' [goods]="item.ReferenceId" (onUpdate)="onUpdate($event,item.MinQuantity)">
             </app-ion-meter>
@@ -51,7 +51,7 @@
       <ion-label style="margin-left: 3px;">{{'cart.All' | translate}}</ion-label>
     </div>
     <div  class="footerComponent ion-float-right">
-      <ion-label *ngIf="logined">{{'cart.Somme' | translate}}:{{CalculAccount()  | number:'1.2-2'}}€</ion-label>
+      <ion-label *ngIf="logined">{{'cart.Somme' | translate}}:{{CalculAccount()  | number:'1.2-2'}}€(HT)</ion-label>
       <ion-button shape="round" size="small" round small [disabled]="!checkProductListIsAvailable() || !checkSelectedProductListIsEmpty()" (click)="valideCart()">{{'cart.Confirm' | translate}}</ion-button>
     </div>
   </ion-toolbar>
