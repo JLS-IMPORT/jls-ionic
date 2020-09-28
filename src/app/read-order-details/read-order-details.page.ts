@@ -30,7 +30,7 @@ export class ReadOrderDetailsPage extends BaseUI {
   loading: boolean;
 
   public TaxRate: number = 0;
-  CustomerInfo: any;
+  CustomerInfo: any = {};
 
   constructor(
     public navCtrl: NavController,

@@ -35,12 +35,13 @@
               <h6 class="productTitleFont">{{item.Label}}</h6>
               <p class="descriptionFont">{{'read-order-details.Referene' | translate}}: {{item.Code}}</p>
               <p class="descriptionFont">{{'newproduct.QuantityEachBox' | translate}}: {{item.QuantityPerBox}}</p>
-              <p class="descriptionFont">{{'newproduct.Quantity' | translate}}: {{item.Quantity}}</p>
+              <p class="descriptionFont">{{'read-order-details.Quantity' | translate}}: {{item.Quantity}}</p>
               <p class="descriptionFont">{{'read-order-details.Size' | translate}}: {{item.Size}}</p>
               <p class="descriptionFont">{{'read-order-details.Material' | translate}}: {{item.Material}}</p>
               <p class="descriptionFont">{{'read-order-details.Color' | translate}}: {{item.Color}}</p>
+              <p class="descriptionFont">{{'product-detail.Price' | translate}}: {{item.Price | number:'1.2-2'}}€(HT)</p>
               <br>
-              <div>{{'read-order-details.Quantity' | translate}} x {{item.Quantity * item.QuantityPerBox}} <p float-right class="sommeStyle">{{item.Price | number:'1.2-2'}}€(HT)</p>
+              <div>{{'read-order-details.Quantity' | translate}} x {{item.Quantity * item.QuantityPerBox}} <span float-right class="sommeStyle ion-float-right" >{{item.Price * item.QuantityPerBox * item.Quantity   | number:'1.2-2'}}€(HT)</span>
               </div>
             </ion-col>
           </ion-row>
