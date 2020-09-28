@@ -30,6 +30,7 @@ export class ReadOrderDetailsPage extends BaseUI {
   loading: boolean;
 
   public TaxRate: number = 0;
+  CustomerInfo: any;
 
   constructor(
     public navCtrl: NavController,
@@ -80,6 +81,10 @@ export class ReadOrderDetailsPage extends BaseUI {
                 this.ClientRemark = f.Data.ClientRemark;
               }
 
+              if (f.Data.CustomerInfo != null) {
+                this.CustomerInfo = f.Data.CustomerInfo;
+              }
+
               if (f.Data.AdminRemark != null) {
                 this.AdminRemark = f.Data.AdminRemark;
               }
@@ -106,7 +111,7 @@ export class ReadOrderDetailsPage extends BaseUI {
 
   calculBasicTotalPrice() {
     var TotalPrice = 0;
-    if (this.ProductList != null && this.OrderInfo.TotalPrice == null) {
+    if (this.ProductList != null && this.OrderInfo.TotalPriceHT == null) {
       this.ProductList.forEach(p => {
         if (p.Quantity != null && p.Price != null) {
           TotalPrice = TotalPrice + p.Quantity * p.Price * p.QuantityPerBox;
@@ -114,7 +119,7 @@ export class ReadOrderDetailsPage extends BaseUI {
       });
     }
     else {
-      TotalPrice = this.OrderInfo.TotalPrice;
+      TotalPrice = this.OrderInfo.TotalPriceHT;
     }
 
     return TotalPrice;

@@ -55,20 +55,13 @@
           <input matInput placeholder="{{'registre.Siret' | translate}}" formControlName="siret" required>
         </mat-form-field>
 
-        <ion-row>
-          <ion-col size="2">
-            <mat-form-field>
-              <span matPrefix>+ &nbsp;</span>
-              <input matInput required type="tel" matInput [(ngModel)]="entreprisePhoneCode"  [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
-          </ion-col>
-          <ion-col size="10">
-            <mat-form-field>
-              <input matInput required type="tel" matInput placeholder="{{'registre.PhoneNumber' | translate}}"
-                formControlName="phoneNumber">
-            </mat-form-field>
-          </ion-col>
-        </ion-row>
+  
+          <mat-form-field>
+            <mat-label>{{'registre.PhoneNumber' | translate}}</mat-label>
+            <input matInput required type="tel" matInput placeholder="EX: +33 xx xx xx xx xx"
+              formControlName="phoneNumber">
+          </mat-form-field>
+     
         <div>
           <button mat-raised-button color="warn" matStepperPrevious>{{'registre.Back' | translate}}</button>
           <button mat-raised-button color="primary" matStepperNext>{{'registre.Next' | translate}}</button>
@@ -139,46 +132,21 @@
             </mat-form-field>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col size="2">
-            <mat-form-field>
-              <span matPrefix>+ &nbsp;</span>
-              <input matInput required type="tel" matInput [(ngModel)]="addressPhoneCode"  [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
-          </ion-col>
+    
 
-          <ion-col size="10">
-            <mat-form-field>
-              <input matInput required type="tel" matInput
-                placeholder="{{'registre.PhoneNumber' | translate}} ({{'registre.CanBeSame' | translate}})"
-                formControlName="ContactTelephone">
+        <mat-form-field>
+          <mat-label>{{'registre.PhoneNumber' | translate}} ({{'registre.CanBeSame' | translate}})</mat-label>
+          <input matInput required type="tel" matInput
+            placeholder="EX: +33 xx xx xx xx xx"
+            formControlName="ContactTelephone">
 
-            </mat-form-field>
-          </ion-col>
+        </mat-form-field>
 
-
-        </ion-row>
-
-
-        <ion-row>
-          <ion-col size="2">
-            <mat-form-field>
-              <span matPrefix>+ &nbsp;</span>
-              <input matInput required type="tel" matInput [(ngModel)]="addressFaxCode"  [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
-          </ion-col>
-
-          <ion-col size="10">
-            <mat-form-field>
-              <input matInput type="tel" matInput placeholder="{{'registre.Fax' | translate}}"
-                formControlName="ContactFax">
-            </mat-form-field>
-          </ion-col>
-
-
-        </ion-row>
-
-
+          <mat-form-field>
+            <mat-label>{{'registre.Fax' | translate}}</mat-label>
+            <input matInput type="tel" matInput placeholder="EX: +33 xx xx xx xx xx"
+              formControlName="ContactFax">
+          </mat-form-field>
         <div>
           <button mat-raised-button color="warn" matStepperPrevious>{{'registre.Back' | translate}}</button>
           <button mat-raised-button color="primary" (click)='registre()'>{{'registre.Registre' | translate}}</button>

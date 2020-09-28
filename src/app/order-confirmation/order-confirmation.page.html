@@ -64,8 +64,8 @@
           <h6 class="productTitle">{{'order-confirmation.ShippingAddress' | translate}}</h6>
         </ion-card-header>
         <ion-card-content style="padding: 0px;" *ngIf="defaultShippingAdress!=null">
-          <p class="">{{defaultShippingAdress.ContactFirstName}} <span>
-              {{defaultShippingAdress.ContactLastName}}</span> </p>
+          <!-- <p class="">{{defaultShippingAdress.ContactFirstName}} <span>
+              {{defaultShippingAdress.ContactLastName}}</span> </p> -->
           <p class="">{{defaultShippingAdress.FirstLineAddress}} </p>
           <p class="">{{defaultShippingAdress.SecondLineAddress}} </p>
           <p class="">{{defaultShippingAdress.ZipCode}} <span> {{ defaultShippingAdress.City }} </span>
@@ -93,8 +93,8 @@
         <h6 class="productTitle" style="margin-top: 0px;">{{'order-confirmation.BillingAddress' | translate}}</h6>
       </ion-card-header>
       <ion-card-content style="padding: 0px;">
-        <p class="">{{facturationAdress.ContactFirstName}} <span>
-            {{facturationAdress.ContactLastName}}</span> </p>
+        <!-- <p class="">{{facturationAdress.ContactFirstName}} <span>
+            {{facturationAdress.ContactLastName}}</span> </p> -->
         <p class="">{{facturationAdress.FirstLineAddress}} </p>
         <p class="">{{facturationAdress.SecondLineAddress}} </p>
         <p class="">{{facturationAdress.ZipCode}} <span> {{ facturationAdress.City }} </span> </p>

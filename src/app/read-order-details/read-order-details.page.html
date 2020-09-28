@@ -34,11 +34,13 @@
             <ion-col size="8" col-8>
               <h6 class="productTitleFont">{{item.Label}}</h6>
               <p class="descriptionFont">{{'read-order-details.Referene' | translate}}: {{item.Code}}</p>
+              <p class="descriptionFont">{{'newproduct.QuantityEachBox' | translate}}: {{item.QuantityPerBox}}</p>
+              <p class="descriptionFont">{{'newproduct.Quantity' | translate}}: {{item.Quantity}}</p>
               <p class="descriptionFont">{{'read-order-details.Size' | translate}}: {{item.Size}}</p>
               <p class="descriptionFont">{{'read-order-details.Material' | translate}}: {{item.Material}}</p>
               <p class="descriptionFont">{{'read-order-details.Color' | translate}}: {{item.Color}}</p>
               <br>
-              <div>{{'read-order-details.Quantity' | translate}} x {{item.Quantity}}<p float-right class="sommeStyle">{{item.Price | number:'1.2-2'}}€(HT)</p>
+              <div>{{'read-order-details.Quantity' | translate}} x {{item.Quantity * item.QuantityPerBox}} <p float-right class="sommeStyle">{{item.Price | number:'1.2-2'}}€(HT)</p>
               </div>
             </ion-col>
           </ion-row>
@@ -52,8 +54,7 @@
             <h3> <b>{{'read-order-details.ShippingAddress' | translate}}</b> </h3>
           </ion-card-header>
           <ion-card-content>
-                <p class="descriptionFont">{{ShippingAdress.ContactFirstName}} </p>
-                <p class="descriptionFont">{{ShippingAdress.ContactLastName}}</p>
+                <p class="descriptionFont">{{CustomerInfo.EntrepriseName}} </p>
                 <p class="descriptionFont">{{ShippingAdress.FirstLineAddress}}</p>
                 <p class="descriptionFont">{{ShippingAdress.SecondLineAddress}}</p>
                 <p class="descriptionFont">{{ShippingAdress.ZipCode}} {{ShippingAdress.City}} </p>
@@ -68,8 +69,7 @@
             <h3><b>{{'read-order-details.BillingAddress' | translate}}</b> </h3>
           </ion-card-header>
           <ion-card-content>
-            <p class="descriptionFont">{{FacturationAdress.ContactFirstName}} </p>
-            <p class="descriptionFont">{{FacturationAdress.ContactLastName}}</p>
+            <p class="descriptionFont">{{CustomerInfo.EntrepriseName}} </p>
             <p class="descriptionFont">{{FacturationAdress.FirstLineAddress}}</p>
             <p class="descriptionFont">{{FacturationAdress.SecondLineAddress}}</p>
             <p class="descriptionFont">{{FacturationAdress.ZipCode}} {{FacturationAdress.City}} </p>

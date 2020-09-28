@@ -207,7 +207,8 @@ export class OrderConfirmationPage extends BaseUI {
     var productInfo = [];
     this.orderProductList.map(p => productInfo.push({
       ReferenceId: p.ReferenceId,
-      Quantity: p.Quantity
+      Quantity: p.Quantity,
+      UnityQuantity: p.QuantityPerBox
     }));
     var shippingAdressId;
     if (this.defaultShippingAdress != null && this.defaultShippingAdress != {} && this.defaultShippingAdress["Id"] != null) {

@@ -74,14 +74,16 @@
         </ion-row>
 
         <mat-form-field class="example-full-width">
-          <span matPrefix>+33 &nbsp;</span>
-          <input required type="tel" matInput placeholder="{{'add-adress.Telephone' | translate}}"
+          <mat-label>{{'add-adress.Telephone' | translate}}</mat-label>
+          <input required type="tel" matInput placeholder="EX: +33 xx xx xx xx xx"
             formControlName="ContactTelephone">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
+
+          <mat-label>{{'add-adress.Fax' | translate}}</mat-label>
           <span matPrefix>+33 &nbsp;</span>
-          <input type="tel" matInput placeholder="{{'add-adress.Fax' | translate}}" formControlName="ContactFax">
+          <input type="tel" matInput placeholder="EX: +33 xx xx xx xx xx" formControlName="ContactFax">
         </mat-form-field>
       </form>
     </ion-card-content>
