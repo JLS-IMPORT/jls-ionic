@@ -105,8 +105,7 @@
     </ion-card>
   </ion-list>
 
-  <div class="alert alert-success ion-margin-top" role="alert" >
-    {{ShippingMessage}}
+  <div class="alert alert-success ion-margin-top" role="alert" [innerHTML]="ShippingMessage">
   </div>
   <ion-list>
       <ion-card class="productCard">
