@@ -120,7 +120,7 @@ export class CartService extends BaseUI {
   private adjustCartMinQuantity(){
     
     // Renew quantity check if quantiy < min quantity
-    if (this.cartProductList != null && this.cartService.length > 0) {
+    if (this.cartProductList != null && this.cartProductList.length > 0) {
       this.cartProductList.map(f => {
         if (f.Quantity < f.MinQuantity) {
           f.Quantity = f.MinQuantity;
