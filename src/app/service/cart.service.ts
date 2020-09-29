@@ -73,7 +73,7 @@ export class CartService extends BaseUI {
     var temp = cartProductList.find(p => p.ReferenceId == item.ReferenceId);
     if (temp == null) {
       if (item.Quantity == null) {
-        item.Quantity = 1;
+        item.Quantity = 0;
       }
       cartProductList.push(item);
     }
