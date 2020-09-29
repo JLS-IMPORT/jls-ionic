@@ -9,6 +9,8 @@ import { Network } from '@ionic-native/network/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { AdvancedSearchPage } from '../advanced-search/advanced-search.page';
+import { CartService } from '../service/cart.service';
+import { ICartProduct } from '../interface/icart-product';
 
 
 @Component({
@@ -47,7 +49,8 @@ export class NewproductPage extends BaseUI {
     public storage: Storage,
     public utilis: UtilsService,
     public modalCtrl: ModalController,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public cartService: CartService
   ) {
     super();
   }
@@ -458,32 +461,9 @@ export class NewproductPage extends BaseUI {
 
   }
 
-  async addInCart(event: Event, item: any) {
+  async addInCart(event: Event, item: ICartProduct) {
     event.stopPropagation();
-    var cartProductList = JSON.parse(await this.utilis.getKey('cartProductList'));
-    if (cartProductList == null) {
-      cartProductList = [];
-    }
-    var temp = cartProductList.find(p => p.ReferenceId == item.ReferenceId);
-    if (temp == null) {
-      if (item.Quantity == null) {
-        item.Quantity = 0;
-      }
-      cartProductList.push(item);
-    }
-    cartProductList.forEach(p => {
-      if (p.ReferenceId == item.ReferenceId) {
-        p.Quantity = p.Quantity + 1;
-      }
-      if (p.Selected == null) {
-        p.Selected = false;
-      }
-    });
-
-
-    this.storage.set('cartProductList', JSON.stringify(cartProductList));
-
-    super.showToast(this.toastCtrl, this.translate.instant("Msg_AddInCart"));
+    this.cartService.addInCart(item);
   }
 
 }

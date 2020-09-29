@@ -8,6 +8,8 @@ import { Network } from '@ionic-native/network/ngx';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { CartService } from '../service/cart.service';
+import { ICartProduct } from '../interface/icart-product';
 
 @Component({
   selector: 'app-product-detail',
@@ -31,7 +33,8 @@ export class ProductDetailPage extends BaseUI {
     public rest: RestService,
     public network: Network,
     public toastCtrl: ToastController,
-    public router: ActivatedRoute) {
+    public router: ActivatedRoute,
+    public cartService: CartService) {
     super();
   }
 
@@ -41,12 +44,6 @@ export class ProductDetailPage extends BaseUI {
     this.productId = this.router.snapshot.queryParams["productId"];
     this.checkLogined();
     this.initLoadData();
-  }
-
-
-
-  ionViewDidLoad() {
-
   }
 
   addProductIntoFavoriteList() {
@@ -137,7 +134,6 @@ export class ProductDetailPage extends BaseUI {
   }
 
 
-
   displayAvis() {
     if (this.product.Comments != null && this.product.Comments.length > 0) {
       this.navCtrl.navigateForward('ProductEvaluationListPage', {
@@ -149,40 +145,9 @@ export class ProductDetailPage extends BaseUI {
     }
   }
 
-  async addInCart(event: Event, item: any) {
+  async addInCart(event: Event, item: ICartProduct) {
     event.stopPropagation();
-    var cartListString = await this.utilis.getKey('cartProductList');
-    var cartProductList = [];
-    if (cartListString != null) {
-      cartProductList = JSON.parse(cartListString);
-    }
-
-    var temp = cartProductList.find(p => p.ReferenceId == item.ReferenceId);
-    if (temp == null) {
-      if (item.Quantity == null) {
-        item.Quantity = 0;
-      }
-      cartProductList.push(item);
-    }
-    cartProductList.forEach(p => {
-      if (p.ReferenceId == item.ReferenceId) {
-        p.Quantity = p.Quantity + 1;
-      }
-      if (p.Selected == null) {
-        p.Selected = false;
-      }
-    });
-
-
-    this.storage.set('cartProductList', JSON.stringify(cartProductList)).then(() => {
-      super.showToast(this.toastCtrl, this.translateService.instant("Msg_AddInCart"));
-    },
-      error => {
-        console.log(error);
-      });
-
-
-
+    this.cartService.addInCart(item);
   }
 
 }
