@@ -160,6 +160,10 @@ export class RestService {
   async logout() {
     //todo
     localStorage.clear();
+    localStorage.removeItem('userId');
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('refreshToken');
+    
 
     this.storage.remove('userId');
     this.storage.remove('jwt');

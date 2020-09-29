@@ -47,7 +47,7 @@ export class RegistrePage extends BaseUI {
       FirstLineAddress: ['', Validators.required],
       SecondLineAddress: [''],
       City: ['', Validators.required],
-      CountryId: ['', Validators.required],
+      Country: ['', Validators.required],
       ZipCode: ['', Validators.required],
       ContactTelephone: ['', Validators.required],
       ContactFax: [''],

@@ -50,18 +50,8 @@
           </ion-col>
 
           <ion-col col-4>
-            <mat-form-field>
-              <mat-select required placeholder="{{'add-adress.Country' | translate}}" formControlName="CountryId">
-                <mat-option [value]=1>
-                  France
-                </mat-option>
-                <mat-option [value]=2>
-                  Belgique
-                </mat-option>
-                <mat-option [value]=3>
-                  Espagnol
-                </mat-option>
-              </mat-select>
+            <mat-form-field class="example-full-width">
+              <input required matInput placeholder="{{'add-adress.Country' | translate}}" formControlName="Country">
             </mat-form-field>
           </ion-col>
 
