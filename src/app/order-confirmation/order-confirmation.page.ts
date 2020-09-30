@@ -29,6 +29,7 @@ export class OrderConfirmationPage extends BaseUI {
   public ChangeAddress: boolean = false;
 
   public remark: string = "";
+  entrepriseName: string;
 
   constructor(
     public navCtrl: NavController,
@@ -109,16 +110,17 @@ export class OrderConfirmationPage extends BaseUI {
       var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant("Loading"));
       var UserId = localStorage.getItem('userId'); //await this.utils.getKey('userId');
 
-      // Get selected product in cart 
+      // Get selected product in cart  
       var selectedReferenceIds = [];
       var selectedReferencesStringfy = this.router.snapshot.queryParams['References']
       var selectedReferences = selectedReferencesStringfy != null ? JSON.parse(selectedReferencesStringfy) : [];
 
       selectedReferences.map(p => selectedReferenceIds.push(p.ReferenceId));
 
-      forkJoin(this.rest.GetReferenceItemsByCategoryLabels({ ShortLabels: ['InAppMessage', 'TaxRate'] }), this.rest.GetProductInfoByReferenceIds(selectedReferenceIds), this.rest.GetUserFacturationAdress(UserId), this.rest.GetUserDefaultShippingAdress(UserId))
+      forkJoin(this.rest.GetReferenceItemsByCategoryLabels({ ShortLabels: ['InAppMessage', 'TaxRate'] }), this.rest.GetProductInfoByReferenceIds(selectedReferenceIds), 
+      this.rest.GetUserFacturationAdress(UserId), this.rest.GetUserDefaultShippingAdress(UserId), this.rest.GetUserById(localStorage.getItem('userId')))
         .subscribe(
-          ([ReferenceList, SelectedProductInfo, FacturationAdress, ShippingAdress]) => {
+          ([ReferenceList, SelectedProductInfo, FacturationAdress, ShippingAdress, CustomerInfo]) => {
             if (SelectedProductInfo != null && SelectedProductInfo.length > 0 &&
               FacturationAdress.Success && ShippingAdress.Success) {
               /* Bind the product data */
@@ -130,6 +132,9 @@ export class OrderConfirmationPage extends BaseUI {
               if (ShippingAdress.Data != null) {
                 // this.shippingAdress = ShippingAdress.Data;
                 this.defaultShippingAdress = ShippingAdress.Data;
+              }
+              if(CustomerInfo!=null && CustomerInfo.EntrepriseName!=null){
+                this.entrepriseName = CustomerInfo.EntrepriseName;
               }
 
               // if(this.shippingAdress.length>0&&this.shippingAdress[0]!=null){//todo: change by default

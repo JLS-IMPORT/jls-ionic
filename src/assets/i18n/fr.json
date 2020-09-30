@@ -83,8 +83,8 @@
         "CompanyInformation":"Informations sur la société",
         "CompanyName":"Nom de la société",
         "Warming_CompanyNameCannotEmpty":"Nom de la société est obligatoire",
-        "Siret":"SIRET",
-        "Warming_SiretCannotBeEmpty":"SIRET est obligatoire",
+        "Siret":"N° TVA",
+        "Warming_SiretCannotBeEmpty":"N° TVA est obligatoire",
         "Address":"Adresse",
         "AddressLine1":"Adresse 1",
         "Warming_MainAddressCannotBeEmpty":"Adresse est obligatoire",
@@ -99,7 +99,7 @@
         "Warming_AtLeast1Number":"Au moins 1 chiffre",
         "Warming_AtLeast1Letter":"Au moins 1 minuscule",
         "UseTheSameAddressAsTheShippingAddress":"Utilisant cette adresse comme adresse de livraison",
-        "PhoneNumber":"Numéro de téléphone",
+        "PhoneNumber":"Portable",
         "Compte":"Compte",
         "Next":"Suivant",
         "Entreprise":"Entreprise",
@@ -271,7 +271,7 @@
     },
     "modify-user-info":{
         "modifyUserInfo":"Modifier l'information de client",
-        "Siret":"Siret"
+        "Siret":"N° TVA"
     },
     "user-info":{
         "UserInfo":"Information de client",

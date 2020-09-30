@@ -102,22 +102,8 @@
         <mat-form-field>
           <input matInput placeholder="{{'registre.Country' | translate}}" formControlName="country" required>
         </mat-form-field> -->
-
-
         <mat-form-field>
-          <mat-label>{{'registre.Country' | translate}}</mat-label>
-          <mat-select required matNativeControl formControlName="CountryId">
-            <mat-option [value]=1>
-              France
-            </mat-option>
-            <mat-option [value]=2>
-              Belgique
-            </mat-option>
-            <mat-option [value]=3>
-              Espagnol
-            </mat-option>
-          </mat-select>
-
+          <input matInput placeholder="{{'registre.Country' | translate}}" formControlName="Country">
         </mat-form-field>
 
         <ion-row>
