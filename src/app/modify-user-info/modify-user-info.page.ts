@@ -96,7 +96,6 @@ export class ModifyUserInfoPage extends BaseUI {
     //this.ChangeAddress = true;
     this.navCtrl.navigateForward('SelectShippingAdressPage', {
       queryParams: {
-        CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null,
         CurrentPage: 'ModifyUserInfoPage'
       }
     });

@@ -9,5 +9,6 @@ export interface Iaddress {
     Country: string,
     ZipCode: string,
     ContactTelephone: string,
-    ContactFax?: string
+    ContactFax?: string,
+    IsDefaultAdress?: boolean
 }

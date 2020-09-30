@@ -63,14 +63,15 @@
         <ion-card-header style="padding: 8px 4px 0px;">
           <h6 class="productTitle">{{'order-confirmation.ShippingAddress' | translate}}</h6>
         </ion-card-header>
-        <ion-card-content style="padding: 0px;" *ngIf="defaultShippingAdress!=null">
+        <ion-card-content style="padding: 0px;" *ngIf="defaultShippingAdress">
           <!-- <p class="">{{defaultShippingAdress.ContactFirstName}} <span>
               {{defaultShippingAdress.ContactLastName}}</span> </p> -->
-              
+
           <p class="">{{entrepriseName}} </p>
           <p class="">{{defaultShippingAdress.FirstLineAddress}} </p>
           <p class="">{{defaultShippingAdress.SecondLineAddress}} </p>
-          <p class="">{{defaultShippingAdress.ZipCode}} <span> {{ defaultShippingAdress.City }} </span>  <span> {{ defaultShippingAdress.Country }} </span>
+          <p class="">{{defaultShippingAdress.ZipCode}} <span> {{ defaultShippingAdress.City }} </span> <span>
+              {{ defaultShippingAdress.Country }} </span>
           </p>
           <p class="">{{defaultShippingAdress.ContactTelephone}} </p>
         </ion-card-content>
@@ -94,13 +95,14 @@
             (click)="modifyFacturationAdress()">{{'order-confirmation.Edit' | translate}}</a></span>
         <h6 class="productTitle" style="margin-top: 0px;">{{'order-confirmation.BillingAddress' | translate}}</h6>
       </ion-card-header>
-      <ion-card-content style="padding: 0px;">
+      <ion-card-content style="padding: 0px;" *ngIf="facturationAdress">
         <!-- <p class="">{{facturationAdress.ContactFirstName}} <span>
             {{facturationAdress.ContactLastName}}</span> </p> -->
         <p class="">{{entrepriseName}} </p>
         <p class="">{{facturationAdress.FirstLineAddress}} </p>
         <p class="">{{facturationAdress.SecondLineAddress}} </p>
-        <p class="">{{facturationAdress.ZipCode}} <span> {{ facturationAdress.City }} </span> </p> <span> {{ facturationAdress.Country }} </span>
+        <p class="">{{facturationAdress.ZipCode}} <span> {{ facturationAdress.City }} </span> </p> <span>
+          {{ facturationAdress.Country }} </span>
         <p class="">{{facturationAdress.ContactTelephone}} </p>
       </ion-card-content>
     </ion-card>

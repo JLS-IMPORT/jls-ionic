@@ -18,7 +18,7 @@ import { AddressService } from '../service/address.service';
 export class AddAdressPage extends BaseUI {
   adreeForm: FormGroup;
   type: string;
-  previousPage:string;
+  previousPage: string;
 
   constructor(
     public navCtrl: NavController,
@@ -54,17 +54,17 @@ export class AddAdressPage extends BaseUI {
     this.previousPage = this.router.snapshot.queryParams['currentPage'];
     this.type = this.router.snapshot.queryParams['type'];
 
-    if(this.type == "facturationAdress"){
+    if (this.type == "facturationAdress") {
       this.adreeForm.patchValue(this.addressService.facturationAddressBehaviour.value);
     }
-    else if(this.type = "shippingAdress"){
+    else if (this.type = "shippingAdress") {
       // create a new address or update existant address 
-        if(this.router.snapshot.queryParams['action'] == 'create'){
-          this.loadUserInfo();
-        }
-        else if(this.router.snapshot.queryParams['action'] == 'update'){
-          this.adreeForm.patchValue(this.addressService.selectedShipmentAdressBehaviour.value);
-        }
+      if (this.router.snapshot.queryParams['action'] == 'create') {
+        this.loadUserInfo();
+      }
+      else if (this.router.snapshot.queryParams['action'] == 'update') {
+        this.adreeForm.patchValue(this.addressService.selectedShipmentAdressBehaviour.value);
+      }
     }
   }
 
@@ -107,7 +107,7 @@ export class AddAdressPage extends BaseUI {
     if (this.network.type != 'none') {
       var criteria = {
         adress: this.adreeForm.value,
-        userId: await this.utils.getKey('userId'), 
+        userId: await this.utils.getKey('userId'),
         type: this.type
       }
       var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant('Loading'));
@@ -119,9 +119,14 @@ export class AddAdressPage extends BaseUI {
                 this.addressService.facturationAddressBehaviour.next(this.adreeForm.value);
                 this.navCtrl.back();
               }
-              else if(this.type = "shippingAdress"){
+              else if (this.type = "shippingAdress") {
                 // todo handle the two case 
-                this.navCtrl.pop();
+                let shippingAddress = this.adreeForm.value;
+                if (f.Data.AdressId != null) {
+                  shippingAddress.Id = f.Data.AdressId;
+                }
+                this.addressService.selectedShipmentAdressBehaviour.next(shippingAddress);
+                this.navCtrl.back();
               }
               loading.dismiss();
             } else {

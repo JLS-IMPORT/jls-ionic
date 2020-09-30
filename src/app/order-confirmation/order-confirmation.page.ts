@@ -28,7 +28,6 @@ export class OrderConfirmationPage extends BaseUI {
   defaultShippingAdress: Iaddress;
 
   public SavedOrder: boolean = false;
-  public ChangeAddress: boolean = false;
 
   public remark: string = "";
   entrepriseName: string;
@@ -65,10 +64,10 @@ export class OrderConfirmationPage extends BaseUI {
   /* Leave current page: confimation */
   async dismiss() {
     var shouldLeave;
-    if (!this.SavedOrder && !this.ChangeAddress) {
+    if (!this.SavedOrder) {
       shouldLeave = await this.confirmLeave();
     }
-    if (shouldLeave || this.SavedOrder || this.ChangeAddress) {
+    if (shouldLeave || this.SavedOrder) {
       this.navCtrl.back();
     }
   }
@@ -157,7 +156,6 @@ export class OrderConfirmationPage extends BaseUI {
   }
 
   modifyFacturationAdress() {
-    this.ChangeAddress = true;
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'facturationAdress',
@@ -188,11 +186,9 @@ export class OrderConfirmationPage extends BaseUI {
   }
 
   selectShippingAdress() {
-    this.ChangeAddress = true;
     this.navCtrl.navigateForward('SelectShippingAdressPage',
       {
         queryParams: {
-          CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null,
           CurrentPage: 'OrderConfirmationPage'
         }
       });

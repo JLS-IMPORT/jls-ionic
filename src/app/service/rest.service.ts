@@ -168,8 +168,12 @@ export class RestService {
     this.storage.remove('userId');
     this.storage.remove('jwt');
     this.storage.remove('refreshToken');
-    console.log("log out");
-
+    
+    this.utils.isLoginedSubject.next(false);
+    if(notNavigateToHome==null || notNavigateToHome==false){
+      this.navCtrl.navigateRoot('');
+      return
+    }
 
     let toast = await this.toastCtrl.create({
       message: this.translate.instant('Msg_ReLogin'),
@@ -178,10 +182,7 @@ export class RestService {
     });
     await toast.present();
 
-    this.utils.isLoginedSubject.next(false);
-    if(notNavigateToHome==null || notNavigateToHome==false){
-      this.navCtrl.navigateRoot('');
-    }
+
   }
 
   GetReferenceItemsByCategoryLabels(criteria): Observable<any> {

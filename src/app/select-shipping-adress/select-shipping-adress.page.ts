@@ -7,6 +7,8 @@ import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
 import { Network } from '@ionic-native/network/ngx';
 import { ActivatedRoute } from '@angular/router';
+import { AddressService } from '../service/address.service';
+import { Iaddress } from '../interface/iaddress';
 
 @Component({
   selector: 'app-select-shipping-adress',
@@ -17,8 +19,8 @@ export class SelectShippingAdressPage extends BaseUI {
 
 
   selectedAdressId: number;
-  adressList: any[] = [];
-  previousPage : string;
+  adressList: Iaddress[] = [];
+  previousPage: string;
 
   constructor(
     public navCtrl: NavController,
@@ -29,15 +31,34 @@ export class SelectShippingAdressPage extends BaseUI {
     public loadingCtrl: LoadingController,
     public storage: Storage,
     public translateService: TranslateService,
-    public router: ActivatedRoute
+    public router: ActivatedRoute,
+    public addressService: AddressService
   ) {
     super();
+    // todo place into ngOnInit
+    this.addressService.selectedShipmentAdressBehaviour.subscribe(result => {
+      if (result != null) {
+        const index = this.adressList.findIndex(p => p.Id == result.Id);
+        if (index >= 0) {
+          this.adressList[index] = result;
+        }
+        else {
+          this.adressList.push(result);
+        }
+      }
+    });
+
+    this.addressService.defaultShipmentAdressBehaviour.subscribe(result => {
+      if (result != null) {
+        this.selectedAdressId = result.Id;
+      }
+    })
   }
 
   async ngOnInit() {
-    
+
     this.previousPage = this.router.snapshot.queryParams['CurrentPage'];
-    
+
     if (this.network.type != 'none') {
       var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant("Loading"));
       var userId = await this.utils.getKey('userId');
@@ -46,10 +67,6 @@ export class SelectShippingAdressPage extends BaseUI {
           f => {
             if (f.Success && f.Data != null) {
               this.adressList = f.Data;
-              if (this.router.snapshot.queryParams['CurrentAddressId'] != null && this.router.snapshot.queryParams['CurrentAddressId'] > 0) {
-                this.selectedAdressId = this.router.snapshot.queryParams['CurrentAddressId'];
-              }
-              console.log(f.Data); // todo remove
             } else {
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
             }
@@ -66,61 +83,48 @@ export class SelectShippingAdressPage extends BaseUI {
     }
   }
 
-  ionViewDidEnter() {
-
-    if (this.router.snapshot.queryParams['type'] != null) {
-      var userId = localStorage.getItem('userId');
-
-      this.rest.GetUserShippingAdress(userId) // 填写url的参数
-        .subscribe(
-          f => {
-            if (f.Success && f.Data != null) {
-              this.adressList = f.Data;
-              if (this.router.snapshot.queryParams['CurrentAddressId'] != null && this.router.snapshot.queryParams['CurrentAddressId'] > 0) {
-                this.selectedAdressId = this.router.snapshot.queryParams['CurrentAddressId'];
-              }
-              console.log(f.Data); // todo remove
-            } else {
-              super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
-            }
-
-          },
-          error => {
-            super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
-          });
-    }
-  }
 
   addNewAddress() {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'shippingAdress',
-        currentPage:'SelectShippingAdressPage',
+        currentPage: 'SelectShippingAdressPage',
         action: 'create'
       }
     });
   }
+
   modifyAdress(adress) {
+    this.addressService.selectedShipmentAdressBehaviour.next(adress);
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'shippingAdress',
-        action:'update',
-        currentPage:'SelectShippingAdressPage'
+        action: 'update',
+        currentPage: 'SelectShippingAdressPage'
       }
     });
   }
 
   saveShippingAdress() {
-    var selectedShippingAdress = this.getSelectedAdress();
-    // this.navCtrl.getPrevious().data.tempSelectedAdress = selectedShippingAdress;// Important! :  pass data to previous page
-    this.navCtrl.navigateBack(this.previousPage,{
-      queryParams:{
-        tempSelectedAdress : JSON.stringify(selectedShippingAdress)
-      }
-    })
+    let selectedShippingAdress = this.getSelectedAdress();
+    // TODO add save shipping address in the database
+
+    this.addressService.defaultShipmentAdressBehaviour.next(selectedShippingAdress);
+    this.navCtrl.back();
   }
+
   getSelectedAdress() {
-    return this.adressList.find(p => p.Id == this.selectedAdressId);
+    if (this.adressList.length > 0) {
+      let selectedAddress = this.adressList.find(p => p.Id == this.selectedAdressId);
+      if (selectedAddress == null) {
+        selectedAddress = this.adressList[0];
+      }
+      return selectedAddress;
+    }
+    else {
+      return null;
+    }
+
   }
 
 }
