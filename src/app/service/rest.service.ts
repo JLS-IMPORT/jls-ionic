@@ -157,7 +157,7 @@ export class RestService {
     
     return this.postUrlReturn(this.apiUrlRefreshToken, LoginInfo);
   }
-  async logout() {
+  async logout(notNavigateToHome?: boolean) {
     //todo
     localStorage.clear();
     localStorage.removeItem('userId');
@@ -179,7 +179,9 @@ export class RestService {
     await toast.present();
 
     this.utils.isLoginedSubject.next(false);
-    this.navCtrl.navigateRoot('');
+    if(notNavigateToHome==null || notNavigateToHome==false){
+      this.navCtrl.navigateRoot('');
+    }
   }
 
   GetReferenceItemsByCategoryLabels(criteria): Observable<any> {

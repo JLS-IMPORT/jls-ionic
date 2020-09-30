@@ -10,6 +10,8 @@ import { BaseUI } from '../common/baseui';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { OrderConfirmationSucceessPage } from '../order-confirmation-succeess/order-confirmation-succeess.page';
+import { AddressService } from '../service/address.service';
+import { Iaddress } from '../interface/iaddress';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -22,8 +24,8 @@ export class OrderConfirmationPage extends BaseUI {
   public TaxRate: number = 0;
   public ShippingMessage: string = "France de port 1500€HT, 2000€HT pour le sud de la France et 2500€HT pour les étangers.";
   orderProductList: any[] = [];
-  facturationAdress: any = {};
-  defaultShippingAdress: any = {};
+  facturationAdress: Iaddress;
+  defaultShippingAdress: Iaddress;
 
   public SavedOrder: boolean = false;
   public ChangeAddress: boolean = false;
@@ -42,31 +44,20 @@ export class OrderConfirmationPage extends BaseUI {
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     public translateService: TranslateService,
-    public router: ActivatedRoute
+    public router: ActivatedRoute,
+    public addressService: AddressService
   ) {
     super();
 
+    // Todo place into ngInit, capture the change of the address
+    this.addressService.facturationAddressBehaviour.subscribe(result => this.facturationAdress = result);
+    this.addressService.defaultShipmentAdressBehaviour.subscribe(result => this.defaultShippingAdress = result);
   }
 
 
   async ionViewDidEnter() {
-
     if (this.router.snapshot.queryParams['tempSelectedAdress'] != null) {
       this.defaultShippingAdress = JSON.parse(this.router.snapshot.queryParams['tempSelectedAdress']);
-    }
-    else {
-      this.defaultShippingAdress = this.defaultShippingAdress;
-    }
-
-    var facturationAdressChanged = await this.utils.getKey('tempFacturationAdress');
-    if (facturationAdressChanged != null && facturationAdressChanged == 'true') {
-      var UserId = await this.utils.getKey('userId');
-      this.rest.GetUserFacturationAdress(UserId).subscribe(f => {
-        if (f.Success && f.Data != null) {
-          this.facturationAdress = f.Data;
-        }
-      });
-      this.storage.remove('tempFacturationAdress');
     }
   }
 
@@ -117,31 +108,31 @@ export class OrderConfirmationPage extends BaseUI {
 
       selectedReferences.map(p => selectedReferenceIds.push(p.ReferenceId));
 
-      forkJoin(this.rest.GetReferenceItemsByCategoryLabels({ ShortLabels: ['InAppMessage', 'TaxRate'] }), this.rest.GetProductInfoByReferenceIds(selectedReferenceIds), 
-      this.rest.GetUserFacturationAdress(UserId), this.rest.GetUserDefaultShippingAdress(UserId), this.rest.GetUserById(localStorage.getItem('userId')))
+      forkJoin(this.rest.GetReferenceItemsByCategoryLabels({ ShortLabels: ['InAppMessage', 'TaxRate'] }), this.rest.GetProductInfoByReferenceIds(selectedReferenceIds),
+        this.rest.GetUserFacturationAdress(UserId), this.rest.GetUserDefaultShippingAdress(UserId), this.rest.GetUserById(localStorage.getItem('userId')))
         .subscribe(
           ([ReferenceList, SelectedProductInfo, FacturationAdress, ShippingAdress, CustomerInfo]) => {
             if (SelectedProductInfo != null && SelectedProductInfo.length > 0 &&
               FacturationAdress.Success && ShippingAdress.Success) {
               /* Bind the product data */
               this.formatProductData(SelectedProductInfo, selectedReferences);
-              /* Bind the facturation adress data */
-              this.facturationAdress = FacturationAdress.Data;
-              /* Bind the shipping adress data */
 
+              /* Bind the facturation adress data */
+              this.addressService.facturationAddressBehaviour.next(FacturationAdress.Data);
+
+              /* Bind the shipping adress data */
               if (ShippingAdress.Data != null) {
-                // this.shippingAdress = ShippingAdress.Data;
-                this.defaultShippingAdress = ShippingAdress.Data;
+                this.addressService.defaultShipmentAdressBehaviour.next(ShippingAdress.Data);
               }
-              if(CustomerInfo!=null && CustomerInfo.EntrepriseName!=null){
+
+
+              if (CustomerInfo != null && CustomerInfo.EntrepriseName != null) {
                 this.entrepriseName = CustomerInfo.EntrepriseName;
               }
-
-              // if(this.shippingAdress.length>0&&this.shippingAdress[0]!=null){//todo: change by default
-              //   this.defaultShippingAdress = this.shippingAdress[0];
-              // }
             }
+
             if (ReferenceList != null && ReferenceList.length > 0) {
+              // Format shippingMessage and Tax rate 
               ReferenceList.map(p => {
                 if (p.Code == "ShippingMessage") {
                   this.ShippingMessage = p.Label;
@@ -153,6 +144,7 @@ export class OrderConfirmationPage extends BaseUI {
             }
           },
           error => {
+            loading.dismiss();
             this.navCtrl.pop();
             super.showToast(this.toastCtrl, this.translateService.instant("Msg_Error"));
           },
@@ -164,13 +156,12 @@ export class OrderConfirmationPage extends BaseUI {
     }
   }
 
-  modifyFacturationAdress(facturationAdress) {
+  modifyFacturationAdress() {
     this.ChangeAddress = true;
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'facturationAdress',
-        adress: JSON.stringify(facturationAdress),
-        currentPage:'OrderConfirmationPage'
+        currentPage: 'OrderConfirmationPage'
       }
     });
   }
@@ -216,7 +207,7 @@ export class OrderConfirmationPage extends BaseUI {
       UnityQuantity: p.QuantityPerBox
     }));
     var shippingAdressId;
-    if (this.defaultShippingAdress != null && this.defaultShippingAdress != {} && this.defaultShippingAdress["Id"] != null) {
+    if (this.defaultShippingAdress != null && this.defaultShippingAdress["Id"] != null) {
       shippingAdressId = this.defaultShippingAdress["Id"];
     }
     if (shippingAdressId == null) {
@@ -247,7 +238,7 @@ export class OrderConfirmationPage extends BaseUI {
                 this.SavedOrder = true;
                 this.storage.set('cartProductList', JSON.stringify(newCartProductList));
                 //this.navCtrl.setRoot('OrderConfirmationSucceessPage',{OrderId: f.Data});
-               // this.navCtrl.pop();
+                // this.navCtrl.pop();
                 let modal = await this.modalCtrl.create({
                   component: OrderConfirmationSucceessPage,
                   componentProps: {

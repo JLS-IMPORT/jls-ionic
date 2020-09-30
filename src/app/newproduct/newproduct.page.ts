@@ -55,7 +55,7 @@ export class NewproductPage extends BaseUI {
     super();
   }
 
-
+  // TODO: Simplify the error treatement
   ngOnInit() {
     this.checkLogined();
 
@@ -92,7 +92,6 @@ export class NewproductPage extends BaseUI {
   }
 
   async checkLogined() {
-
     this.logined = await this.utilis.checkIsLogined();
   }
 

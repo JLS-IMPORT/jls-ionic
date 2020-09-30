@@ -8,6 +8,7 @@ import { RestService } from '../service/rest.service';
 import { UtilsService } from '../service/utils.service';
 import { Storage } from '@ionic/storage';
 import { ActivatedRoute } from '@angular/router';
+import { AddressService } from '../service/address.service';
 
 @Component({
   selector: 'app-add-adress',
@@ -15,8 +16,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-adress.page.scss'],
 })
 export class AddAdressPage extends BaseUI {
-
-  submitted: boolean = false;
   adreeForm: FormGroup;
   type: string;
   previousPage:string;
@@ -31,7 +30,8 @@ export class AddAdressPage extends BaseUI {
     public utils: UtilsService,
     public loadingCtrl: LoadingController,
     public storage: Storage,
-    public router: ActivatedRoute
+    public router: ActivatedRoute,
+    public addressService: AddressService
   ) {
     super();
 
@@ -53,38 +53,23 @@ export class AddAdressPage extends BaseUI {
   ngOnInit() {
     this.previousPage = this.router.snapshot.queryParams['currentPage'];
     this.type = this.router.snapshot.queryParams['type'];
-    var adress;
-    if (this.router.snapshot.queryParams['adress'] != null) {
-      var adress = JSON.parse(this.router.snapshot.queryParams['adress']);
+
+    if(this.type == "facturationAdress"){
+      this.adreeForm.patchValue(this.addressService.facturationAddressBehaviour.value);
     }
-
-
-    if (adress != null) {
-      console.log(adress);
-
-      this.adreeForm.patchValue({
-        Id: adress.Id || 0,
-        EntrepriseName: adress.EntrepriseName,
-        ContactFirstName: adress.ContactFirstName,
-        ContactLastName: adress.ContactLastName,
-        FirstLineAddress: adress.FirstLineAddress,
-        SecondLineAddress: adress.SecondLineAddress,
-        City: adress.City,
-        Country: adress.Country,
-        ZipCode: adress.ZipCode,
-        ContactTelephone: adress.ContactTelephone,
-        ContactFax: adress.ContactFax
-      });
-    }
-    else {
-      this.loadUserInfo();
+    else if(this.type = "shippingAdress"){
+      // create a new address or update existant address 
+        if(this.router.snapshot.queryParams['action'] == 'create'){
+          this.loadUserInfo();
+        }
+        else if(this.router.snapshot.queryParams['action'] == 'update'){
+          this.adreeForm.patchValue(this.addressService.selectedShipmentAdressBehaviour.value);
+        }
     }
   }
 
   async loadUserInfo() {
     if (this.network.type != 'none') {
-      console.log(this.adreeForm.value);
-
       var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant('Loading'));
       this.rest.GetUserById(await this.utils.getKey('userId')) // 填写url的参数
         .subscribe(
@@ -111,8 +96,6 @@ export class AddAdressPage extends BaseUI {
   }
 
   async saveAdress() {
-    this.submitted = true;
-
     /* Step1: make all ctrl in the group been touched */
     for (let i in this.adreeForm.controls) {
       this.adreeForm.controls[i].markAsTouched();
@@ -122,10 +105,9 @@ export class AddAdressPage extends BaseUI {
       return;
     }
     if (this.network.type != 'none') {
-      console.log(this.adreeForm.value);
       var criteria = {
         adress: this.adreeForm.value,
-        userId: await this.utils.getKey('userId'), // todo change
+        userId: await this.utils.getKey('userId'), 
         type: this.type
       }
       var loading = await super.showLoading(this.loadingCtrl, this.translateService.instant('Loading'));
@@ -133,20 +115,12 @@ export class AddAdressPage extends BaseUI {
         .subscribe(
           f => {
             if (f.Success && f.Data != null) {
-              if (this.type) {
-                this.storage.set('tempFacturationAdress', 'true');
-
-                this.navCtrl.navigateBack(this.previousPage, {
-                  queryParams:{
-                    type: this.type,
-                    facturationAdress: JSON.stringify(this.adreeForm.value)
-                  }
-                })
-                // todo migrate to new navigation system
-                // this.navCtrl.getPrevious().data.type = this.type;
-                // this.navCtrl.getPrevious().data.facturationAdress = this.adreeForm.value;
+              if (this.type == "facturationAdress") {
+                this.addressService.facturationAddressBehaviour.next(this.adreeForm.value);
+                this.navCtrl.back();
               }
-              else{
+              else if(this.type = "shippingAdress"){
+                // todo handle the two case 
                 this.navCtrl.pop();
               }
               loading.dismiss();

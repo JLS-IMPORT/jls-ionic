@@ -95,7 +95,8 @@ export class SelectShippingAdressPage extends BaseUI {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'shippingAdress',
-        currentPage:'SelectShippingAdressPage'
+        currentPage:'SelectShippingAdressPage',
+        action: 'create'
       }
     });
   }
@@ -103,7 +104,7 @@ export class SelectShippingAdressPage extends BaseUI {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'shippingAdress',
-        adress: JSON.stringify(adress),
+        action:'update',
         currentPage:'SelectShippingAdressPage'
       }
     });
