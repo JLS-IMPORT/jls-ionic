@@ -48,6 +48,14 @@
         </mat-form-field>
 
         <ion-row>
+          
+          <ion-col col-4>
+            <mat-form-field class="example-full-width">
+              <input required matInput #postalCode maxlength="5" placeholder="{{'add-adress.PostalCode' | translate}}"
+                formControlName="ZipCode">
+            </mat-form-field>
+          </ion-col>
+          
           <ion-col col-4>
             <mat-form-field class="example-full-width">
               <input required matInput placeholder="{{'add-adress.City' | translate}}" formControlName="City">
@@ -60,12 +68,6 @@
             </mat-form-field>
           </ion-col>
 
-          <ion-col col-4>
-            <mat-form-field class="example-full-width">
-              <input required matInput #postalCode maxlength="5" placeholder="{{'add-adress.PostalCode' | translate}}"
-                formControlName="ZipCode">
-            </mat-form-field>
-          </ion-col>
         </ion-row>
 
         <mat-form-field class="example-full-width">
