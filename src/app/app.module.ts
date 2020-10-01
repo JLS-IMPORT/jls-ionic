@@ -31,6 +31,8 @@ import { JwtInterceptor } from './service/JwtInterceptor';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CartService } from './service/cart.service';
+import { AddressService } from './service/address.service';
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -70,7 +72,9 @@ export function LanguageLoader(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     UtilsService,
     RestService,
-    Network
+    Network,
+    CartService,
+    AddressService
   ],
   bootstrap: [AppComponent]
 })

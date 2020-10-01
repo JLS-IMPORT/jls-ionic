@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network/ngx';
 import { RestService } from '../service/rest.service';
 import { TranslateService } from '@ngx-translate/core';
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,6 @@ export class CartPage extends BaseUI {
 
 
   public logined: boolean = false;
-  public cartProductList: any[] = [];
   public checkAllProduct: boolean = false;
   public host = environment.SERVER_API_URL;
 
@@ -28,7 +28,8 @@ export class CartPage extends BaseUI {
     public network: Network,
     public rest: RestService,
     public toastCtrl: ToastController,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    public cartService: CartService
   ) {
     super();
   }
@@ -37,27 +38,16 @@ export class CartPage extends BaseUI {
   }
 
   async checkLogined() {
-
     this.logined = await this.utils.checkIsLogined();
   }
 
   async ionViewDidEnter() {
     await this.checkLogined();
-    this.cartProductList = JSON.parse(await this.utils.getKey('cartProductList'));
-
-    // Renew quantity check if quantiy < min quantity
-    if (this.cartProductList != null && this.cartProductList.length > 0) {
-      this.cartProductList.map(f => {
-        if (f.Quantity < f.MinQuantity) {
-          f.Quantity = f.MinQuantity;
-        }
-      });
-    }
   }
 
-  viewProductDetail(productId){
-    this.navCtrl.navigateForward('ProductDetailPage',{
-      queryParams:{
+  viewProductDetail(productId) {
+    this.navCtrl.navigateForward('ProductDetailPage', {
+      queryParams: {
         productId: productId
       }
     })
@@ -67,7 +57,7 @@ export class CartPage extends BaseUI {
     if (item.Selected == false) {
       this.checkAllProduct = false;
     }
-    this.SaveCart();
+    this.cartService.SaveCart();
   }
 
   checkQuantityWithMinQuantity(minQuantity, Quantity) {
@@ -84,19 +74,19 @@ export class CartPage extends BaseUI {
 
   onUpdate(data, minQuantity) {
     if (typeof data.number === 'number') {
-      this.cartProductList.forEach(p => {
+      this.cartService.cartProductList.forEach(p => {
         if (p.ReferenceId == data.goods) {
           p.Quantity = data.number > minQuantity ? data.number : minQuantity;
         }
       });
-      this.SaveCart();
+      this.cartService.SaveCart();
     }
   }
 
   async valideCart() {
     if (this.logined) {
       /* Step1 : Get all the selected product */
-      var selectedProduct = this.GetSelectedProduct();
+      var selectedProduct = this.cartService.GetSelectedProduct();
 
       /* Step2: Get the real info for the product */
       var selectedReferenceIds = [];
@@ -111,57 +101,4 @@ export class CartPage extends BaseUI {
       super.showToast(this.toastCtrl, this.translateService.instant("Msg_NotConnected"));
     }
   }
-
-  AllCheckBoxChange() {
-    if (this.checkAllProduct == true) {
-      this.cartProductList.forEach(p => {
-        p.Selected = true;
-      });
-    }
-    else {
-      this.cartProductList.forEach(p => {
-        p.Selected = false;
-      });
-    }
-  }
-  removeItem(item) {
-    this.cartProductList = this.cartProductList.filter(p => p.ReferenceId != item.ReferenceId);
-    this.SaveCart();
-  }
-
-  /* Utils methods */
-  SaveCart() {
-    this.storage.set('cartProductList', JSON.stringify(this.cartProductList));
-  }
-
-  GetSelectedProduct() {
-    if (this.cartProductList != null && this.cartProductList.length > 0) {
-      return this.cartProductList.filter(p => {
-        return p.Selected == true;
-      });
-    }
-    else {
-      return [];
-    }
-  }
-
-  CalculAccount() {
-    var totalAccount = 0;
-    var selectedProduct = this.GetSelectedProduct();
-    selectedProduct.forEach(p => {
-      totalAccount = totalAccount + (p.Quantity * p.Price * p.QuantityPerBox);
-    });
-    return totalAccount;
-  }
-  checkProductListIsAvailable() {
-
-    return this.cartProductList != null && this.cartProductList.length > 0;
-  }
-
-  checkSelectedProductListIsEmpty() {
-    var selectedProductList = this.GetSelectedProduct();
-
-    return this.GetSelectedProduct().length > 0
-  }
-
 }

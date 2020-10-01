@@ -97,7 +97,7 @@ export class MyAccountPage extends BaseUI {
     this.storage.remove('jwt');
     this.storage.remove('refreshToken');
 
-    this.rest.logout();
+    this.rest.logout(true);
     
     this.loadUserPage();
   }

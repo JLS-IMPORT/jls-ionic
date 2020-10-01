@@ -6,6 +6,8 @@ import { RestService } from '../service/rest.service';
 import { Network } from '@ionic-native/network/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
+import { AddressService } from '../service/address.service';
+import { Iaddress } from '../interface/iaddress';
 
 @Component({
   selector: 'app-modify-user-info',
@@ -15,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ModifyUserInfoPage extends BaseUI {
   public userForm: FormGroup;
 
-  public facturationAdress: any = {};
+  public facturationAdress: Iaddress;
   public defaultShippingAdress: any = {};
   public UserInfo: any = {};
 
@@ -27,7 +29,8 @@ export class ModifyUserInfoPage extends BaseUI {
     public network: Network,
     public rest: RestService,
     public translateService: TranslateService,
-    public router: ActivatedRoute
+    public router: ActivatedRoute,
+    public addressService: AddressService
   ) {
     super();
 
@@ -36,6 +39,9 @@ export class ModifyUserInfoPage extends BaseUI {
       Siret: ['', Validators.required],
       PhoneNumber: ['', Validators.required],
     });
+    this.addressService.facturationAddressBehaviour.subscribe(result=> this.facturationAdress = result);
+    
+    this.addressService.defaultShipmentAdressBehaviour.subscribe(result=> this.defaultShippingAdress = result);
   }
 
 
@@ -66,33 +72,30 @@ export class ModifyUserInfoPage extends BaseUI {
 
 
     if (this.UserInfo.FacturationAdress != null) {
-      this.facturationAdress = this.UserInfo.FacturationAdress;
+      this.addressService.facturationAddressBehaviour.next(this.UserInfo.FacturationAdress);
     }
 
     if (this.UserInfo.ShippingAdress != null && this.UserInfo.ShippingAdress.length > 0) {
-      this.defaultShippingAdress = this.UserInfo.ShippingAdress.find(p => p.IsDefaultAdress == true);
-
-      this.defaultShippingAdress = this.defaultShippingAdress == null ? this.UserInfo.ShippingAdress[0] : this.defaultShippingAdress;
+      /* If default address is not setted, take the first one in the list */
+      var defaultShippingAdress = this.UserInfo.ShippingAdress.find(p => p.IsDefaultAdress == true);
+      defaultShippingAdress = defaultShippingAdress == null ? this.UserInfo.ShippingAdress[0] : defaultShippingAdress;
+      this.addressService.defaultShipmentAdressBehaviour.next(defaultShippingAdress);
     }
   }
 
-  modifyFacturationAdress(facturationAdress) {
-    //this.ChangeAddress = true;
+  modifyFacturationAdress() {
     this.navCtrl.navigateForward('AddAdressPage', {
       queryParams: {
         type: 'facturationAdress',
-        adress: JSON.stringify(facturationAdress),
         currentPage : 'ModifyUserInfoPage'
       }
     });
   }
 
-
   selectShippingAdress() {
     //this.ChangeAddress = true;
     this.navCtrl.navigateForward('SelectShippingAdressPage', {
       queryParams: {
-        CurrentAddressId: this.defaultShippingAdress != null ? this.defaultShippingAdress.Id : null,
         CurrentPage: 'ModifyUserInfoPage'
       }
     });
@@ -123,8 +126,9 @@ export class ModifyUserInfoPage extends BaseUI {
               this.UserInfo.Siret = this.userForm.value.Siret;
               this.UserInfo.PhoneNumber = this.userForm.value.PhoneNumber;
               this.UserInfo.FacturationAdress = this.facturationAdress;
-              // migrate to ionic 4 
-              // this.navCtrl.getPrevious().data.UserInfo = this.UserInfo;
+
+              this.addressService.facturationAddressBehaviour.next(this.facturationAdress);
+
               super.showToast(this.toastCtrl, this.translateService.instant("Msg_SaveSuccess"));
             }
             loading.dismiss()

@@ -3,6 +3,10 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button Expand="full" color="primary" (click)="saveUserInfo()">{{'add-adress.Enregistrer' | translate}}
+    </ion-button>
+    </ion-buttons>
     <ion-title>{{'modify-user-info.modifyUserInfo' | translate}}</ion-title>
 
   </ion-toolbar>
@@ -67,7 +71,7 @@
 
         <h3 class="productTitle ion-no-margin">{{'order-confirmation.BillingAddress' | translate}} <a float-right
             class="articleNumber ion-float-right"
-            (click)="modifyFacturationAdress(facturationAdress)">{{'order-confirmation.Edit' | translate}}</a></h3>
+            (click)="modifyFacturationAdress()">{{'order-confirmation.Edit' | translate}}</a></h3>
       </ion-card-header>
       <ion-card-content style="padding: 0px;">
         <p class="descriptionFont">{{facturationAdress.ContactFirstName}} <span>
@@ -79,8 +83,5 @@
       </ion-card-content>
     </ion-card>
   </div>
-  <div class="ion-text-center">
-    <ion-button class="ion-no-margin" Expand="full" color="primary" style="width: 100%; height: 35px;"
-      (click)="saveUserInfo()">{{'add-adress.Enregistrer' | translate}}</ion-button>
-  </div>
+ 
 </ion-content>
