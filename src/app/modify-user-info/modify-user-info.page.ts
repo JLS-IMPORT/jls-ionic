@@ -45,21 +45,6 @@ export class ModifyUserInfoPage extends BaseUI {
   }
 
 
-  ionViewWillEnter() {
-    if(this.router.snapshot.queryParams['tempSelectedAdress']!=null ){
-      this.defaultShippingAdress = JSON.parse (this.router.snapshot.queryParams['tempSelectedAdress']);
-    }
-    else{
-      this.defaultShippingAdress = this.defaultShippingAdress
-    }
-    if(this.router.snapshot.queryParams['facturationAdress']!=null){
-      this.facturationAdress = JSON.parse(this.router.snapshot.queryParams['facturationAdress']);
-    }
-    else{
-      this.facturationAdress = this.facturationAdress;
-    }
-  }
-
   ngOnInit() {
     var userInfoStringfy = this.router.snapshot.queryParams['UserInfo'];
     this.UserInfo = userInfoStringfy != null ? JSON.parse(userInfoStringfy) : {};

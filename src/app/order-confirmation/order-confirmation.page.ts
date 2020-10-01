@@ -203,15 +203,15 @@ export class OrderConfirmationPage extends BaseUI {
       UnityQuantity: p.QuantityPerBox
     }));
     var shippingAdressId;
-    if (this.defaultShippingAdress != null && this.defaultShippingAdress["Id"] != null) {
-      shippingAdressId = this.defaultShippingAdress["Id"];
+    if (this.defaultShippingAdress != null && this.defaultShippingAdress.Id != null) {
+      shippingAdressId = this.defaultShippingAdress.Id;
     }
     if (shippingAdressId == null) {
       super.showToast(this.toastCtrl, this.translateService.instant("Msg_SelectShippingAddress"));
       return;
     }
 
-    var facturationAdressId = this.facturationAdress["Id"];
+    var facturationAdressId = this.facturationAdress.Id;
     var UserId = Number.parseInt(await this.utils.getKey('userId'));
     if (productInfo.length > 0 && shippingAdressId != null) {
       if (this.network.type != 'none') {

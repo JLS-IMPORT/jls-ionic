@@ -120,7 +120,7 @@ export class AddAdressPage extends BaseUI {
                 this.navCtrl.back();
               }
               else if (this.type = "shippingAdress") {
-                // todo handle the two case 
+                // Modify shippingAddress or create a new one, replace the shippingAddress.Id by the Id in bdd
                 let shippingAddress = this.adreeForm.value;
                 if (f.Data.AdressId != null) {
                   shippingAddress.Id = f.Data.AdressId;

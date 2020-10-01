@@ -18,15 +18,6 @@ export class SearchPage implements OnInit {
     public storage: Storage) { }
 
   ngOnInit() {
-    this.initializeItems();
-  }
-
-
-  initializeItems() {
-    this.items = [
-      'Amsterdam',
-      'Bogota'
-    ];
   }
 
   ionViewWillEnter() {
