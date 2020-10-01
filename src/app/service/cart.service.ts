@@ -75,7 +75,7 @@ export class CartService extends BaseUI {
       if (item.Quantity == null) {
         item.Quantity = 0;
       }
-      cartProductList.push(item);
+      cartProductList.push(Object.assign({}, item));
     }
     cartProductList.forEach(p => {
       if (p.ReferenceId == item.ReferenceId) {
