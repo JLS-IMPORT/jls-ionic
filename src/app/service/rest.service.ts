@@ -170,6 +170,7 @@ export class RestService {
     this.storage.remove('refreshToken');
     
     this.utils.isLoginedSubject.next(false);
+    this.utils.newMessageNumberSubject.next(0);
     if(notNavigateToHome==null || notNavigateToHome==false){
       this.navCtrl.navigateRoot('');
       return
