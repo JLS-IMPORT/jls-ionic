@@ -12,6 +12,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { OrderConfirmationSucceessPage } from '../order-confirmation-succeess/order-confirmation-succeess.page';
 import { AddressService } from '../service/address.service';
 import { Iaddress } from '../interface/iaddress';
+import { CartService } from '../service/cart.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -44,7 +45,8 @@ export class OrderConfirmationPage extends BaseUI {
     public modalCtrl: ModalController,
     public translateService: TranslateService,
     public router: ActivatedRoute,
-    public addressService: AddressService
+    public addressService: AddressService,
+    public cartService: CartService
   ) {
     super();
 
@@ -224,15 +226,8 @@ export class OrderConfirmationPage extends BaseUI {
                 super.showToast(this.toastCtrl, this.translateService.instant("Msg_OrdePassedSuccess"));
 
                 /*Step2: Remove the already pass product */
-                var cartProductList = JSON.parse(await this.utils.getKey('cartProductList'));
-                var newCartProductList = [];
-                cartProductList.forEach(p => {
-                  if (productInfo.findIndex(x => x.ReferenceId == p.ReferenceId) == -1) {
-                    newCartProductList.push(p);
-                  }
-                });
+                this.cartService.RemoveProductInList(productInfo);
                 this.SavedOrder = true;
-                this.storage.set('cartProductList', JSON.stringify(newCartProductList));
                 //this.navCtrl.setRoot('OrderConfirmationSucceessPage',{OrderId: f.Data});
                 // this.navCtrl.pop();
                 let modal = await this.modalCtrl.create({

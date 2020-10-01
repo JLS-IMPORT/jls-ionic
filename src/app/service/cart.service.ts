@@ -103,6 +103,17 @@ export class CartService extends BaseUI {
     }
   }
 
+  public RemoveProductInList(productList: ICartProduct[]){
+    var newCartProductList = [];
+    this.cartProductList.forEach(p => {
+      if (productList.findIndex(x => x.ReferenceId == p.ReferenceId) == -1) {
+        newCartProductList.push(p);
+      }
+    });
+    this.cartProductList = newCartProductList;
+    this.SaveCart();
+  }
+
   public SaveCart() {
     this.storage.set('cartProductList', JSON.stringify(this.cartProductList));
   }
@@ -128,5 +139,6 @@ export class CartService extends BaseUI {
       });
     }
   }
+  
 
 }

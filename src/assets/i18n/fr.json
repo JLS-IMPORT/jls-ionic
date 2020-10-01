@@ -159,7 +159,7 @@
         "Article":"Article(s)",
         "Reference":"Référence",
         "UnitPrice":"Prix unitaire",
-        "SommeBeforeTaxe":"Total ht",
+        "SommeBeforeTaxe":"Total HT",
         "TVA":"Total TVA",
         "ShippingCost":"Frais de livraison",
         "AmountOfOrder":"Net a payer",
@@ -193,7 +193,7 @@
         "Quantity":"Quantité",
         "ShippingAddress":"Adresse de livraison",
         "BillingAddress":"Adresse de facturation",
-        "SommeBeforeTaxe":"Total ht",
+        "SommeBeforeTaxe":"Total HT",
         "TVA":"Total TVA",
         "ShippingCost":"Frais de livraison",
         "AmountOfOrder":"Net a payer",
@@ -267,7 +267,7 @@
         "modifyAdress":"Modifier Adresse"
     },
     "page-order-confirmation-succeess":{
-        "Message":"Merci pour votre commande, nous traitons votre commande dans le meilleur délai et vous recevra un email de confirmation ( {Email} )."
+        "Message":"Merci pour votre commande, nous traitons votre commande dans le meilleur délai et vous recevra un email de confirmation ({Email})."
     },
     "modify-user-info":{
         "modifyUserInfo":"Modifier l'information de client",
