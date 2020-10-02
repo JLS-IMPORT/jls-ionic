@@ -75,7 +75,7 @@ export class CartService extends BaseUI {
       if (item.Quantity == null) {
         item.Quantity = 0;
       }
-      cartProductList.push(item);
+      cartProductList.push(Object.assign({}, item));
     }
     cartProductList.forEach(p => {
       if (p.ReferenceId == item.ReferenceId) {
@@ -103,6 +103,17 @@ export class CartService extends BaseUI {
     }
   }
 
+  public RemoveProductInList(productList: ICartProduct[]){
+    var newCartProductList = [];
+    this.cartProductList.forEach(p => {
+      if (productList.findIndex(x => x.ReferenceId == p.ReferenceId) == -1) {
+        newCartProductList.push(p);
+      }
+    });
+    this.cartProductList = newCartProductList;
+    this.SaveCart();
+  }
+
   public SaveCart() {
     this.storage.set('cartProductList', JSON.stringify(this.cartProductList));
   }
@@ -128,5 +139,6 @@ export class CartService extends BaseUI {
       });
     }
   }
+  
 
 }
