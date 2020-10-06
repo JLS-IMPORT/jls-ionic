@@ -57,7 +57,7 @@
     <ion-col size="6" (click)="productDetail(item)" *ngFor="let item of productList">
       <ion-card button="true" class="ion-no-margin productCard">
         <ion-img *ngIf="item.DefaultPhotoPath==null"  src="assets/imgs/not-found.png"> </ion-img>
-        <ion-img *ngIf="item.DefaultPhotoPath!=null"  [src]="host+item.DefaultPhotoPath"> </ion-img>
+        <img *ngIf="item.DefaultPhotoPath!=null"  [src]="host+item.DefaultPhotoPath"> 
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
           <ion-card-title style="font-size:16px;">{{item.Label}}</ion-card-title>
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
