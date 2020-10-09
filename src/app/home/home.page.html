@@ -41,9 +41,9 @@
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
           <ion-card-subtitle>{{'newproduct.QuantityEachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content style="padding-bottom: 5px;">
+        <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
           <ion-label *ngIf="logined">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)</ion-label>
-          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1em; padding: 1px 0px;"
+          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1.4em; padding: 0px 0px;"
             (click)="addInCart($event,item)">
             <ion-icon name="cart" slot="icon-only"></ion-icon>
           </span>
@@ -83,9 +83,9 @@
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
           <ion-card-subtitle>{{'newproduct.QuantityEachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content style="padding-bottom: 5px;">
+        <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
           <ion-label *ngIf="logined">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)</ion-label>
-          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1em; padding: 1px 0px;"
+          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1.4em; padding: 0px 0px;"
             (click)="addInCart($event,item)">
             <ion-icon name="cart" slot="icon-only"></ion-icon>
           </span>
