@@ -27,6 +27,8 @@ export class HomePage extends BaseUI {
 
   newProductList: any[] = [];
   hotProductList: any[] = [];
+  promotionProduct: any[] = [];
+
   categoryList: any[];
   loadNumberOfProduct: number = 20;
 
@@ -38,7 +40,6 @@ export class HomePage extends BaseUI {
     public platform: Platform,
     public rest: RestService,
     public storage: Storage,
-    public utilis:UtilsService,
     public cartService: CartService) {
     super();
   }
@@ -119,21 +120,37 @@ export class HomePage extends BaseUI {
       );
     
     // Load product by sales perfomance
-    this.rest.GetProductListBySalesPerformance(0, this.loadNumberOfProduct) //TODO: change
-      .subscribe(
-        (f: any) => {
-          if (f.Success) {
+    // this.rest.GetProductListBySalesPerformance(0, this.loadNumberOfProduct) //TODO: change
+    //   .subscribe(
+    //     (f: any) => {
+    //       if (f.Success) {
 
-            this.hotProductList = f["Data"].ProductListData;
+    //         this.hotProductList = f["Data"].ProductListData;
 
-          } else {
-            super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
-          }
-        },
-        error => {
+    //       } else {
+    //         super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+    //       }
+    //     },
+    //     error => {
+    //       super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+    //     }
+    //   );
+
+    this.rest.GetPromotionProduct(0, this.loadNumberOfProduct) //TODO: change
+    .subscribe(
+      (f: any) => {
+        if (f.ProductList!=null) {
+
+          this.promotionProduct = f.ProductList;
+
+        } else {
           super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
         }
-      );
+      },
+      error => {
+        super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+      }
+    );
 
     // Load category 
     this.rest.GetProductMainCategory() // 填写url的参数

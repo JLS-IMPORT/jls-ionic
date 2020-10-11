@@ -220,7 +220,8 @@
         "Couleur": "Colour",
         "Taille": "Size",
         "Material": "Material",
-        "Price": "Price"
+        "Price": "Price",
+        "OriginalPrice":"Original price"
     },
     "product-evaluation-list": {
         "Loading": "Loading",

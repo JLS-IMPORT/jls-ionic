@@ -29,7 +29,7 @@ export class ProductDetailPage extends BaseUI {
   constructor(public navCtrl: NavController,
     public translateService: TranslateService,
     public storage: Storage,
-    public utilis: UtilsService,
+    public utils: UtilsService,
     public rest: RestService,
     public network: Network,
     public toastCtrl: ToastController,
@@ -130,7 +130,7 @@ export class ProductDetailPage extends BaseUI {
   }
 
   async checkLogined() {
-    this.logined = await this.utilis.checkIsLogined();
+    this.logined = await this.utils.checkIsLogined();
   }
 
 

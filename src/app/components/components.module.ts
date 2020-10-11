@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonMeterComponent } from './ion-meter/ion-meter.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -11,7 +12,8 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     IonicModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   exports: [IonMeterComponent]
 })

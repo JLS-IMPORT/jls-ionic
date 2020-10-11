@@ -225,7 +225,8 @@
         "Couleur":"Couleur",
         "Taille":"Taille",
         "Material":"Matérial",
-        "Price":"Prix"
+        "Price":"Prix",
+        "OriginalPrice":"Prix d'origin"
     },
     "product-evaluation-list":{
         "Loading":"En cour",

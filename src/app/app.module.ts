@@ -62,8 +62,7 @@ export function LanguageLoader(http: HttpClient) {
       }
     }),
     NoopAnimationsModule,
-    TranslationPageModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    TranslationPageModule
   ],
   providers: [
     StatusBar,

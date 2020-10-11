@@ -49,6 +49,9 @@ export class RestService {
   private apiUrlGetProductInfoByReferenceIds = this.host + "api/Product/GetProductInfoByReferenceIds";
   private apiUrlGetProductListByPublishDate = this.host + "api/Product/GetProductListByPublishDate";
   private apiUrlGetProductListBySalesPerformance = this.host + "api/Product/GetProductListBySalesPerformance";
+
+  private apiUrlGetPromotionProduct = this.host + "api/Product/GetPromotionProduct";
+  
   private apiUrlGetProductById = this.host + "api/Product/GetProductById";
 
   private apiUrlSaveProductComment = this.host + "api/Product/SaveProductComment";
@@ -251,6 +254,17 @@ export class RestService {
     return this.http1.get(this.apiUrlGetProductListBySalesPerformance, { params });
   }
 
+  GetPromotionProduct(Begin: number, Step: number): Observable<any> {
+    var lang = this.translate.getDefaultLang() || 'fr'; 
+    let params = new HttpParams({
+      fromObject: {
+        Lang: lang,
+        Begin: Begin.toString(),
+        Step: Step.toString(),
+      }
+    });
+    return this.http1.get(this.apiUrlGetPromotionProduct, { params });
+  }
 
   GetProductListBySecondCategory(SecondCategoryReferenceId: number, Begin: number, Step: number): Observable<any> {
     var lang = this.translate.getDefaultLang();

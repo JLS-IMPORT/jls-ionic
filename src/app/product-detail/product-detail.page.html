@@ -10,7 +10,12 @@
 <ion-content>
   <div>
     <!-- <img class="productDetailImg" src="assets/imgs/productDetailImg.png" /> -->
-
+    <div class="product-card__badges-list" style="top:18px;right:18px;">
+      <div *ngIf="logined&& utils.formatProductPromotionInfo(product)!=null" class="product-card__badge promotion"
+        style="font-size: 14px;">
+        {{utils.formatProductPromotionInfo(product).discountPerCent}}%
+      </div>
+    </div>
     <ion-slides class="slidePagers" pager>
       <ion-slide *ngFor="let item of product.ImagesPath">
         <img class="productDetailImg" [src]="host+item.Path" *ngIf="item.Path" style="height: 250px;" />
@@ -50,7 +55,7 @@
   </div>
   <ion-list>
     <ion-item>
-      {{product.Label}} 
+      {{product.Label}}
     </ion-item>
     <ion-item>
       <p style="font-size: unset;color:#222;">{{'product-detail.Référence' | translate}} : {{product.ReferenceCode}}</p>
@@ -73,7 +78,12 @@
     </ion-item>
 
     <ion-item *ngIf="logined">
-      {{'product-detail.Price' | translate}} : {{product.Price}} € (HT)
+      {{'product-detail.Price' | translate}} :{{product.Price}} € (HT)
+
+
+    </ion-item>
+    <ion-item *ngIf="logined&& utils.formatProductPromotionInfo(product)!=null" >
+      {{'product-detail.OriginalPrice' | translate}} :<span style="text-decoration:line-through;">{{product.PreviousPrice}} €</span>(HT)
     </ion-item>
     <ion-item>
       {{'product-detail.QuantitéMinimal' | translate}} : {{product.MinQuantity}}

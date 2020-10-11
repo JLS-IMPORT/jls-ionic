@@ -47,7 +47,7 @@ export class NewproductPage extends BaseUI {
     public rest: RestService,
     public toastCtrl: ToastController,
     public storage: Storage,
-    public utilis: UtilsService,
+    public utils: UtilsService,
     public modalCtrl: ModalController,
     public translate: TranslateService,
     public cartService: CartService
@@ -92,7 +92,7 @@ export class NewproductPage extends BaseUI {
   }
 
   async checkLogined() {
-    this.logined = await this.utilis.checkIsLogined();
+    this.logined = await this.utils.checkIsLogined();
   }
 
   loadProductList() {

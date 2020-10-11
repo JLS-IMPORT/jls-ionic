@@ -27,12 +27,17 @@
     </ion-slide>
   </ion-slides>
 
-  <div class="ion-margin-top"  >
-    <h3 style="text-align: left; margin-left: 5px;">{{'home.New' | translate}}  <a style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
+  <div class="ion-margin-top">
+    <h3 style="text-align: left; margin-left: 5px;">{{'home.New' | translate}} <a
+        style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage()">
+        {{'myAccount.ViewAll' | translate}}</a></h3>
     <div class="productDisplay" *ngIf="newProductList.length>0">
-      <ion-card  button="true" 
-        *ngFor="let item of newProductList" (click)="productDetail(item)"> 
-        
+      <ion-card button="true" *ngFor="let item of newProductList" (click)="productDetail(item)">
+        <div class="product-card__badges-list">
+          <div *ngIf="logined&& utils.formatProductPromotionInfo(item)!=null" class="product-card__badge promotion">
+            {{utils.formatProductPromotionInfo(item).discountPerCent}}%
+          </div>
+        </div>
         <!-- [ngStyle]="{'min-width.px': screenWidth}" -->
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
         <ion-img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath"></ion-img>
@@ -42,40 +47,54 @@
           <ion-card-subtitle>{{'newproduct.QuantityEachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
-          <ion-label *ngIf="logined">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)</ion-label>
-          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1.4em; padding: 0px 0px;"
-            (click)="addInCart($event,item)">
-            <ion-icon name="cart" slot="icon-only"></ion-icon>
-          </span>
+          <p *ngIf="logined && utils.formatProductPromotionInfo(item)!=null" style="text-decoration:line-through;">
+            {{item.PreviousPrice}} <span [hidden]="item.Price==PreviousPrice">€</span>(HT)
+          </p>
+          <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)
+            <span slot="icon-only" icon-only float-right class="ion-float-right"
+              style="font-size:1.4em; padding: 0px 0px;" (click)="addInCart($event,item)">
+              <ion-icon name="cart" slot="icon-only"></ion-icon>
+            </span>
+          </p>
         </ion-card-content>
       </ion-card>
     </div>
     <div *ngIf="newProductList==null || newProductList.length==0" class="ion-margin-left" class="productDisplay">
-<!--     
+      <!--     
       [ngStyle]="{'min-width.px': screenWidth}"  -->
-      <ion-card button="true" *ngFor="let item of [0,1,2,3,4]" >
+      <ion-card button="true" *ngFor="let item of [0,1,2,3,4]">
         <ion-img src="assets/imgs/not-found.png"></ion-img>
-      <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
-        <ion-card-title style="font-size:16px;"><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></ion-card-title>
-        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
-        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content style="padding-bottom: 5px;">
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-      </ion-card-content>
-    </ion-card>
+        <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
+          <ion-card-title style="font-size:16px;">
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </ion-card-title>
+          <ion-card-subtitle>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </ion-card-subtitle>
+          <ion-card-subtitle>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content style="padding-bottom: 5px;">
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </ion-card-content>
+      </ion-card>
 
     </div>
   </div>
 
-  <div class="ion-margin-top" >
-    <h3 class="productScrollTitle">{{'home.Promotion' | translate}} <a class="productScrollMore" (click)="displayBestSalesProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
+  <div class="ion-margin-top">
+    <h3 class="productScrollTitle">{{'home.Promotion' | translate}} <a class="productScrollMore"
+        (click)="displayBestSalesProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
     <!-- [ngStyle]="{'min-width.px': screenWidth}" -->
-    <div class="productDisplay" *ngIf="hotProductList.length>0" >
-      <ion-card button="true" 
-        (click)="productDetail(item)"
-        *ngFor="let item of hotProductList">
+    <div class="productDisplay" *ngIf="promotionProduct.length>0">
+      <ion-card button="true" (click)="productDetail(item)" *ngFor="let item of promotionProduct">
+        <div class="product-card__badges-list">
+          <div *ngIf="logined&& utils.formatProductPromotionInfo(item)!=null" class="product-card__badge promotion">
+            {{utils.formatProductPromotionInfo(item).discountPerCent}}%
+          </div>
+        </div>
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
         <ion-img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath"></ion-img>
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
@@ -84,37 +103,47 @@
           <ion-card-subtitle>{{'newproduct.QuantityEachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
-          <ion-label *ngIf="logined">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)</ion-label>
-          <span slot="icon-only" icon-only float-right class="ion-float-right" style="font-size:1.4em; padding: 0px 0px;"
-            (click)="addInCart($event,item)">
-            <ion-icon name="cart" slot="icon-only"></ion-icon>
-          </span>
+          <p *ngIf="logined && utils.formatProductPromotionInfo(item)!=null" style="text-decoration:line-through;">
+            {{item.PreviousPrice}} <span [hidden]="item.Price==PreviousPrice">€</span>(HT) 
+          </p>
+          <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)
+            <span slot="icon-only" icon-only float-right class="ion-float-right"
+              style="font-size:1.4em; padding: 0px 0px;" (click)="addInCart($event,item)">
+              <ion-icon name="cart" slot="icon-only"></ion-icon>
+            </span>
+          </p>
         </ion-card-content>
       </ion-card>
     </div>
-    
-    <div *ngIf="hotProductList==null || hotProductList.length==0" class="ion-margin-left productDisplay">
+
+    <div *ngIf="promotionProduct==null || promotionProduct.length==0" class="ion-margin-left productDisplay">
       <!-- [ngStyle]="{'min-width.px': screenWidth}" -->
-      <ion-card  button="true" *ngFor="let item of [0,1,2,3,4]" >
+      <ion-card button="true" *ngFor="let item of [0,1,2,3,4]">
         <ion-img src="assets/imgs/not-found.png"></ion-img>
-      <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
-        <ion-card-title style="font-size:16px;"><ion-skeleton-text animated style="width: 80%"></ion-skeleton-text></ion-card-title>
-        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
-        <ion-card-subtitle><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content style="padding-bottom: 5px;">
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-      </ion-card-content>
-    </ion-card>
+        <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
+          <ion-card-title style="font-size:16px;">
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </ion-card-title>
+          <ion-card-subtitle>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </ion-card-subtitle>
+          <ion-card-subtitle>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content style="padding-bottom: 5px;">
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </ion-card-content>
+      </ion-card>
 
     </div>
   </div>
 
   <ion-list class="ion-margin-top">
-    <ion-item button *ngFor="let item of categoryList" (click) = "secondMenu(item.ReferenceId,item.Reference.Label)">
-        {{item.Reference.Label}}({{item.TotalCount}})
-    </ion-item>   
+    <ion-item button *ngFor="let item of categoryList" (click)="secondMenu(item.ReferenceId,item.Reference.Label)">
+      {{item.Reference.Label}}({{item.TotalCount}})
+    </ion-item>
   </ion-list>
 
 
