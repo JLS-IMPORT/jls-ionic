@@ -48,7 +48,7 @@
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
           <p *ngIf="logined && utils.formatProductPromotionInfo(item)!=null" style="text-decoration:line-through;">
-            {{item.PreviousPrice}} <span [hidden]="item.Price==PreviousPrice">€</span>(HT)
+            {{item.PreviousPrice}} <span [hidden]="item.Price==item.PreviousPrice">€</span>(HT)
           </p>
           <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)
             <span slot="icon-only" icon-only float-right class="ion-float-right"
@@ -104,7 +104,7 @@
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
           <p *ngIf="logined && utils.formatProductPromotionInfo(item)!=null" style="text-decoration:line-through;">
-            {{item.PreviousPrice}} <span [hidden]="item.Price==PreviousPrice">€</span>(HT) 
+            {{item.PreviousPrice}} <span [hidden]="item.Price==item.PreviousPrice">€</span>(HT) 
           </p>
           <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)
             <span slot="icon-only" icon-only float-right class="ion-float-right"
