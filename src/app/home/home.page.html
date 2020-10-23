@@ -86,7 +86,7 @@
 
   <div class="ion-margin-top">
     <h3 class="productScrollTitle">{{'home.Promotion' | translate}} <a class="productScrollMore"
-        (click)="displayBestSalesProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
+        (click)="displayPromoProductPage()"> {{'myAccount.ViewAll' | translate}}</a></h3>
     <!-- [ngStyle]="{'min-width.px': screenWidth}" -->
     <div class="productDisplay" *ngIf="promotionProduct.length>0">
       <ion-card button="true" (click)="productDetail(item)" *ngFor="let item of promotionProduct">

@@ -178,12 +178,12 @@ export class HomePage extends BaseUI {
     this.cartService.addInCart(item);
   }
 
-  displayBestSalesProductPage() {
+  displayPromoProductPage() {
     this.navCtrl.navigateForward('/NewproductPage',
       {
         queryParams: {
-          Title: this.translate.instant("BestSalesProduit"),
-          PageType: 'BestSalesProduct'
+          Title: this.translate.instant("home.Promotion"),
+          PageType: 'PromoProduct'
         }
       });
   }

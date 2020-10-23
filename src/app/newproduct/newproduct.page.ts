@@ -130,6 +130,24 @@ export class NewproductPage extends BaseUI {
               },
               () => this.loading = false);
           break;
+        case 'PromoProduct':
+          this.rest.GetPromotionProduct(this.counter, this.step)  //TODO: change
+          .subscribe(
+            (f: any) => {
+              if (f.ProductList!=null) {
+                this.productList = f.ProductList;
+
+              } else {
+                super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+              }
+            },
+            error => {
+              super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+              this.loading = false;
+            },
+            () => this.loading = false
+          );
+          break;
         case 'BestSalesProduct':
           this.rest.GetProductListBySalesPerformance(this.counter, this.step) // 填写url的参数
             .subscribe(
@@ -272,6 +290,31 @@ export class NewproductPage extends BaseUI {
               }
             );
           break;
+
+          case 'PromoProduct':
+            this.rest.GetPromotionProduct(this.counter, this.step)  //TODO: change
+            .subscribe(
+              (f: any) => {
+                if (f.ProductList!=null) {
+                  if (f.TotalCount <= this.step * this.counter) {
+                    infiniteScroll.target.complete();
+                    // Disable the infinite scroll
+                    infiniteScroll.target.disabled = true;
+                  }
+                  else {
+                    this.productList = this.productList.concat(f.ProductList != null ? f.ProductList : []);
+                    infiniteScroll.target.complete();
+                  }
+  
+                } else {
+                  super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+                }
+              },
+              error => {
+                super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+              }
+            );
+            break;
         case 'NewProduct':
           this.rest.GetProductListByPublishDate(this.counter, this.step) //TODO: change
             .subscribe(
