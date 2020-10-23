@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 import { Network } from '@ionic-native/network/ngx';
 import { UtilsService } from '../service/utils.service';
+import CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -41,10 +43,8 @@ export class LoginPage extends BaseUI {
       var loading = await this.showLoading(this.loadingCtrl, this.translateService.instant("Loading"));
       var LoginInfo = {
         Email: this.email,
-        Password: this.password
+        Password: CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(this.password)),
       };
-
-
       // this.navCtrl.parent.select(0); // 跳转tabs
       this.rest.getNewRefreshToken(LoginInfo) // 填写url的参数
         .subscribe(

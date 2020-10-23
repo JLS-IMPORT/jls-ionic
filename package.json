@@ -36,6 +36,7 @@
     "cordova-android": "9.0.0",
     "cordova-browser": "6.0.0",
     "cordova-ios": "5.1.1",
+    "crypto-js": "^4.0.0",
     "ionic5-star-rating": "https://github.com/JeongJun-Lee/ionic5-star-rating/tarball/master",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

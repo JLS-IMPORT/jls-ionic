@@ -6,6 +6,8 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { RestService } from '../service/rest.service';
 import { Network } from '@ionic-native/network/ngx';
 import { distinctUntilChanged, debounceTime, switchMap, map, first } from 'rxjs/operators';
+import CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-registre',
@@ -17,8 +19,6 @@ export class RegistrePage extends BaseUI {
   basicInfoForm: any;
   entrepriseForm: any;
   addressForm: any;
-
-
 
   constructor(
     public navCtrl: NavController,
@@ -100,7 +100,7 @@ export class RegistrePage extends BaseUI {
       this.addressForm.value['ContactFax'] = this.addressForm.value['ContactFax'];
       var registreInfo = {
         Email: this.basicInfoForm.value['email'],
-        Password: this.basicInfoForm.value['password'],
+        Password: CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(this.basicInfoForm.value['password'])),
         Siret: this.entrepriseForm.value['siret'],
         EntrepriseName: this.entrepriseForm.value['entrepriseName'],
         PhoneNumber:  this.entrepriseForm.value['phoneNumber'],
