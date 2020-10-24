@@ -38,8 +38,8 @@ export class AddAdressPage extends BaseUI {
     this.adreeForm = this.formBuilder.group({
       Id: ['0'],
       EntrepriseName: ['', Validators.required],
-      ContactFirstName: ['', Validators.required],
-      ContactLastName: ['', Validators.required],
+      // ContactFirstName: ['', Validators.required],
+      // ContactLastName: ['', Validators.required],
       FirstLineAddress: ['', Validators.required],
       SecondLineAddress: [''],
       City: ['', Validators.required],
