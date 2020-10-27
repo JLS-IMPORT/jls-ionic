@@ -98,7 +98,7 @@ export class ContactUsPage extends BaseUI {
       var loading = await this.showLoading(this.loadingCtrl, this.translateService.instant('Loading'));
 
       var MessageInfo: any = {};
-
+      this.criteria.SenderEmail = localStorage.getItem('username');
       MessageInfo.Message = this.criteria;
       MessageInfo.FromUserId = localStorage.getItem('userId');
 
