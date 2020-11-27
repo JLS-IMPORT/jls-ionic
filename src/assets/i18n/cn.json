@@ -226,6 +226,7 @@
         "Taille":"规格",
         "Material":"材质",
         "Price": "价格",
+        "Forme":"形状",
         "OriginalPrice":"原价"
     },
     "product-evaluation-list":{

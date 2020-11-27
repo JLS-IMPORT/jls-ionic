@@ -8,6 +8,7 @@ export interface Iproduct {
     Label?: string,
     MainCategoryLabel?: string,
     Material?: string,
+    Forme?: string,
     PreviousPrice?: number,
     Price?: number,
     ProductId: number,

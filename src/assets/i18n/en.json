@@ -220,6 +220,7 @@
         "Couleur": "Colour",
         "Taille": "Size",
         "Material": "Material",
+        "Forme":"Form",
         "Price": "Price",
         "OriginalPrice":"Original price"
     },

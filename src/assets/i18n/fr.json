@@ -224,7 +224,8 @@
         "Quantitéparcolis":"Quantité par colis",
         "Couleur":"Couleur",
         "Taille":"Taille",
-        "Material":"Matérial",
+        "Material":"Martière",
+        "Forme":"Forme",
         "Price":"Prix",
         "OriginalPrice":"Prix d'origin"
     },
