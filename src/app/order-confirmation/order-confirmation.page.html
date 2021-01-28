@@ -29,7 +29,8 @@
               </ion-col>
               <ion-col size="8" col-8>
                 <div class="ion-float-right" style="margin-top: 5px;"> <span
-                    style="font-size: 20px;color: #534d7a; ">{{item.Price*item.Quantity*item.QuantityPerBox  | number : '1.2-2'}}
+                    style="font-size: 20px;color: #534d7a; ">{{item.Price*item.Quantity*item.QuantityPerBox | number :
+                    '1.2-2'}}
                     €</span>
                 </div>
                 <p class="descriptionFont">{{'order-confirmation.Reference' | translate}}: {{item.Code}} </p>
@@ -44,6 +45,9 @@
       <div>
         <p class="expenseFont">{{'order-confirmation.SommeBeforeTaxe' | translate}}:<span
             class="ion-float-right">{{calculTotalPrice() | number : '1.2-2'}}€</span></p>
+
+        <p class="expenseFont">{{'read-order-details.TxTVA' | translate}}:<span class="ion-float-right"
+            float-right>{{TaxRate}}% </span> </p>
         <p class="expenseFont">{{'order-confirmation.TVA' | translate}}:<span float-right class="ion-float-right">
             {{calculTotalPrice()*TaxRate*0.01 | number : '1.2-2'}} €</span> </p>
         <P class="expenseFont">{{'order-confirmation.ShippingCost' | translate}}:<span float-right

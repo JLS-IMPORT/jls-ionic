@@ -37,6 +37,9 @@
           <div *ngIf="logined&& utils.formatProductPromotionInfo(item)!=null" class="product-card__badge promotion">
             {{utils.formatProductPromotionInfo(item).discountPerCent}}%
           </div>
+          <div *ngIf="item.IsNew" class="product-card__badge_New  promotion">
+            {{'home.New' | translate}}
+          </div>
         </div>
         <!-- [ngStyle]="{'min-width.px': screenWidth}" -->
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
@@ -93,6 +96,9 @@
         <div class="product-card__badges-list">
           <div *ngIf="logined&& utils.formatProductPromotionInfo(item)!=null" class="product-card__badge promotion">
             {{utils.formatProductPromotionInfo(item).discountPerCent}}%
+          </div>
+          <div *ngIf="item.IsNew" class="product-card__badge_New promotion">
+          {{'home.New' | translate}}
           </div>
         </div>
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>

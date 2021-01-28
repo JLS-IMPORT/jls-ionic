@@ -175,6 +175,7 @@
         "Return": "Return"
     },
     "read-order-details": {
+        "TxTVA": "Tx TVA",
         "Title": "My Order",
         "OrderNumber": "Order Number",
         "DateOfPurchase": "Date of purchase",

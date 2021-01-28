@@ -180,6 +180,7 @@
          "Return":"返回"
      },
     "read-order-details":{
+        "TxTVA": "税率",
         "Title":"我的订单",
         "OrderNumber":"订单号",
         "DateOfPurchase":"购买日期",

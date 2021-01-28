@@ -130,7 +130,7 @@
     "cart":{
         "Title":"Panier",
         "Reference":"Référence",
-        "EachBox":"Colis",
+        "EachBox":"Colisage",
         "MinimumPurchase":"Minimum d'achat",
         "Quantity":"Quantité",
         "All":"Tous",
@@ -140,7 +140,7 @@
 
     },
     "newproduct":{
-        "QuantityEachBox":"Colis",
+        "QuantityEachBox":"Colisage",
         "QuantityMinimum":"Quantité minimale d'achat",
         "Reference":"Référence"
     },
@@ -180,6 +180,7 @@
         "Return":"Retourner"
     },
     "read-order-details":{
+        "TxTVA": "Tx TVA",
         "Title":"Ma Commande",
         "OrderNumber":"Commande",
         "DateOfPurchase":"Date d'achat",
@@ -221,7 +222,7 @@
         "Référence":"Référence",
         "avis":"avis",
         "QuantitéMinimal":"Quantité minimum",
-        "Quantitéparcolis":"Quantité par colis",
+        "Quantitéparcolis":"Colisage",
         "Couleur":"Couleur",
         "Taille":"Taille",
         "Material":"Martière",
