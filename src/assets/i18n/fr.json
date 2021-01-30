@@ -111,9 +111,9 @@
         "Error_UserAlreadyExists":"L'utilisateur déjà existe"
     },
     "registre-succed":{
-        "Confirm":"Votre compte est bien enregistré, nous allons envoyer un mail de confirmation à {email}, veuiller confirmer votre address mail pour compléter votre enregistrement",
+        "Confirm":"Votre compte est bien enregistré, nous allons envoyer un mail de confirmation à {email}, veuiller confirmer votre address mail pour compléter votre enregistrement(Si vous n'avez pas reçu le mail dans 10 minutes, merci de vérifier vos Spams ou contactez notre service client)",
         "Return":"Revenez sur page d'acceuille",
-        "ForgetPasswordSendEmail": "Le mail pour réinitialiser le mot de passe est envoyé à l'address mail: {email}"
+        "ForgetPasswordSendEmail": "Le mail pour réinitialiser le mot de passe est envoyé à l'address mail: {email}(Si vous n'avez pas reçu le mail dans 10 minutes, merci de vérifier vos Spams ou contactez notre service client)"
     },
     "contact-us":{
         "Title":"Contactez-nous",
@@ -163,13 +163,13 @@
         "SommeBeforeTaxe":"Total HT",
         "TVA":"Total TVA",
         "ShippingCost":"Frais de livraison",
-        "AmountOfOrder":"Net a payer",
+        "AmountOfOrder":"Net à payer",
         "ShippingAddressOrBilling":"LIVRAISON/FACTURATION",
         "Edit":"Modifier",
         "ShippingAddress":"Adresse de livraison",
         "ChooseAnotherAddress":"Choisir une autre adresse",
         "BillingAddress":"Adresse de facturation",
-        "Amount":"Net a payer",
+        "Amount":"Net à payer",
         "FinalizeTheOrder":"Finaliser la commande",
         "NoAddressAvailable":"Adresse invalide",
         "AEstimer":"A estimer",
@@ -198,7 +198,7 @@
         "SommeBeforeTaxe":"Total HT",
         "TVA":"Total TVA",
         "ShippingCost":"Frais de livraison",
-        "AmountOfOrder":"Net a payer",
+        "AmountOfOrder":"Net à payer",
         "Aestimer":"A estimer",
         "MiseAJour":"Date de mise à jour",
         "AdminRemark":"Message du vendeur",
@@ -225,7 +225,7 @@
         "Quantitéparcolis":"Colisage",
         "Couleur":"Couleur",
         "Taille":"Taille",
-        "Material":"Martière",
+        "Material":"Matière",
         "Forme":"Forme",
         "Price":"Prix",
         "OriginalPrice":"Prix d'origin"
@@ -271,7 +271,7 @@
         "modifyAdress":"Modifier Adresse"
     },
     "page-order-confirmation-succeess":{
-        "Message":"Merci pour votre commande, nous traitons votre commande dans le meilleur délai et vous recevra un email de confirmation ({Email})."
+        "Message":"Nous vous remercions d'avoir passé la commande sur le site. Vous allez recevoir votre commande dans votre boîte d'E-mail. Nous allons traiter votre commande dans les meilleurs délais, puis vous demander le règlement par virement." 
     },
     "modify-user-info":{
         "modifyUserInfo":"Modifier l'information de client",
