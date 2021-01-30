@@ -69,7 +69,7 @@ export class ReadOrderListPage extends BaseUI {
     var statusColor = "warning";
     switch (StatusCode) {
       case 'OrderStatus_Valid':
-        statusColor = "Success"
+        statusColor = "success"
         break;
       case 'OrderStatus_Refus':
         statusColor = "danger"
