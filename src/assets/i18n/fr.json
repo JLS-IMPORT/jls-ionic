@@ -46,14 +46,16 @@
         "ViewAll":"Tous",
         "MyOrder":"Vos commandes",
         "CanceledOrder":"Commandes annulées",
-        "PrepareOrder":"Commandes en cours de préparation",
+        "PrepareOrder":"Commandes en cours de validation",
         "OrderArrived":"Commandes validées",
         "Feedbacks":"Avis clients",
         "ContactUs":"Contactez-nous",
         "AboutUs":"A propos de nous",
         "SignOut":"Déconnexion",
         "SignIn":"Connectez-vous pour obtenir plus d'information",
-        "SignInOrRegister":"Se connecter/Créer un compte"
+        "SignInOrRegister":"Se connecter/Créer un compte",
+        "Virement": "Commandes virement en attente",
+        "Preparing": "Commandes en cours de préparation"
         
     },
     "signin":{

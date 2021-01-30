@@ -44,14 +44,16 @@
         "ViewAll":"观看全部",
         "MyOrder":"我的订单",
         "CanceledOrder":"被取消的订单",
-        "PrepareOrder":"正在准备的订单",
+        "PrepareOrder":"等待确认订单",
         "OrderArrived":"已通过的订单",
         "Feedbacks":"客户评价",
         "ContactUs":"联系我们",
         "AboutUs":"关于我们",
         "SignOut":"退出登录",
         "SignIn":"请登录获得更多功能",
-        "SignInOrRegister":"登陆/注册新账户"
+        "SignInOrRegister":"登陆/注册新账户",
+        "Virement": "等待汇款订单",
+        "Preparing": "准备中"
         
     },
     "signin":{

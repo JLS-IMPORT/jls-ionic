@@ -40,6 +40,8 @@
         
       </ion-list-header>
       <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Progressing')">{{'myAccount.PrepareOrder' | translate}}</ion-item>
+      <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Virement')">{{'myAccount.Virement' | translate}}</ion-item>
+      <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Preparing')">{{'myAccount.Preparing' | translate}}</ion-item>
       <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Valid')">{{'myAccount.OrderArrived' | translate}}</ion-item>
       <ion-item button detail="true" ion-item (click)="readCommandList('OrderStatus_Refus')">{{'myAccount.CanceledOrder' | translate}}</ion-item>
     </ion-list>

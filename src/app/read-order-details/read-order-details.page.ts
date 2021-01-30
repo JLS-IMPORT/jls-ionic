@@ -138,13 +138,19 @@ export class ReadOrderDetailsPage extends BaseUI {
     var statusColor = "warning";
     switch (StatusCode) {
       case 'OrderStatus_Valid':
-        statusColor = "secondary"
+        statusColor = "Success"
         break;
       case 'OrderStatus_Refus':
         statusColor = "danger"
         break;
       case 'OrderStatus_Progressing':
         statusColor = "warning"
+        break;
+      case 'OrderStatus_Virement':
+        statusColor = "virement"
+        break;
+      case 'OrderStatus_Preparing':
+        statusColor = "secondary"
         break;
     }
     return statusColor;

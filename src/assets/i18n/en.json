@@ -43,14 +43,16 @@
         "ViewAll": "View all",
         "MyOrder": "My orders",
         "CanceledOrder": "Canceled orders",
-        "PrepareOrder": "Preparing orders",
+        "PrepareOrder": "Under validation orders",
         "OrderArrived": "Validated orders",
         "Feedbacks": "Give us your feedbacks",
         "ContactUs": "Contact us",
         "AboutUs": "About us",
         "SignOut": "Sign out",
         "SignIn": "Please sign in for more information",
-        "SignInOrRegister": "Sign in/Register"
+        "SignInOrRegister": "Sign in/Register",
+        "Virement": "Waiting for transfer orders",
+        "Preparing": "Preparing orders"
     },
     "signin": {
         "Email": "E-mail",
