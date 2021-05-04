@@ -128,7 +128,8 @@
     "cart": {
         "Title": "My basket",
         "Reference": "Reference",
-        "EachBox": "Quantity/Box",
+        "EachBox": "Sub Colis",
+        "QuantityPerParcel": "Colis",
         "MinimumPurchase": "Minimum purchase",
         "Quantity": "Amount",
         "All": "All",

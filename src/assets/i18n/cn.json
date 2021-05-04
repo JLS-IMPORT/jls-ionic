@@ -133,7 +133,8 @@
     "cart":{
         "Title":"购物车",
         "Reference":"货物编码",
-        "EachBox":"件/箱",
+        "EachBox":"小包装",
+        "QuantityPerParcel": "件/箱",
         "MinimumPurchase":"最少购买数量",
         "Quantity":"总数",
         "All":"全选",

@@ -28,7 +28,12 @@
               <ion-button  class="ion-float-right" icon-only float-right  style="font-size:0.6em; clear: both; height: 3em;" (click)="cartService.removeItem(item)">
                 <ion-icon name="close" slot="icon-only"></ion-icon>
               </ion-button>
-              <p class="descriptionFont">{{'cart.EachBox' | translate}}: {{item.QuantityPerBox}} </p>
+              <p class="descriptionFont" *ngIf="item.QuantityPerParcel==null">{{'cart.QuantityPerParcel' | translate}}: {{item.QuantityPerBox}} </p>
+              <div *ngIf="item.QuantityPerParcel!=null">
+                <p class="descriptionFont" >{{'cart.QuantityPerParcel' | translate}}: {{item.QuantityPerParcel}} </p>
+                <p class="descriptionFont">{{'cart.EachBox' | translate}}: {{item.QuantityPerBox}} </p>
+              </div>
+              <p style="margin-bottom: 0px;">Paquets:</p>
               <!-- <p class="descriptionFont">{{'cart.MinimumPurchase' | translate}}:{{item.MinQuantity}}</p> -->
             </div>
             <app-ion-meter class="ion-float-right" float-right [buyNumber]="checkQuantityWithMinQuantity(item.MinQuantity,item.Quantity)" maxQty='10000' [minQty]='item.MinQuantity' [goods]="item.ReferenceId" (onUpdate)="onUpdate($event,item.MinQuantity)">

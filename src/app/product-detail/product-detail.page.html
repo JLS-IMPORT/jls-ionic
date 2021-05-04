@@ -18,7 +18,8 @@
             style="font-size: 14px;">
             {{utils.formatProductPromotionInfo(product).discountPerCent}}%
           </div>
-          <div *ngIf="product.IsNew" class="product-card__badge_New promotion" style="position: absolute; top: 25px;right: -2px;">
+          <div *ngIf="product.IsNew" class="product-card__badge_New promotion"
+            style="position: absolute; top: 25px;right: -2px;">
             {{'home.New' | translate}}
           </div>
         </div>
@@ -83,18 +84,23 @@
 
     <ion-item *ngIf="logined">
       {{'product-detail.Price' | translate}} :{{product.Price}} € (HT)
+    </ion-item>
 
+    <ion-item *ngIf="logined&& utils.formatProductPromotionInfo(product)!=null">
+      {{'product-detail.OriginalPrice' | translate}} :<span
+        style="text-decoration:line-through;">{{product.PreviousPrice}} €</span>(HT)
+    </ion-item>
+    
+    <ion-item *ngIf="product.QuantityPerParcel==null">
+      {{'cart.QuantityPerParcel' | translate}} : {{product.QuantityPerBox}}
+    </ion-item>
+    <ion-item *ngIf="product.QuantityPerParcel!=null">
+      {{'cart.QuantityPerParcel' | translate}} : {{product.QuantityPerParcel}}
+    </ion-item>
+    <ion-item *ngIf="product.QuantityPerParcel!=null">
+      {{'cart.EachBox' | translate}} : {{product.QuantityPerBox}}
+    </ion-item>
 
-    </ion-item>
-    <ion-item *ngIf="logined&& utils.formatProductPromotionInfo(product)!=null" >
-      {{'product-detail.OriginalPrice' | translate}} :<span style="text-decoration:line-through;">{{product.PreviousPrice}} €</span>(HT)
-    </ion-item>
-    <ion-item>
-      {{'product-detail.QuantitéMinimal' | translate}} : {{product.MinQuantity}}
-    </ion-item>
-    <ion-item>
-      {{'product-detail.Quantitéparcolis' | translate}} : {{product.QuantityPerBox}}
-    </ion-item>
     <ion-item>
       {{'product-detail.Couleur' | translate}}: {{product.Color}}
     </ion-item>

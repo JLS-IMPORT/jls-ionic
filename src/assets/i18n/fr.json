@@ -130,9 +130,10 @@
         "Cancel":"Annulé"
     },
     "cart":{
+        "QuantityPerParcel":"Colisage",
         "Title":"Panier",
         "Reference":"Référence",
-        "EachBox":"Colisage",
+        "EachBox":"Sous Colisage",
         "MinimumPurchase":"Minimum d'achat",
         "Quantity":"Quantité",
         "All":"Tous",
