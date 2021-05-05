@@ -135,7 +135,8 @@
         "All": "All",
         "Somme": "Somme",
         "Confirm": "Confirm",
-        "YourCartIsEmpty": "Your cart is empty now!"
+        "YourCartIsEmpty": "Your cart is empty now!",
+        "TotalQuantity": "QT.Total"
     },
     "newproduct": {
         "QuantityEachBox": "Quantity/Box",

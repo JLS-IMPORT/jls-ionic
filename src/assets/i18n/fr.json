@@ -139,7 +139,8 @@
         "All":"Tous",
         "Somme":"Total",
         "Confirm":"Validé",
-        "YourCartIsEmpty":"Votre panier est vide!"
+        "YourCartIsEmpty":"Votre panier est vide!",
+        "TotalQuantity": "QT.Total"
 
     },
     "newproduct":{

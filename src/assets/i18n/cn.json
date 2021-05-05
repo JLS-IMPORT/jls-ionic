@@ -140,7 +140,8 @@
         "All":"全选",
         "Somme":"总共金额",
         "Confirm":"确定",
-        "YourCartIsEmpty":"您的购物车是空的哦!"
+        "YourCartIsEmpty":"您的购物车是空的哦!",
+        "TotalQuantity": "总个数"
     },
     "newproduct":{
         "QuantityEachBox":"件/箱",
