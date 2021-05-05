@@ -44,22 +44,25 @@
         <!-- [ngStyle]="{'min-width.px': screenWidth}" -->
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
         <ion-img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath"></ion-img>
+        <ion-button (click)="addInCart($event,item)" expand="full" size="small">
+          <ion-icon slot="start" name="cart"></ion-icon>{{'Add' | translate}}
+        </ion-button>
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
           <ion-card-title style="font-size:16px;">{{item.Label}}</ion-card-title>
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
-          <ion-card-subtitle *ngIf="item.QuantityPerParcel==null">{{'cart.QuantityPerParcel' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
-          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.QuantityPerParcel' | translate}} : {{item.QuantityPerParcel}}</ion-card-subtitle>
-          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.EachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.QuantityPerParcel==null">{{'cart.QuantityPerParcel' | translate}} :
+            {{item.QuantityPerBox}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.QuantityPerParcel' | translate}} :
+            {{item.QuantityPerParcel}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.EachBox' | translate}} :
+            {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
           <p *ngIf="logined && utils.formatProductPromotionInfo(item)!=null" style="text-decoration:line-through;">
             {{item.PreviousPrice}} <span [hidden]="item.Price==item.PreviousPrice">€</span>(HT)
           </p>
-          <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)
-            <span slot="icon-only" icon-only float-right class="ion-float-right"
-              style="font-size:1.4em; padding: 0px 0px;" (click)="addInCart($event,item)">
-              <ion-icon name="cart" slot="icon-only"></ion-icon>
-            </span>
+          <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span
+              [hidden]="item.Price==null">€</span>(HT)
           </p>
         </ion-card-content>
       </ion-card>
@@ -100,30 +103,32 @@
             {{utils.formatProductPromotionInfo(item).discountPerCent}}%
           </div>
           <div *ngIf="item.IsNew" class="product-card__badge_New promotion">
-          {{'home.New' | translate}}
+            {{'home.New' | translate}}
           </div>
         </div>
         <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"></ion-img>
         <ion-img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath"></ion-img>
-        <ion-button (click)="addInCart($event,item)" expand="full" size="small">{{'Add' | translate}}</ion-button>
+        <ion-button (click)="addInCart($event,item)" expand="full" size="small">
+          <ion-icon slot="start" name="cart"></ion-icon>{{'Add' | translate}}
+        </ion-button>
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
           <ion-card-title style="font-size:16px;">{{item.Label}}</ion-card-title>
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
-          <ion-card-subtitle *ngIf="item.QuantityPerParcel==null">{{'cart.QuantityPerParcel' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
-          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.QuantityPerParcel' | translate}} : {{item.QuantityPerParcel}}</ion-card-subtitle>
-          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.EachBox' | translate}} : {{item.QuantityPerBox}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.QuantityPerParcel==null">{{'cart.QuantityPerParcel' | translate}} :
+            {{item.QuantityPerBox}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.QuantityPerParcel' | translate}} :
+            {{item.QuantityPerParcel}}</ion-card-subtitle>
+          <ion-card-subtitle *ngIf="item.QuantityPerParcel!=null">{{'cart.EachBox' | translate}} :
+            {{item.QuantityPerBox}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content style="padding-bottom: 5px;" class="productCardContent">
           <p *ngIf="logined && utils.formatProductPromotionInfo(item)!=null" style="text-decoration:line-through;">
-            {{item.PreviousPrice}} <span [hidden]="item.Price==item.PreviousPrice">€</span>(HT) 
+            {{item.PreviousPrice}} <span [hidden]="item.Price==item.PreviousPrice">€</span>(HT)
           </p>
-          <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span [hidden]="item.Price==null">€</span>(HT)
-            <span slot="icon-only" icon-only float-right class="ion-float-right"
-              style="font-size:1.4em; padding: 0px 0px;" (click)="addInCart($event,item)">
-              <ion-icon name="cart" slot="icon-only"></ion-icon>
-            </span>
+          <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span
+              [hidden]="item.Price==null">€</span>(HT)
           </p>
-        
+
         </ion-card-content>
       </ion-card>
     </div>

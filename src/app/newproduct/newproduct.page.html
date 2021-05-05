@@ -79,8 +79,11 @@
             {{'home.New' | translate}}
           </div>
         </div>
-        <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png"> </ion-img>
-        <img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath">
+        <ion-img *ngIf="item.DefaultPhotoPath==null" src="assets/imgs/not-found.png" style="height: 20vh;"> </ion-img>
+        <img *ngIf="item.DefaultPhotoPath!=null" [src]="host+item.DefaultPhotoPath" style="height: 20vh;">
+        <ion-button (click)="addInCart($event,item)" expand="full" size="small">
+          <ion-icon slot="start" name="cart"></ion-icon>{{'Add' | translate}}
+        </ion-button>
         <ion-card-header class="ion-padding" style="padding-bottom: 0px;">
           <ion-card-title style="font-size:16px;">{{item.Label}}</ion-card-title>
           <ion-card-subtitle>{{'newproduct.Reference' | translate}} : {{item.Code}}</ion-card-subtitle>
@@ -95,10 +98,6 @@
           </p>
           <p *ngIf="logined" style="font-weight: bold;font-size: 16px;">{{item.Price}} <span
               [hidden]="item.Price==null">€</span>(HT)
-            <span slot="icon-only" icon-only float-right class="ion-float-right"
-              style="font-size:1.4em; padding: 0px 0px;" (click)="addInCart($event,item)">
-              <ion-icon name="cart" slot="icon-only"></ion-icon>
-            </span>
           </p>
         </ion-card-content>
       </ion-card>
