@@ -10,6 +10,7 @@ import { interval, timer } from 'rxjs';
 import { startWith, takeWhile } from 'rxjs/operators';
 import { start } from 'repl';
 import { Storage } from '@ionic/storage';
+import { CodePush,InstallMode } from '@ionic-native/code-push/ngx';
 
 @Component({
   selector: 'app-root',
@@ -23,13 +24,18 @@ export class AppComponent {
     private statusBar: StatusBar,
     private translate: TranslateService,
     private rest: RestService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private codePush: CodePush
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(async () => {
+
+      // Update app by codePush
+      this.checkCodePush();
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
@@ -65,4 +71,17 @@ export class AppComponent {
       }
     });
   }
+
+  checkCodePush() {
+    this.codePush.sync({
+      installMode: InstallMode.ON_NEXT_RESTART
+    }).subscribe(
+    (data) => {
+     console.log('CODE PUSH SUCCESSFUL: ' + data);
+    },
+    (err) => {
+     console.log('CODE PUSH ERROR: ' + err);
+    }
+  );
+ }
 }

@@ -33,6 +33,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CartService } from './service/cart.service';
 import { AddressService } from './service/address.service';
+import { CodePush } from '@ionic-native/code-push/ngx';
+
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -73,7 +75,8 @@ export function LanguageLoader(http: HttpClient) {
     RestService,
     Network,
     CartService,
-    AddressService
+    AddressService,
+    CodePush
   ],
   bootstrap: [AppComponent]
 })

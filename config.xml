@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.jlsimport.prod" version="1.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.ionic.jlsimport.prod" version="1.4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>JLS IMPORT</name>
     <description>JLS IMPORT app</description>
     <author email="zhengxi.li.19@neoma-bs.com" href="https://www.europetechs.com/">JLS import team</author>
@@ -50,6 +50,9 @@
         <preference name="ShowSplashScreenSpinner" value="false" />
         <preference name="SplashShowOnlyFirstTime" value="false" />
         <preference name="FadeSplashScreen" value="true" />
+        <preference name="APP_SECRET" value="d3256108-9bd5-44af-882c-c7f1deeefc8e" />
+        <preference name="CodePushDeploymentKey" value="IiEF--CWxqEKuIGCIOfUYf7eO6USBwaDOLIZq" />
+        <preference name="android-targetSdkVersion" value="29" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -146,6 +149,8 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+        <preference name="APP_SECRET" value="b391f81c-2c10-4486-8358-857eb42dcd48" />
+        <preference name="CodePushDeploymentKey" value="lPf4jAi7XL_EcBbqpQd_PIwIGQ0hBcitHQgfd" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
