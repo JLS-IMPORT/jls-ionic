@@ -159,6 +159,7 @@
         "Account":"我的账户"
     },
     "order-confirmation":{
+        "SameAddress":"同时使用该地址作为账单地址",
         "Title":"确认订单",
         "MyOrder":"我的订单",
         "Article":"件",

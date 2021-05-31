@@ -16,9 +16,10 @@
             </ion-checkbox>
           </ion-col>
           <ion-col size="3" col-3 class="colStyle">
-            <img *ngIf="item.DefaultPhotoPath!=null" class="align-text-middle" [src]="host+item.DefaultPhotoPath">
-
-            <img *ngIf="item.DefaultPhotoPath==null"   src="assets/imgs/not-found.png">
+            <a (click)="viewProductDetail(item.ProductId)">
+              <img *ngIf="item.DefaultPhotoPath!=null" class="align-text-middle" [src]="host+item.DefaultPhotoPath">
+              <img *ngIf="item.DefaultPhotoPath==null"   src="assets/imgs/not-found.png">
+            </a>
           </ion-col>
           <ion-col size="8" col-8 class="colStyle">
             <div>

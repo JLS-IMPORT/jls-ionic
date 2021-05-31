@@ -113,6 +113,11 @@ export class SelectShippingAdressPage extends BaseUI {
     this.navCtrl.back();
   }
 
+  ionViewWillLeave (){
+    let selectedShippingAdress = this.getSelectedAdress();
+    this.addressService.defaultShipmentAdressBehaviour.next(selectedShippingAdress);
+  }
+
   getSelectedAdress() {
     if (this.adressList.length > 0) {
       let selectedAddress = this.adressList.find(p => p.Id == this.selectedAdressId);

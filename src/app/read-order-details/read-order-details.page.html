@@ -26,16 +26,20 @@
           <ion-row>
             <ion-col size="4" col-4>
 
-
-              <img *ngIf="item.DefaultPhotoPath!=null" class="align-text-middle"  [src]="host+item.DefaultPhotoPath">
-
-              <img class="align-text-middle" src="assets/imgs/not-found.png" *ngIf="item.DefaultPhotoPath==null">
+              <a [routerLink]="['/ProductDetailPage']" [queryParams]="{productId: item.ProductId}">
+                <img *ngIf="item.DefaultPhotoPath!=null" class="align-text-middle"  [src]="host+item.DefaultPhotoPath">
+                <img class="align-text-middle" src="assets/imgs/not-found.png" *ngIf="item.DefaultPhotoPath==null">
+              </a>
+              
             </ion-col>
             <ion-col size="8" col-8>
-              <h6 class="productTitleFont">{{item.Label}}</h6>
+              <a [routerLink]="['/ProductDetailPage']" [queryParams]="{productId: item.ProductId}">
+                {{item.Label}}
+              </a>
               <p class="descriptionFont">{{'read-order-details.Referene' | translate}}: {{item.Code}}</p>
               <p class="descriptionFont">{{'newproduct.QuantityEachBox' | translate}}: {{item.QuantityPerBox}}</p>
               <p class="descriptionFont">{{'read-order-details.Quantity' | translate}}: {{item.Quantity}}</p>
+              <p>{{'cart.TotalQuantity' | translate}}: {{item.Quantity * item.QuantityPerBox}}</p>
               <p class="descriptionFont">{{'read-order-details.Size' | translate}}: {{item.Size}}</p>
               <p class="descriptionFont">{{'read-order-details.Material' | translate}}: {{item.Material}}</p>
               <p class="descriptionFont">{{'read-order-details.Color' | translate}}: {{item.Color}}</p>

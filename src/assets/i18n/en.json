@@ -154,6 +154,7 @@
         "Account": "Account"
     },
     "order-confirmation": {
+        "SameAddress":"Use the same address for billing address",
         "Title": "Order Confirmation",
         "MyOrder": "MY ORDER",
         "Article": "Article(s)",

@@ -159,6 +159,7 @@
         "Account":"Compte"
     },
     "order-confirmation":{
+        "SameAddress":"Utiliser même addresse pour facturation",
         "Title":"Confirmation",
         "MyOrder":"MA COMMANDE",
         "Article":"Article(s)",

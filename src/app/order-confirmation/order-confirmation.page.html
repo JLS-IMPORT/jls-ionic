@@ -71,7 +71,11 @@
         <ion-card-content style="padding: 0px;" *ngIf="defaultShippingAdress">
           <!-- <p class="">{{defaultShippingAdress.ContactFirstName}} <span>
               {{defaultShippingAdress.ContactLastName}}</span> </p> -->
-
+              <div >
+                <ion-checkbox style="--size:1rem;" [(ngModel)]="setSameAddress">
+                </ion-checkbox>
+                <ion-label style="margin-left: 3px;">{{'order-confirmation.SameAddress' | translate}}</ion-label>
+              </div>
           <p class="">{{entrepriseName}} </p>
           <p class="">{{defaultShippingAdress.FirstLineAddress}} </p>
           <p class="">{{defaultShippingAdress.SecondLineAddress}} </p>
@@ -93,7 +97,7 @@
     </ion-list>
   </div>
 
-  <div style="background-color: white; padding: 8px; padding-top: 4px;">
+  <div style="background-color: white; padding: 8px; padding-top: 4px;" *ngIf="!setSameAddress">
     <ion-card class="productCard " style="width: 100%; border-bottom: 0px;">
       <ion-card-header style="padding: 8px 4px 0px;">
         <span> <a class="ion-float-right articleNumber" style="margin-right: 5px;margin-top: 3px;"

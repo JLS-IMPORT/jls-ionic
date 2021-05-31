@@ -33,6 +33,8 @@ export class OrderConfirmationPage extends BaseUI {
   public remark: string = "";
   entrepriseName: string;
 
+  public setSameAddress: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public utils: UtilsService,
@@ -70,7 +72,10 @@ export class OrderConfirmationPage extends BaseUI {
       shouldLeave = await this.confirmLeave();
     }
     if (shouldLeave || this.SavedOrder) {
-      this.navCtrl.back();
+      
+      //this.navCtrl.back();
+
+      this.navCtrl.navigateBack('/tabs/tabCart');
     }
   }
 
@@ -214,6 +219,12 @@ export class OrderConfirmationPage extends BaseUI {
     }
 
     var facturationAdressId = this.facturationAdress["Id"];
+
+    // Set facturation address as shipping address when checkbox is selected
+    if(this.setSameAddress&& shippingAdressId!=null){
+      facturationAdressId = shippingAdressId;
+    }
+
     var UserId = Number.parseInt(await this.utils.getKey('userId'));
     if (productInfo.length > 0 && shippingAdressId != null) {
       if (this.network.type != 'none') {
