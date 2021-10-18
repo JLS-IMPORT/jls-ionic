@@ -29,7 +29,7 @@
 
   <div class="ion-margin-top">
     <h3 style="text-align: left; margin-left: 5px;">{{'home.New' | translate}} <a
-        style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage()">
+        style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage(null)">
         {{'myAccount.ViewAll' | translate}}</a></h3>
     <div class="productDisplay" *ngIf="newProductList.length>0">
       <ion-card button="true" *ngFor="let item of newProductList" (click)="productDetail(item)">
@@ -173,7 +173,7 @@
   <div class="ion-margin-top">
     <ion-row class="buttonRow" class="ion-text-center">
       <ion-col size="4" col-3>
-        <ion-button class="nouveauteColor myButton" icon-only (click)="displaynewProductPage()">
+        <ion-button class="nouveauteColor myButton" icon-only (click)="displaynewProductPage(null)">
           <ion-icon name='flag' slot="icon-only"></ion-icon>
         </ion-button>
         <p>{{'home.New' | translate}}</p>
