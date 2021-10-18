@@ -213,7 +213,9 @@
         "MyList": "Favorites",
         "Advice": "Advice",
         "AdvancedSearch": "Advanced search",
-        "ContactUs": "Contact us"
+        "ContactUs": "Contact us",
+        "ViewAllProduct": "All the products"
+        
     },
     "product-detail": {
         "Favorite": "Favorite",

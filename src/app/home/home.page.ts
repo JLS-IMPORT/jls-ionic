@@ -71,12 +71,12 @@ export class HomePage extends BaseUI {
     await this.checkLogined();
   }
 
-  displaynewProductPage() {
+  displaynewProductPage(viewAllProduct) {
     this.navCtrl.navigateForward('NewproductPage',
       {
         queryParams: {
-          Title: this.translate.instant("NewProduit"),
-          PageType: 'NewProduct'
+          Title: (viewAllProduct != null && viewAllProduct) ? this.translate.instant("home.ViewAllProduct") : this.translate.instant("NewProduit"),
+          PageType: (viewAllProduct != null && viewAllProduct) ? 'ViewAllProduct' : 'NewProduct'
         }
 
       });
@@ -118,7 +118,7 @@ export class HomePage extends BaseUI {
           super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
         }
       );
-    
+
     // Load product by sales perfomance
     // this.rest.GetProductListBySalesPerformance(0, this.loadNumberOfProduct) //TODO: change
     //   .subscribe(
@@ -137,20 +137,20 @@ export class HomePage extends BaseUI {
     //   );
 
     this.rest.GetPromotionProduct(0, this.loadNumberOfProduct) //TODO: change
-    .subscribe(
-      (f: any) => {
-        if (f.ProductList!=null) {
+      .subscribe(
+        (f: any) => {
+          if (f.ProductList != null) {
 
-          this.promotionProduct = f.ProductList;
+            this.promotionProduct = f.ProductList;
 
-        } else {
+          } else {
+            super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+          }
+        },
+        error => {
           super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
         }
-      },
-      error => {
-        super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
-      }
-    );
+      );
 
     // Load category 
     this.rest.GetProductMainCategory() // 填写url的参数

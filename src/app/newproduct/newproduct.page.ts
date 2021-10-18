@@ -11,6 +11,8 @@ import { Storage } from '@ionic/storage';
 import { AdvancedSearchPage } from '../advanced-search/advanced-search.page';
 import { CartService } from '../service/cart.service';
 import { ICartProduct } from '../interface/icart-product';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -27,7 +29,9 @@ export class NewproductPage extends BaseUI {
   counter: number = 0;
   PageType: string;
 
-  layoutColumn: boolean = false;
+  // 3 display modes 
+  listLayoutMode: string[] = ['column', 'imangeOnly', 'list'];
+  layoutMode: string = 'column'; // Default column
 
   public advancedSearchCriteria: any = {
     SearchText: null,
@@ -39,6 +43,9 @@ export class NewproductPage extends BaseUI {
   };
   public host = environment.SERVER_API_URL;
   public logined: boolean = false; // todo: set to false, true only for dev 
+
+
+  public searchControl: FormControl;
 
   constructor(
     public router: ActivatedRoute,
@@ -53,35 +60,77 @@ export class NewproductPage extends BaseUI {
     public cartService: CartService
   ) {
     super();
+
+    this.searchControl = new FormControl();
   }
 
-  // TODO: Simplify the error treatement
   ngOnInit() {
     this.checkLogined();
 
     this.PageType = this.router.snapshot.queryParams["PageType"];
     this.SecondReferenceId = parseInt(this.router.snapshot.queryParams["ReferenceId"]);
     this.Title = this.router.snapshot.queryParams["Title"];
-    this.loadProductList();
   }
 
-  toggleLayout(){
-    this.layoutColumn = !this.layoutColumn;
-    localStorage.setItem('productListLayoutColumn', this.layoutColumn.toString())
+
+  toggleLayout() {
+    var currentModeIndex = this.listLayoutMode.findIndex(p => p == this.layoutMode);
+    if (currentModeIndex + 1 >= this.listLayoutMode.length) {
+      this.layoutMode = this.listLayoutMode[0];
+    }
+    else {
+      this.layoutMode = this.listLayoutMode[currentModeIndex + 1];
+    }
+    this.imageOnlyTreatement();
+
+    localStorage.setItem('productListLayoutType', this.layoutMode)
+  }
+
+  imageOnlyTreatement() {
+    if (this.layoutMode == 'imangeOnly') {
+      // Show more product once
+      this.counter = 0;
+      this.step = 20;
+
+      this.loadProductList();
+
+      // If we are in imageOnly mode and ViewAllProduct page, we need to initialize the searchbar
+      if (this.PageType == 'ViewAllProduct') {
+        // Async search bar changed
+        this.searchControl.valueChanges
+          .pipe(debounceTime(500))
+          .subscribe(searchText => {
+            this.counter = 0;
+            this.advancedSearchCriteria.SearchText = searchText;
+
+            this.loadProductList();
+          });
+      }
+    }
   }
 
   ionViewWillEnter() {
     // only for develop, don't commit for production app
-    var layoutColumn = localStorage.getItem('productListLayoutColumn');
-    if(layoutColumn!=null){
-      this.layoutColumn = JSON.parse(layoutColumn);;
+    var layoutMode = localStorage.getItem('productListLayoutType');
+    if (this.listLayoutMode.find(p => p == layoutMode) != null) {
+      this.layoutMode = layoutMode;
+    }
+   
+    if (this.PageType == 'ViewAllProduct') {
+      // Default OrderBy PublishDate_Recent
+      this.advancedSearchCriteria.OrderBy = 'PublishDate_Recent';
+
+      // Set default imageOnly mode
+      this.layoutMode = 'imangeOnly';
+    }
+
+    if(this.layoutMode == 'imangeOnly'){
+      this.imageOnlyTreatement();
     }
     else{
-      this.layoutColumn = true;
+      this.loadProductList();
     }
-  
   }
-
 
   productDetail(product) {
     this.navCtrl.navigateForward('ProductDetailPage', {
@@ -132,21 +181,21 @@ export class NewproductPage extends BaseUI {
           break;
         case 'PromoProduct':
           this.rest.GetPromotionProduct(this.counter, this.step)  //TODO: change
-          .subscribe(
-            (f: any) => {
-              if (f.ProductList!=null) {
-                this.productList = f.ProductList;
+            .subscribe(
+              (f: any) => {
+                if (f.ProductList != null) {
+                  this.productList = f.ProductList;
 
-              } else {
+                } else {
+                  super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
+                }
+              },
+              error => {
                 super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
-              }
-            },
-            error => {
-              super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
-              this.loading = false;
-            },
-            () => this.loading = false
-          );
+                this.loading = false;
+              },
+              () => this.loading = false
+            );
           break;
         case 'BestSalesProduct':
           this.rest.GetProductListBySalesPerformance(this.counter, this.step) // 填写url的参数
@@ -228,6 +277,7 @@ export class NewproductPage extends BaseUI {
                 this.loading = false
               });
           break;
+        case 'ViewAllProduct':
         case 'AdvancedProductSearch':
           this.loading = true;
           if (this.advancedSearchCriteria != null) {
@@ -291,11 +341,11 @@ export class NewproductPage extends BaseUI {
             );
           break;
 
-          case 'PromoProduct':
-            this.rest.GetPromotionProduct(this.counter, this.step)  //TODO: change
+        case 'PromoProduct':
+          this.rest.GetPromotionProduct(this.counter, this.step)  //TODO: change
             .subscribe(
               (f: any) => {
-                if (f.ProductList!=null) {
+                if (f.ProductList != null) {
                   if (f.TotalCount <= this.step * this.counter) {
                     infiniteScroll.target.complete();
                     // Disable the infinite scroll
@@ -305,7 +355,7 @@ export class NewproductPage extends BaseUI {
                     this.productList = this.productList.concat(f.ProductList != null ? f.ProductList : []);
                     infiniteScroll.target.complete();
                   }
-  
+
                 } else {
                   super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
                 }
@@ -314,7 +364,7 @@ export class NewproductPage extends BaseUI {
                 super.showToast(this.toastCtrl, this.translate.instant("Msg_Error"));
               }
             );
-            break;
+          break;
         case 'NewProduct':
           this.rest.GetProductListByPublishDate(this.counter, this.step) //TODO: change
             .subscribe(
@@ -447,7 +497,7 @@ export class NewproductPage extends BaseUI {
             );
           break;
 
-
+        case 'ViewAllProduct':
         case 'AdvancedProductSearch':
           if (this.advancedSearchCriteria != null) {
             var criteria = this.advancedSearchCriteria;

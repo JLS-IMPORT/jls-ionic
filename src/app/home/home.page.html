@@ -158,6 +158,12 @@
   </div>
 
   <ion-list class="ion-margin-top">
+    <ion-item button (click)="displaynewProductPage(true)">
+      {{'home.ViewAllProduct' | translate |uppercase}}
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="ion-margin-top">
     <ion-item button *ngFor="let item of categoryList" (click)="secondMenu(item.ReferenceId,item.Reference.Label)">
       {{item.Reference.Label}}({{item.TotalCount}})
     </ion-item>

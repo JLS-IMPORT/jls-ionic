@@ -218,7 +218,8 @@
         "MyList":"愿望清单",
         "Advice":"商品评价",
         "AdvancedSearch":"精确搜索",
-        "ContactUs":"联系我们"
+        "ContactUs":"联系我们",
+        "ViewAllProduct": "所有商品"
     },
     "product-detail":{
         "Favorite":"愿望清单",

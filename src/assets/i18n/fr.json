@@ -218,7 +218,8 @@
         "MyList":"Favoris",
         "Advice":"Avis",
         "AdvancedSearch":"Recherche avancée",
-        "ContactUs":"Contactez-nous"
+        "ContactUs":"Contactez-nous",
+        "ViewAllProduct": "Tous les articles"
     },
     "product-detail":{
         "Favorite":"Préférée",
