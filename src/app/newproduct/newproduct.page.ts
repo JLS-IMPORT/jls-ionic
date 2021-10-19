@@ -70,6 +70,26 @@ export class NewproductPage extends BaseUI {
     this.PageType = this.router.snapshot.queryParams["PageType"];
     this.SecondReferenceId = parseInt(this.router.snapshot.queryParams["ReferenceId"]);
     this.Title = this.router.snapshot.queryParams["Title"];
+
+    var layoutMode = localStorage.getItem('productListLayoutType');
+    if (this.listLayoutMode.find(p => p == layoutMode) != null) {
+      this.layoutMode = layoutMode;
+    }
+   
+    if (this.PageType == 'ViewAllProduct') {
+      // Default OrderBy PublishDate_Recent
+      this.advancedSearchCriteria.OrderBy = 'PublishDate_Recent';
+
+      // Set default imageOnly mode
+      this.layoutMode = 'imangeOnly';
+    }
+    
+    if(this.layoutMode == 'imangeOnly'){
+      this.imageOnlyTreatement();
+    }
+    else{
+      this.loadProductList();
+    }
   }
 
 
@@ -111,25 +131,6 @@ export class NewproductPage extends BaseUI {
 
   ionViewWillEnter() {
     // only for develop, don't commit for production app
-    var layoutMode = localStorage.getItem('productListLayoutType');
-    if (this.listLayoutMode.find(p => p == layoutMode) != null) {
-      this.layoutMode = layoutMode;
-    }
-   
-    if (this.PageType == 'ViewAllProduct') {
-      // Default OrderBy PublishDate_Recent
-      this.advancedSearchCriteria.OrderBy = 'PublishDate_Recent';
-
-      // Set default imageOnly mode
-      this.layoutMode = 'imangeOnly';
-    }
-
-    if(this.layoutMode == 'imangeOnly'){
-      this.imageOnlyTreatement();
-    }
-    else{
-      this.loadProductList();
-    }
   }
 
   productDetail(product) {
