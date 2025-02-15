@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { NavController, ToastController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { ContactUsPage } from '../contact-us/contact-us.page';
 import { UtilsService } from '../service/utils.service';
 

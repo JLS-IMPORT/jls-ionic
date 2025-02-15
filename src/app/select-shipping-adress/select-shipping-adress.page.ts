@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { LoadingController, ToastController, NavController } from '@ionic/angular';
 import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { AddressService } from '../service/address.service';
 import { Iaddress } from '../interface/iaddress';
