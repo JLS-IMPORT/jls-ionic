@@ -1,0 +1,50 @@
+name: Build Android APK (Cordova)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Ionic & Cordova CLI
+        run: npm install -g @ionic/cli cordova
+
+      - name: Build Ionic Project
+        run: ionic build
+
+      - name: Add Android Platform
+        run: cordova platform add android
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Grant Execute Permission to Gradlew
+        run: chmod +x platforms/android/gradlew
+
+      - name: Build Android APK (Debug)
+        run: cordova build android --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: platforms/android/app/build/outputs/apk/release/app-release.apk
+          retention-days: 7
