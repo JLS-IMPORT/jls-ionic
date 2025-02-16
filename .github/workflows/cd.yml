@@ -39,7 +39,7 @@ jobs:
 
       - name: Build
         run: |
-          ionic cordova build android --prod
+          ionic cordova build android --prod --verbose
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
