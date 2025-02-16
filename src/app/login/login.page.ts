@@ -4,7 +4,7 @@ import { NavController, LoadingController, ToastController, ModalController } fr
 import { RestService } from '../service/rest.service';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { UtilsService } from '../service/utils.service';
 import { environment } from 'src/environments/environment';
 

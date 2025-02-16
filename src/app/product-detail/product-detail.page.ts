@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BaseUI } from '../common/baseui';
 import { UtilsService } from '../service/utils.service';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseUI } from '../common/baseui';
 

@@ -3,7 +3,7 @@ import { BaseUI } from '../common/baseui';
 import { environment } from 'src/environments/environment';
 import { RestService } from '../service/rest.service';
 import { NavController, ToastController, LoadingController } from '@ionic/angular';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 

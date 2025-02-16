@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseUI } from '../common/baseui';
 import { NavController, ToastController, LoadingController } from '@ionic/angular';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { AddressService } from '../service/address.service';

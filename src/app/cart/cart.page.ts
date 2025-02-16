@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { NavController, ToastController } from '@ionic/angular';
 import { UtilsService } from '../service/utils.service';
 import { Storage } from '@ionic/storage';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { RestService } from '../service/rest.service';
 import { TranslateService } from '@ngx-translate/core';
 import { CartService } from '../service/cart.service';
