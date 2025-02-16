@@ -23,7 +23,10 @@ jobs:
 
       - name: Install Ionic & Cordova CLI
         run: npm install -g @ionic/cli cordova
-
+        
+      - name: Build Ionic Project
+        run: ionic build --prod
+        
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
