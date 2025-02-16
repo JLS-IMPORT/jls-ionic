@@ -37,7 +37,7 @@
     "cordova-android": "9.1.0",
     "cordova-browser": "^7.0.0",
     "cordova-ios": "6.2.0",
-    "ionic5-star-rating": "https://github.com/ZhnegxiLI/ionic7-star-rating/tarball/master",
+    "ionic5-star-rating": "^6.0.0",
     "rxjs": "^6.0.0",
     "swiper": "^9.0.0",
     "tslib": "^2.0.0",
