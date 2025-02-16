@@ -24,23 +24,24 @@ jobs:
       - name: Install Ionic & Cordova CLI
         run: npm install -g @ionic/cli cordova
 
-      - name: Build Ionic Project
-        run: ionic build
-
-      - name: Use coturiv/setup-ionic
-        uses: coturiv/setup-ionic@v1
+      - name: Setup Java
+        uses: actions/setup-java@v3
         with:
-          java-version: 8
+          distribution: 'temurin'
+          java-version: '17'
           
-      - name: Use coturiv/setup-ionic
-        uses: coturiv/setup-ionic@v1
-        with:
-          cordova-version: 8
-
-      - name: Build
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        
+      - name: Add Android Platform (if not exists)
         run: |
-          ionic cordova build android --prod --verbose
-
+          if [ ! -d "./platforms/android" ]; then
+            cordova platform add android
+          fi
+          
+      - name: Build Android APK
+        run: cordova build android --release
+      
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
