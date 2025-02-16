@@ -4,7 +4,7 @@ import { NavController, ToastController, LoadingController } from '@ionic/angula
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { distinctUntilChanged, debounceTime, switchMap, map, first } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 

@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@awesome-cordova-plugins//splash-screen/ngx';
+import { StatusBar } from '@awesome-cordova-plugins//status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { RestService } from './service/rest.service';
 import { UtilsService } from './service/utils.service';
-import { interval, timer } from 'rxjs';
-import { startWith, takeWhile } from 'rxjs/operators';
-import { start } from 'repl';
-import { Storage } from '@ionic/storage';
-import { CodePush,InstallMode } from '@ionic-native/code-push/ngx';
+import { timer } from 'rxjs';
+import { CodePush,InstallMode } from '@awesome-cordova-plugins//code-push/ngx';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +23,8 @@ export class AppComponent {
     private translate: TranslateService,
     private rest: RestService,
     private utils: UtilsService,
-    private codePush: CodePush
+    private codePush: CodePush,
+    private storage: Storage
   ) {
     this.initializeApp();
   }
@@ -84,4 +83,10 @@ export class AppComponent {
     }
   );
  }
+
+ async ngOnInit() {
+  // If using a custom driver:
+  // await this.storage.defineDriver(MyCustomDriver)
+  await this.storage.create();
+}
 }

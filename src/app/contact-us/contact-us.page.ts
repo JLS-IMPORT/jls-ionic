@@ -3,7 +3,7 @@ import { BaseUI } from '../common/baseui';
 import { NavController, ToastController, LoadingController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { RestService } from '../service/rest.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins//network/ngx';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

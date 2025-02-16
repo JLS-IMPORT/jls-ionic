@@ -1,7 +1,6 @@
 
 
 import { LoadingController, ToastController } from '@ionic/angular';
-import { promise } from 'protractor';
 
 export abstract class BaseUI {
     constructor() {
