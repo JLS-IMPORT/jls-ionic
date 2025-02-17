@@ -1,9 +1,7 @@
 name: Build Android APK
 
 on:
-  push:
-    branches:
-      - main  # 你可以改成你的主要分支
+  workflow_dispatch:
 
 jobs:
   build:
