@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@awesome-cordova-plugins//splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins//status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
 import { RestService } from './service/rest.service';
 import { UtilsService } from './service/utils.service';
 import { timer } from 'rxjs';
-import { CodePush,InstallMode } from '@awesome-cordova-plugins//code-push/ngx';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -18,12 +16,10 @@ import { Storage } from '@ionic/storage-angular';
 export class AppComponent {
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private translate: TranslateService,
     private rest: RestService,
     private utils: UtilsService,
-    private codePush: CodePush,
     private storage: Storage
   ) {
     this.initializeApp();
@@ -32,11 +28,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(async () => {
 
-      // Update app by codePush
-      this.checkCodePush();
-
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
 
       // Set default language 
       var lang = await this.utils.getKey('lang');
@@ -70,19 +62,6 @@ export class AppComponent {
       }
     });
   }
-
-  checkCodePush() {
-    this.codePush.sync({
-      installMode: InstallMode.ON_NEXT_RESTART
-    }).subscribe(
-    (data) => {
-     console.log('CODE PUSH SUCCESSFUL: ' + data);
-    },
-    (err) => {
-     console.log('CODE PUSH ERROR: ' + err);
-    }
-  );
- }
 
  async ngOnInit() {
   // If using a custom driver:
