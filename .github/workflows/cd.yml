@@ -11,11 +11,11 @@ jobs:
     steps:
       # 🛠️ 检出代码
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 🛠️ 安装 Node.js & npm
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -31,6 +31,7 @@ jobs:
       - name: Install Capacitor Android
         run: |
           npm install @capacitor/android
+          npx cap add android
           npx cap sync android
 
       # 🛠️ 设置 Java & Gradle 环境
@@ -52,7 +53,7 @@ jobs:
 
       # 📦 上传 APK 作为构建产物
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
