@@ -25,64 +25,67 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-ion-content{
-    //--background: #E5E6E8!important;
- }
+ion-content {
+  //--background: #E5E6E8!important;
+}
 
- .alert {
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-  }
-  
-  .alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-  }
+.swiper-slide{
+  text-align: center;
+}
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
 
-  .productCardContent{
-    padding-right: 2px;
-  }
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
 
-  .product-card__badge {
-    font-size: 11px;
-    border-radius: 1.5px;
-    letter-spacing: .02em;
-    line-height: 1;
-    padding: 5px 8px 4px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    margin-right: 4px;
-    background: #f33;
-    color: #fff;
-  }
+.productCardContent {
+  padding-right: 2px;
+}
 
-  .product-card__badge_New {
-    font-size: 11px;
-    border-radius: 1.5px;
-    letter-spacing: .02em;
-    line-height: 1;
-    padding: 5px 8px 4px;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    margin-right: 4px;
-    background: #614ba6;
-    color: #fff;
-  }
+.product-card__badge {
+  font-size: 11px;
+  border-radius: 1.5px;
+  letter-spacing: .02em;
+  line-height: 1;
+  padding: 5px 8px 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  background: #f33;
+  color: #fff;
+}
 
-  .product-card__badges-list {
-    top: 5px;
-    position: absolute;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    z-index: 1;
-    right: 5px;
-  }
+.product-card__badge_New {
+  font-size: 11px;
+  border-radius: 1.5px;
+  letter-spacing: .02em;
+  line-height: 1;
+  padding: 5px 8px 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  background: #614ba6;
+  color: #fff;
+}
+
+.product-card__badges-list {
+  top: 5px;
+  position: absolute;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  z-index: 1;
+  right: 5px;
+}

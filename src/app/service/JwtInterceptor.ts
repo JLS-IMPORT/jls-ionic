@@ -8,7 +8,7 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import { Observable, BehaviorSubject, pipe, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { tap, catchError, switchMap, filter, take, finalize } from 'rxjs/operators';
 import { RestService } from '../service/rest.service';
 
@@ -43,11 +43,11 @@ export class JwtInterceptor implements HttpInterceptor {
                             return this.handleHttpResponseError(request, next);
                         case 400:
                             return <any>this.rest.logout();
-                        default :
-                            return throwError(err);
+                        default:
+                            return throwError(()=>err);
                     }
                 } else {
-                    return throwError(this.handleError);
+                    return throwError(()=>this.handleError);
                 }
             })
 
@@ -68,8 +68,9 @@ export class JwtInterceptor implements HttpInterceptor {
             // The response body may contain clues as to what went wrong,
             errorMsg = `Backend returned code ${errorResponse.status}, body was: ${errorResponse.error}`;
         }
-
-        return Observable.throw(errorMsg);
+        return throwError(() => new Error(errorMsg)).subscribe({
+            error: err => console.error('Caught error:', err)
+        });
     }
 
 
