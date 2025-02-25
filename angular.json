@@ -38,7 +38,8 @@
               },
               {
                 "input": "src/global.scss"
-              }
+              },
+              "node_modules/swiper/swiper-bundle.min.css"
             ],
             "scripts": []
           },
@@ -181,7 +182,6 @@
     }
   },
   "cli": {
-    "defaultCollection": "@ionic/angular-toolkit",
     "analytics": false
   },
   "schematics": {

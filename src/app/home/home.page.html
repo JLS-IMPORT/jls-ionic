@@ -16,17 +16,16 @@
 </ion-header>
 
 <ion-content class="ion-text-center" no-bounce scrollY="true">
-  <ion-slides pager *ngIf="sldes!=null &&sldes.length>0">
-    <ion-slide class="slidePhoto" *ngFor="let item of sldes">
+  <swiper *ngIf="sldes!=null &&sldes.length>0">
+    <ng-template swiperSlide *ngFor="let item of sldes">
       <img [src]="host+item.PhotoPath" />
-    </ion-slide>
-  </ion-slides>
-  <ion-slides pager *ngIf="!(sldes!=null&&sldes.length>0)">
-    <ion-slide class="slidePhoto">
+    </ng-template>
+  </swiper>
+  <swiper *ngIf="!(sldes!=null&&sldes.length>0)">
+    <ng-template swiperSlide class="slidePhoto">
       <img src="../../assets/imgs/slider2.jpg" />
-    </ion-slide>
-  </ion-slides>
-
+    </ng-template>
+  </swiper>
   <div class="ion-margin-top">
     <h3 style="text-align: left; margin-left: 5px;">{{'home.New' | translate}} <a
         style="float: right; margin-right: 5px; font-size: medium;" (click)="displaynewProductPage(null)">
@@ -157,13 +156,10 @@
     </div>
   </div>
 
-  <ion-list class="ion-margin-top">
+  <ion-list>
     <ion-item button (click)="displaynewProductPage(true)">
       {{'home.ViewAllProduct' | translate |uppercase}}
     </ion-item>
-  </ion-list>
-
-  <ion-list class="ion-margin-top">
     <ion-item button *ngFor="let item of categoryList" (click)="secondMenu(item.ReferenceId,item.Reference.Label)">
       {{item.Reference.Label}}({{item.TotalCount}})
     </ion-item>

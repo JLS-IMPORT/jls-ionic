@@ -41,7 +41,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
    "ionic5-star-rating": "^7.0.0",
     "rxjs": "^7.5.0",
-    "swiper": "^9.0.0",
+    "swiper": "^8.0.0",
     "tslib": "^2.0.0",
     "zone.js": "0.12.0"
   },

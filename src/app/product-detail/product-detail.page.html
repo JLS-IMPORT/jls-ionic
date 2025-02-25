@@ -17,9 +17,8 @@
 
   <div>
     <!-- <img class="productDetailImg" src="assets/imgs/productDetailImg.png" /> -->
-
-    <ion-slides class="slidePagers" pager>
-      <ion-slide *ngFor="let item of product.ImagesPath">
+    <swiper pager>
+      <ng-template swiperSlide *ngFor="let item of product.ImagesPath">
         <div class="product-card__badges-list" style="top:18px;right:18px;">
           <div *ngIf="logined&& utils.formatProductPromotionInfo(product)!=null" class="product-card__badge promotion"
             style="font-size: 14px;">
@@ -31,15 +30,11 @@
           </div>
         </div>
         <img class="productDetailImg" [src]="host+item.Path" *ngIf="item.Path" style="height: 250px;" />
-
-      </ion-slide>
-      <img *ngIf="product.ImagesPath==null||product.ImagesPath.length==0" class="productImg"
-        src="assets/imgs/not-found.png">
-    </ion-slides>
-
-
-    <!-- <div class="surjet"></div>
-    <p class="surjetText">{{product.Label | uppercase }}</p> -->
+      </ng-template>
+      <ng-template swiperSlide ngIf="product.ImagesPath==null||product.ImagesPath.length==0">
+        <img class="productDetailImg" src="assets/imgs/not-found.png" style="height: 250px;" />
+      </ng-template>
+    </swiper>
 
   </div>
   <div>
@@ -97,7 +92,7 @@
       {{'product-detail.OriginalPrice' | translate}} :<span
         style="text-decoration:line-through;">{{product.PreviousPrice}} €</span>(HT)
     </ion-item>
-    
+
     <ion-item *ngIf="product.QuantityPerParcel==null">
       {{'cart.QuantityPerParcel' | translate}} : {{product.QuantityPerBox}}
     </ion-item>
